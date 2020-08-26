@@ -2,15 +2,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function SelectParameters (){
-    const [difficultyLevel, setDifficultyLevel] = useState ('Easy');
-    const [category, setCategory] = useState('General Knowledge')
+    
+    const [category, setCategory] = useState([])
+    const [choosenCategory, setChoosenCategory] = useState('')
+    const [choosenTimer,setChoosenTimer] =useState('');
+    const [difficultyLevel, setDifficultyLevel] = useState ('')
 
     //recupération de l'API catégory
      useEffect (()=>{
-            axios.get ('https://opentdb.com/api_category.php')
+        let configAPI = {
+            method: 'get',
+            url: 'https://opentdb.com/api_category.php',
+          };
+            axios (configAPI)
             .then ((response) => {
-                setCategory (response.data)
-                console.log(response.data)
+                setCategory (response.data.trivia_categories)
             })
             .catch((error) => {console.log(error);})  
    }, [])  
@@ -40,36 +46,63 @@ function SelectParameters (){
 // {"id":32,"name":"Entertainment: Cartoon & Animations"}]}
         
     //changement au select :
-    function handleChangeLevel (event){
+    function handleChoosenLevel (event){
         setDifficultyLevel(event.target.value)
         console.log (event.target.value);
        };
-    function handleChangeCategory (event){
-        setCategory(event.target.value)
-        console.log (event.target.value);
+    function handleChoosenCategory (event){
+        setChoosenCategory(event.target.value)
+        console.log (event.target.value)
        };
+       function handleChoosenTimer (event){
+        setChoosenTimer(event.target.value)
+        console.log (event.target.value)
+       };
+
 
     return (
 
         <div>
-            <h2>Choisissez le niveau de dificulté </h2>
-            <p>Niveau choisi : {difficultyLevel}</p>
-                <select onChange={(event)=>handleChangeLevel(event)}> 
-                    <option value = 'Easy'> Easy </option>
-                    <option value = 'Medium'> Medium </option>
-                    <option value = 'Hard'> Hard </option>  
-                </select>
-            <h2>Choisissez la catégorie</h2>
-            <p> Catégorie choisie : {category.trivia_categories.name}</p>   
-                <select onChange={handleChangeCategory}>
-                    {category.trivia_categories.map((item)=>{
-                        return <option value = {item.trivia_categories.id}>{item.trivia_categories.name}</option>
-                    })
+            <div>
+                <h2>Select the level </h2>
+                <p>Choosen level : {difficultyLevel}</p>
+                    <select onChange={(event)=>handleChoosenLevel(event)}> 
+                        <option value = ''/>
+                        <option value = 'Easy'> Easy </option>
+                        <option value = 'Medium'> Medium </option>
+                        <option value = 'Hard'> Hard </option>  
+                    </select>
+            </div>
+            <div>
+                <h2>Select a category</h2>
+                <p> Choosen Category : {choosenCategory} </p>   
+                <select onChange={(event)=>handleChoosenCategory(event)}>
+                    <option value =""/>
+                     {category.map((item)=>{
+                        return <option key={item.id} value={item.name}>{item.name} </option>
+                     })
                     }
                 </select>
-
+            </div>
+            <div>
+                <h2>Select a timer duration </h2>
+                <p>Choosen level : {choosenTimer}</p>
+                    <select onChange={(event)=>handleChoosenTimer(event)}> 
+                        <option value = ''/>
+                        <option value = '30'> 30' </option>
+                        <option value = '60'> 60' </option>
+                        <option value = '90'> 90'</option>  
+                    </select>
+            </div>  
         </div>
     )   
 }
 
 export default SelectParameters;
+
+
+// ok niveau de difficulté
+// ok catégories/thème
+// _ type de questions
+// ok choix du temps pour le chronometre
+// _ nombre de questions (attention au nombre de questions max par rapport au nombre de joueurs)
