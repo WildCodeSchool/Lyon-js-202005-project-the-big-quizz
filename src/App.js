@@ -1,18 +1,10 @@
-
 import React, { useState } from "react";
 
 import "./App.css";
 
 import GridLayout from "./layout/GridLayout";
 
-
-
-import GameParameters from './components/GameParameters';
-
-
-
 function App() {
-
   // variables de paramètrage du jeu
 
   const nbPlayersMin = 1;
@@ -21,27 +13,26 @@ function App() {
   const [nbPlayers, setNbPlayers] = useState(nbPlayersMin);
   const [playerNames, setPlayerNames] = useState(["Player #1"]);
   const [maxQuestionsPerPlayer, setMaxQuestionsPerPlayer] = useState(50);
+  const [difficultyLevel, setDifficultyLevel] = useState("Easy");
 
   //
 
   return (
     <div className="App">
-
-      <GridLayout gameParameters={{
-            nbPlayersMin: nbPlayersMin,
-            nbPlayersMax: nbPlayersMax,
-            nbPlayers: nbPlayers,
-            setNbPlayers: setNbPlayers,
-            playerNames: playerNames,
-            setPlayerNames: setPlayerNames,
-            maxQuestionsPerPlayer: maxQuestionsPerPlayer,
-            setMaxQuestionsPerPlayer: setMaxQuestionsPerPlayer,
-          }}>
-
-
-          <GameParameters/>
-        
-      </GridLayout>
+      <GridLayout
+        gameParameters={{
+          nbPlayersMin: nbPlayersMin,
+          nbPlayersMax: nbPlayersMax,
+          nbPlayers: nbPlayers,
+          setNbPlayers: setNbPlayers,
+          playerNames: playerNames,
+          setPlayerNames: setPlayerNames,
+          maxQuestionsPerPlayer: maxQuestionsPerPlayer,
+          setMaxQuestionsPerPlayer: setMaxQuestionsPerPlayer,
+          difficultyLevel: difficultyLevel,
+          setDifficultyLevel: setDifficultyLevel
+        }}
+      ></GridLayout>
     </div>
   );
 }

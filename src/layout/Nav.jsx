@@ -6,6 +6,7 @@ function Nav(props) {
     <div className="nav">
       <p>Nav</p>
       <p>nombre de joueurs : {props.gameParameters.nbPlayers}</p>
+      <p>difficulté : {props.gameParameters.difficultyLevel}</p>
     </div>
   );
 }

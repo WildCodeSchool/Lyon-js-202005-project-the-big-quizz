@@ -8,7 +8,7 @@ import Game from "../components/Game";
 import Stats from "../components/Stats";
 
 function Main(props) {
-//   console.log("props de Main :", props);
+  //   console.log("props de Main :", props);
 
   return (
     <div className="main">
@@ -17,8 +17,13 @@ function Main(props) {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/parameters">
-          <Parameters gameParameters={props.gameParameters} />
+          <Parameters {...props} gameParameters={props.gameParameters} />
         </Route>
+
+        {/* <Route  path="/parameters"  
+       render={(props) => <gameParameters {...props} gameParameters={props.gameParameters} />}  
+         />  */}
+
         <Route path="/game">
           <Game gameParameters={props.gameParameters} />
         </Route>
@@ -30,9 +35,4 @@ function Main(props) {
 
 export default Main;
 
-
-  /* <Route
-    path="/test/"
-    render={(props) => <Test {...props} lst={lst} />}
-/> */
-
+/* <Route path="/test/" render={(props) => <Test {...props} lst={lst} />} /> */
