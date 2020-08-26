@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import QuestionOfTheDay from "./QuestionOfTheDay";
 
 function Home (){
 
@@ -8,7 +9,7 @@ function Home (){
     return (
         <div>
 <h1>Home</h1>
-<p>question du jour</p>
+<QuestionOfTheDay />
 <Link to="/Parameters"><button>paramétrer le jeu</button></Link>
  
         </div>
