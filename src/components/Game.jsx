@@ -1,6 +1,7 @@
 import React from 'react';
 
-function Game (){
+function Game (props){
+    // console.log("props de Game:",props)
     return (
         <div>
 <h1>

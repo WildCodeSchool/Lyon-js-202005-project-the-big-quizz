@@ -1,27 +1,24 @@
 import React from "react";
-import Header from "./Header"
-import Nav from "./Nav"
-import Main from "./Main"
-import Footer from "./Footer"
+import Header from "./Header";
+import Nav from "./Nav";
+import Main from "./Main";
+import Footer from "./Footer";
 
 import "../App.css";
 
-function GridLayout(){
-  return (<div className="gridLayout">
+function GridLayout(props) {
+  // console.log("props de Gridlayout:", props);
 
+  return (
+    <div className="gridLayout">
+      <Header />
 
+      <Nav gameParameters={props.gameParameters} />
 
-  
-  <Header/>
-  
-  <Nav/>
-  
-  <Main/>
-  
-  <Footer/>
-  
-  </div>
-  
+      <Main gameParameters={props.gameParameters} />
+
+      <Footer />
+    </div>
   );
 }
 

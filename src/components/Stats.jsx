@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-function Stats (){
-    return (
-        <div>
-            <h1>Stats</h1>
-            
-        </div>
-    );
+function Stats(props) {
+  // console.log("props de Stats",props);
+  return (
+    <div>
+      <h1>Stats</h1>
+    </div>
+  );
 }
 
 export default Stats;
