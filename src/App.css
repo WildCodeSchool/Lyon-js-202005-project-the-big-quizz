@@ -36,3 +36,64 @@
     transform: rotate(360deg);
   }
 }
+
+.gridLayout {
+  width: 100%;
+  height: 250px;
+  display: grid;
+  grid-template-areas:
+    "head head"
+    "nav  main"
+    "foot  foot";
+  grid-template-rows: 100px 1fr 30px;
+  grid-template-columns: 150px 1fr;
+}
+
+.footer {
+  background-color: #DDDDDD;
+  grid-area: foot;
+}
+
+.header {
+  background-color: #EEEEEE;
+  grid-area: head;
+}
+
+.main {
+  background-color: #FFFFFF;
+  grid-area: main;
+}
+
+.nav {
+  background-color: #CCCCCC;
+  grid-area: nav;
+}
+
+.Parameters {
+  background-color: #FFCCCC;
+
+}
+
+
+/* CSS of the question of day */
+.answer {
+  width: 25%;
+  height: 75px;
+  font-size: large;
+  color: wheat;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+}
+.buttonStart {
+  background-color: "blue";
+  cursor: "pointer";
+  font-size: "large";
+  width: "30%";
+  height: "45px";
+  color: "white";
+  font-weight: "bold";
+}
