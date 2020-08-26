@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 
 import GridLayout from "./layout/GridLayout";
@@ -10,6 +10,9 @@ import Header from "./layout/Header";
 import NbPlayer from "./components/NbPlayers.jsx";
 
 function App() {
+  const [parameters, setParameters] = useState({})
+
+
   return (
     <div className="App">
       <GridLayout>

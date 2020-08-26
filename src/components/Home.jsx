@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import QuestionOfTheDay from "./QuestionOfTheDay";
@@ -14,19 +15,7 @@ function Home (){
  
         </div>
     );
+
 }
 
 export default Home;
-
-
-/*
-
-<Link to='/somewhere'>
-    <Button>
-          My button linked to react-router-dom
-    </Button>
-</Link>
-
-
-
-*/

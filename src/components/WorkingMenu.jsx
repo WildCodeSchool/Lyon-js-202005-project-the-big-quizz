@@ -10,9 +10,9 @@ function WorkingMenu(props) {
         <div>
             <p>Working Menu</p>
           <span><Link to="/">Home</Link></span><span> | </span>
-          <span><Link to="/Parameters">Parameters</Link></span><span> | </span>
-          <span><Link to="/Game">Game</Link></span><span> | </span>
-          <span><Link to="/Stats">Stats</Link></span><span> | </span>
+          <span><Link to="/parameters">Parameters</Link></span><span> | </span>
+          <span><Link to="/game">Game</Link></span><span> | </span>
+          <span><Link to="/stats">Stats</Link></span><span> | </span>
 
         </div>
       </nav>
