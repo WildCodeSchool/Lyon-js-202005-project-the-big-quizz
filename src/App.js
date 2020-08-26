@@ -1,7 +1,14 @@
+
 import React, { useState } from "react";
+
 import "./App.css";
 
 import GridLayout from "./layout/GridLayout";
+
+
+
+import GameParameters from './components/GameParameters';
+
 
 
 function App() {
@@ -19,6 +26,7 @@ function App() {
 
   return (
     <div className="App">
+
       <GridLayout gameParameters={{
             nbPlayersMin: nbPlayersMin,
             nbPlayersMax: nbPlayersMax,
@@ -30,6 +38,9 @@ function App() {
             setMaxQuestionsPerPlayer: setMaxQuestionsPerPlayer,
           }}>
 
+
+          <GameParameters/>
+        
       </GridLayout>
     </div>
   );
