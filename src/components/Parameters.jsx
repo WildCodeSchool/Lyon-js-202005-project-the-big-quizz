@@ -1,10 +1,12 @@
 import React from "react";
-import NbPlayers from "./NbPlayers";
-import { Link } from "react-router-dom";
 import "../App.css";
+import NbPlayers from "./NbPlayers";
+import GameParameters from './GameParameters';
+import { Link } from "react-router-dom";
+
 
 function Parameters(props) {
-  // console.log("props de Parameters",props.gameParameters);
+   console.log("props de Parameters",props);
 
   const testCondition = true;
 
@@ -20,6 +22,7 @@ function Parameters(props) {
       <h1>Parameters</h1>
 
       <NbPlayers gameParameters={props.gameParameters} />
+      <GameParameters gameParameters={props.gameParameters}/>
 
       <Link to="/game">
         <button>commencer le jeu</button>
