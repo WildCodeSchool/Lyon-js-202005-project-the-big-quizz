@@ -18,9 +18,10 @@ function Main(props) {
            
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/Parameters" component={Parameters} />
-                    <Route path="/Game" component={Game} />
-                    <Route path="/Stats" component={Stats} />
+                    {/* <Route path="/parameters" component={Parameters} /> */}
+                    <Route path="/parameters"><Parameters/></Route>
+                    <Route path="/game"><Game/></Route>
+                    <Route path="/stats" component={Stats} />
 
                 </Switch>
            
@@ -29,3 +30,10 @@ function Main(props) {
 }
 
 export default Main;
+
+/*
+<Route
+          path="/test/:id"
+          render={(props) => <Test {...props} lst={lst} />}
+        />
+        */
