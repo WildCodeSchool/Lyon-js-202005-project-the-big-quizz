@@ -9,7 +9,6 @@ import Nav from "./layout/Nav";
 import Header from "./layout/Header";
 
 import NbPlayer from "./components/NbPlayers.jsx";
-import GameParameters from './components/GameParameters';
 
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
         <Nav/>
         <Main>
           <NbPlayer />
-          <GameParameters/>
         </Main>
         <Footer />
       </GridLayout>

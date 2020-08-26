@@ -2,6 +2,7 @@ import React from 'react';
 import NbPlayers from './NbPlayers';
 import { Link } from "react-router-dom";
 import "../App.css";
+import SelectParameters from './SelectParameters';
 
 function Parameters(props) {
     const testCondition = true;
@@ -20,7 +21,7 @@ function Parameters(props) {
             <p>ensemble des composants paramètres (input et selects)</p>
             <NbPlayers />
             <p>Autres composants...</p>
-
+            <SelectParameters/>
 
             <Link to="/game"><button>commencer le jeu</button></Link>
             <button onClick={handleClick}>commencer le jeu (conditionnel)</button>
