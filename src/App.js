@@ -1,14 +1,25 @@
+
 import React from 'react';
 import './App.css';
 import NbPlayer from "./components/NbPlayers";
-import QuestionOfTheDay from "./components/QuestionOfTheDay"; 
+import GridLayout from "./layout/GridLayout";
+import Footer from "./layout/Footer";
+import Main from "./layout/Main";
+import Nav from "./layout/Nav";
+import Header from "./layout/Header";
+
 
 function App() {
   return (
     <div className="App">
-     
-     <NbPlayer />
-     <QuestionOfTheDay />
+      <GridLayout>
+        <Header />
+        <Nav/>
+        <Main>
+          <NbPlayer />
+        </Main>
+        <Footer />
+      </GridLayout>
 
     </div>
   );
