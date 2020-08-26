@@ -1,13 +1,13 @@
+import React from "react";
+import "./App.css";
 
-import React from 'react';
-import './App.css';
-import NbPlayer from "./components/NbPlayers";
 import GridLayout from "./layout/GridLayout";
 import Footer from "./layout/Footer";
 import Main from "./layout/Main";
 import Nav from "./layout/Nav";
 import Header from "./layout/Header";
 
+import NbPlayer from "./components/NbPlayers.jsx";
 
 function App() {
   return (
@@ -20,7 +20,6 @@ function App() {
         </Main>
         <Footer />
       </GridLayout>
-
     </div>
   );
 }

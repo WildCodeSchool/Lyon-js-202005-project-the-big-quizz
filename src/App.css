@@ -6,32 +6,6 @@
   height: 40vmin;
   pointer-events: none;
 }
-/* CSS of the question of the day  */
-
-.answer {
-  width: 25%;
-  height: 75px;
-  font-size: large;
-  color: wheat;
-  font-weight: bold;
-  margin: 10px;
-  cursor: pointer;
-}
-button {
-  cursor: pointer;
-}
-span{
-  color: blue;
-}
-.buttonStart {
-  background-color: "blue";
-  cursor: "pointer";
-  font-size: "large";
-  width: "30%";
-  height: "45px";
-  color: "white";
-  font-weight: "bold";
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
