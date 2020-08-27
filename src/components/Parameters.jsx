@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import NbPlayers from "./NbPlayers";
-import GameParameters from './GameParameters';
+import SelectParameters from './SelectParameters';
 import { Link } from "react-router-dom";
 
 
@@ -22,7 +22,7 @@ function Parameters(props) {
       <h1>Parameters</h1>
 
       <NbPlayers gameParameters={props.gameParameters} />
-      <GameParameters gameParameters={props.gameParameters}/>
+      <SelectParameters gameParameters={props.gameParameters}/>
 
       <Link to="/game">
         <button>commencer le jeu</button>
