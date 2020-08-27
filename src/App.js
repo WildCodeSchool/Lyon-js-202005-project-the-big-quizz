@@ -14,7 +14,9 @@ function App() {
   const [playerNames, setPlayerNames] = useState(["Player #1"]);
   const [maxQuestionsPerPlayer, setMaxQuestionsPerPlayer] = useState(50);
   const [difficultyLevel, setDifficultyLevel] = useState("Easy");
-
+  const [choosenCategory, setChoosenCategory] = useState('')
+  const [choosenTimer,setChoosenTimer] =useState('');
+  const [nbQuestionsPerPlayer,setNbQuestionsPerPlayer] = useState("5");
   //
 
   return (
@@ -30,7 +32,13 @@ function App() {
           maxQuestionsPerPlayer: maxQuestionsPerPlayer,
           setMaxQuestionsPerPlayer: setMaxQuestionsPerPlayer,
           difficultyLevel: difficultyLevel,
-          setDifficultyLevel: setDifficultyLevel
+          setDifficultyLevel: setDifficultyLevel,
+          choosenCategory: choosenCategory,
+          setChoosenCategory: setChoosenCategory,
+          choosenTimer: choosenTimer,
+          setChoosenTimer: setChoosenTimer,
+          nbQuestionsPerPlayer: nbQuestionsPerPlayer,
+          setNbQuestionsPerPlayer: setNbQuestionsPerPlayer,
         }}
       ></GridLayout>
     </div>

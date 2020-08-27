@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 function Parameters(props) {
-   console.log("props de Parameters",props);
+   // console.log("props de Parameters",props);
 
   const testCondition = true;
 
