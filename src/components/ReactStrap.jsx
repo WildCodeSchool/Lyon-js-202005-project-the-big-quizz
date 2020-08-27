@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { Progress } from 'reactstrap';
-
+import ProgressBar from "./UIComponents/ProgressBar";
 
 function ReactStrap () {
     return(
@@ -21,26 +20,11 @@ function ReactStrap () {
 
 
         <span>
-           
+          <p>Ceci est un exemple de progress bar</p>
+           <ProgressBar />
         </span>
         </div>
     );
 }
 
-
-
-
-const ProgressExample = (props) => {
-  return (
-    <div>
-      <h2>Progress bar example</h2>
-      <Progress value={75}>You're almost there!</Progress>
-      <br />
-      <Progress color="success" value="100">You did it!</Progress>
-    </div>
-  );
-};
-export default ProgressExample;
-
-
-//export default ReactStrap; 
+export default ReactStrap; 
