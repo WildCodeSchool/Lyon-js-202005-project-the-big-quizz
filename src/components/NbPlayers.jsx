@@ -2,9 +2,15 @@ import React from "react";
 import "../App.css";
 
 function NbPlayers(props) {
-  // console.log("props de NbPlayers:",props);
+  //console.log("props de NbPlayers:", props);
 
-  const handleChangeNbPlayers = (e, tmpPlayerNames) => {
+  const handleChangeNbPlayers = (
+    e,
+    tmpPlayerNames,
+    tmpNbQuestionsPerPlayer,
+    tmpNbPlayerMax,
+    tmpNbPlayers
+  ) => {
     if (
       e.target.value.length > 0 &&
       e.target.value >= props.gameParameters.nbPlayersMin &&
@@ -17,6 +23,15 @@ function NbPlayers(props) {
       props.gameParameters.setNbPlayers(parseInt(e.target.value, 10));
       props.gameParameters.setPlayerNames(tmpPlayerNames);
       props.gameParameters.setMaxQuestionsPerPlayer(
+        Math.floor(50 / e.target.value)
+      );
+    }
+
+    if (
+      tmpNbQuestionsPerPlayer > Math.floor(50 / e.target.value) &&
+      tmpNbPlayers < tmpNbPlayerMax
+    ) {
+      props.gameParameters.setNbQuestionsPerPlayer(
         Math.floor(50 / e.target.value)
       );
     }
@@ -43,7 +58,13 @@ function NbPlayers(props) {
           name="nbPlayers"
           value={props.gameParameters.nbPlayers}
           onChange={(e) =>
-            handleChangeNbPlayers(e, [...props.gameParameters.playerNames])
+            handleChangeNbPlayers(
+              e,
+              [...props.gameParameters.playerNames],
+              props.gameParameters.nbQuestionsPerPlayer,
+              props.gameParameters.nbPlayersMax,
+              props.gameParameters.nbPlayers
+            )
           }
         />
       </div>
