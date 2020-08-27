@@ -5,6 +5,8 @@ function SelectParameters(props) {
   // console.log("props de SelectParameters:",props);
 
   const [lstCategories, setLstCategories] = useState([]);
+  //const [selectedType, setSelectedType] = useState("anytype");
+  
   
   //recupération de l'API catégory
   useEffect(() => {
@@ -86,6 +88,23 @@ function SelectParameters(props) {
           onChange={handleNbQuestionsPerPlayer}
         />
       </div>
+      <div 
+      >
+        <p>Type of Questions :</p>
+        <input type="radio" id="anytype" name="typeofquestions"   onChange={()=>props.gameParameters.setQuestionsType("anytype") } 
+        checked="false"
+         value={props.gameParameters.questionsType}
+        />
+        <label htmlfor="anytype">Any type</label>
+        <input type="radio" id="truefalse" name="typeofquestions" onChange={()=>props.gameParameters.setQuestionsType("truefalse")}
+        value={props.gameParameters.questionsType}
+        />
+        <label htmlfor="truefalse">True / False</label>
+        <input type="radio" id="multichoice" name="typeofquestions" onChange={()=>props.gameParameters.setQuestionsType("multichoice")} 
+       value={props.gameParameters.questionsType}
+        />
+        <label htmlfor="truefalse">Multiple choice</label>
+      </div>
     </div>
   );
 }
@@ -93,3 +112,5 @@ function SelectParameters(props) {
 export default SelectParameters;
 
 // _ type de questions
+
+

@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 
 function NbPlayers(props) {
-  console.log("props de NbPlayers:", props);
+  //console.log("props de NbPlayers:", props);
 
   const handleChangeNbPlayers = (
     e,

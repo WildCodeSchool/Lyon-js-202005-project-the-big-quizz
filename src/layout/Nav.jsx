@@ -19,6 +19,8 @@ function Nav(props) {
       <h5>nb de questions/joueur</h5>
       <p>{props.gameParameters.nbQuestionsPerPlayer}</p>
 
+      <h5>type de questions</h5>
+      <p>{props.gameParameters.questionsType}</p>
 
       <h5>difficulté :</h5>
       <p>{props.gameParameters.difficultyLevel}</p>

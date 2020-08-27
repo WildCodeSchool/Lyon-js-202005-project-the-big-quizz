@@ -17,6 +17,8 @@ function App() {
   const [choosenCategory, setChoosenCategory] = useState('')
   const [choosenTimer,setChoosenTimer] =useState('');
   const [nbQuestionsPerPlayer,setNbQuestionsPerPlayer] = useState("5");
+  const [questionsType,setQuestionsType] = useState("anytype");
+
   //
 
   return (
@@ -39,6 +41,8 @@ function App() {
           setChoosenTimer: setChoosenTimer,
           nbQuestionsPerPlayer: nbQuestionsPerPlayer,
           setNbQuestionsPerPlayer: setNbQuestionsPerPlayer,
+          questionsType: questionsType,
+          setQuestionsType: setQuestionsType,
         }}
       ></GridLayout>
     </div>
