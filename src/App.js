@@ -13,13 +13,19 @@ function App() {
   const [nbPlayers, setNbPlayers] = useState(nbPlayersMin);
   const [playerNames, setPlayerNames] = useState(["Player #1"]);
   const [maxQuestionsPerPlayer, setMaxQuestionsPerPlayer] = useState(50);
-  const [difficultyLevel, setDifficultyLevel] = useState("Easy");
+  const [difficultyLevel, setDifficultyLevel] = useState("");
   const [choosenCategory, setChoosenCategory] = useState('')
   const [choosenTimer,setChoosenTimer] =useState('');
   const [nbQuestionsPerPlayer,setNbQuestionsPerPlayer] = useState("5");
   const [questionsType,setQuestionsType] = useState("anytype");
 
-  //
+  // variables du jeux
+
+  const [resReq, setResReq] = useState(null);
+
+
+
+
 
   return (
     <div className="App">
@@ -43,6 +49,8 @@ function App() {
           setNbQuestionsPerPlayer: setNbQuestionsPerPlayer,
           questionsType: questionsType,
           setQuestionsType: setQuestionsType,
+          resReq: resReq,
+          setResReq: setResReq
         }}
       ></GridLayout>
     </div>

@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import "../App.css";
 
 function GridLayout(props) {
-  // console.log("props de Gridlayout:", props);
+   console.log("props de Gridlayout:", props);
 
   return (
     <div className="gridLayout">

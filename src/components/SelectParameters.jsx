@@ -45,10 +45,10 @@ function SelectParameters(props) {
           id="selectDifficultyLevel"
           onChange={(event) => handleChoosenLevel(event)}
         >
-          <option value="" />
-          <option value="Easy"> Easy </option>
-          <option value="Medium"> Medium </option>
-          <option value="Hard"> Hard </option>
+          <option value="" >Any</option>
+          <option value="easy"> Easy </option>
+          <option value="medium"> Medium </option>
+          <option value="hard"> Hard </option>
         </select>
       </div>
       <div>
@@ -57,10 +57,10 @@ function SelectParameters(props) {
           id="selectChoosenCategory"
           onChange={(event) => handleChoosenCategory(event)}
         >
-          <option value="" />
+          <option value="" >Any</option>
           {lstCategories.map((item) => {
             return (
-              <option key={item.id} value={item.name}>
+              <option key={item.id} value={item.id}>
                 {item.name}{" "}
               </option>
             );
