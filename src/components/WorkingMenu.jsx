@@ -13,6 +13,7 @@ function WorkingMenu(props) {
           <span><Link to="/parameters">Parameters</Link></span><span> | </span>
           <span><Link to="/game">Game</Link></span><span> | </span>
           <span><Link to="/stats">Stats</Link></span><span> | </span>
+          <span><Link to="/Reactstrap">ReactStrap</Link></span><span> | </span>
 
         </div>
       </nav>
