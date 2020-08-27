@@ -54,9 +54,18 @@
   grid-area: foot;
 }
 
+.linkedin {
+  list-style-type: none;
+  line-height: 2;
+}
+
 .header {
-  background-color: #EEEEEE;
+  background-color: #F0F0F0;
   grid-area: head;
+  background-image: url('./images/Logo.png');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .main {
