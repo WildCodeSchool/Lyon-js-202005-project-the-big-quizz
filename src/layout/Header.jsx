@@ -3,6 +3,7 @@
 import React from 'react';
 import WorkingMenu from "../components/WorkingMenu";
 import "../App.css";
+import '../images/Logo.png';
 
 
 
