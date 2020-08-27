@@ -15,6 +15,7 @@ function ReactStrap () {
         <br></br>
         <h6>Deuxième étape : importer la commande suivante dans son fichier index.js</h6>
         <p>import 'bootstrap/dist/css/bootstrap.min.css';</p>
+        <p>Hello Mada</p>
         <br></br>
 
 
