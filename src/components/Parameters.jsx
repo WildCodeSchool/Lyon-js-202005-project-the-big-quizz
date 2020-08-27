@@ -10,12 +10,12 @@ function Parameters(props) {
 
   const testCondition = true;
 
-  const handleClick = (e) => {
-    console.log(e);
-    if (testCondition) {
-      props.history.push("/game");
-    }
-  };
+  // const handleClick = (e) => {
+  //   console.log(e);
+  //   if (testCondition) {
+  //     props.history.push("/game");
+  //   }
+  // };
 
   return (
     <div className="Parameters">
@@ -27,7 +27,7 @@ function Parameters(props) {
       <Link to="/game">
         <button>commencer le jeu</button>
       </Link>
-      <button onClick={handleClick}>commencer le jeu (conditionnel)</button>
+      {/* <button onClick={handleClick}>commencer le jeu (conditionnel)</button> */}
     </div>
   );
 }

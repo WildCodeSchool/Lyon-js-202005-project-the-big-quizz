@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 
 function Nav(props) {
+  console.log(props.gameParameters.resReq)
   return (
     <div className="nav">
       <h5>nombre de joueurs :</h5>
@@ -28,6 +29,8 @@ function Nav(props) {
       <p>{props.gameParameters.choosenCategory}</p>
       <h5>timer :</h5>
       <p>{props.gameParameters.choosenTimer}</p>
+
+     
     </div>
   );
 }

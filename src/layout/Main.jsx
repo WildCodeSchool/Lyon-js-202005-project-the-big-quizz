@@ -25,7 +25,7 @@ function Main(props) {
          />  */}
 
         <Route path="/game">
-          <Game gameParameters={props.gameParameters} />
+          <Game {...props} gameParameters={props.gameParameters} />
         </Route>
         <Route path="/stats" component={Stats} />
       </Switch>
