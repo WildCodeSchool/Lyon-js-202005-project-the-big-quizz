@@ -19,7 +19,7 @@ function App() {
   const [difficultyLevel, setDifficultyLevel] = useState("");
   const [questionsType, setQuestionsType] = useState("");
 
-  const [timer, setTimer] = useState(0);
+  const [timerParameter, setTimerParameter] = useState(0);
 
   // variables du jeux
 
@@ -43,8 +43,8 @@ function App() {
           setDifficultyLevel: setDifficultyLevel,
           category: category,
           setCategory: setCategory,
-          timer: timer,
-          setTimer: setTimer,
+          timerParameter: timerParameter,
+          setTimerParameter: setTimerParameter,
           nbQuestionsPerPlayer: nbQuestionsPerPlayer,
           setNbQuestionsPerPlayer: setNbQuestionsPerPlayer,
           questionsType: questionsType,

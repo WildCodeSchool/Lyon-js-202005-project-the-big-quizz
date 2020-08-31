@@ -40,14 +40,19 @@ const QuestionOfTheDay = () => {
         }}
       >
         <h2>wrong answer</h2>
-        <button onClick={() => setModelIsOpen(false)} style={{
+        <button
+          onClick={() => setModelIsOpen(false)}
+          style={{
             backgroundColor: "blue",
             width: "30%",
             height: "40px",
             borderRadius: "5px",
             color: "white",
             fontSize: "x-large",
-          }}>hide the modal</button>
+          }}
+        >
+          hide the modal
+        </button>
       </Modal>
       <Modal
         isOpen={modalGoodIsOpen}
@@ -92,10 +97,10 @@ const QuestionOfTheDay = () => {
       <p
         className="questionWrite"
         style={{ fontWeight: "bold", fontSize: "large", color: "SaddleBrown" }}
-      >
+      >p1</p>
         <p style={{ color: "black" }}>Question :</p> <br />
         {questions}
-      </p>
+      
       <div>
         <button
           onClick={() => setModelIsOpen(true)}
