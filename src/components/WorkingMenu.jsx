@@ -24,7 +24,7 @@ function WorkingMenu(props) {
           </span>
           <span> | </span>
           <span>
-            <Link to="/MagicWheel">Stats</Link>
+            <Link to="/MagicWheel">MagicWheel</Link>
           </span>
           <span> | </span>
         </div>
