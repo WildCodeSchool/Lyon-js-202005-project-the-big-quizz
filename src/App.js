@@ -13,18 +13,18 @@ function App() {
   const [nbPlayers, setNbPlayers] = useState(nbPlayersMin);
   const [playerNames, setPlayerNames] = useState(["Player #1"]);
   const [maxQuestionsPerPlayer, setMaxQuestionsPerPlayer] = useState(50);
+
+  const [nbQuestionsPerPlayer, setNbQuestionsPerPlayer] = useState("5");
+  const [category, setCategory] = useState("");
   const [difficultyLevel, setDifficultyLevel] = useState("");
-  const [choosenCategory, setChoosenCategory] = useState('')
-  const [choosenTimer,setChoosenTimer] =useState('');
-  const [nbQuestionsPerPlayer,setNbQuestionsPerPlayer] = useState("5");
-  const [questionsType,setQuestionsType] = useState("anytype");
+  const [questionsType, setQuestionsType] = useState("");
+
+  const [timer, setTimer] = useState(0);
 
   // variables du jeux
 
-  const [resReq, setResReq] = useState(null);
-
-
-
+  const [quiz, setQuiz] = useState(null);
+  const [score, setScore] = useState([]);
 
 
   return (
@@ -41,16 +41,18 @@ function App() {
           setMaxQuestionsPerPlayer: setMaxQuestionsPerPlayer,
           difficultyLevel: difficultyLevel,
           setDifficultyLevel: setDifficultyLevel,
-          choosenCategory: choosenCategory,
-          setChoosenCategory: setChoosenCategory,
-          choosenTimer: choosenTimer,
-          setChoosenTimer: setChoosenTimer,
+          category: category,
+          setCategory: setCategory,
+          timer: timer,
+          setTimer: setTimer,
           nbQuestionsPerPlayer: nbQuestionsPerPlayer,
           setNbQuestionsPerPlayer: setNbQuestionsPerPlayer,
           questionsType: questionsType,
           setQuestionsType: setQuestionsType,
-          resReq: resReq,
-          setResReq: setResReq
+          quiz: quiz,
+          setQuiz: setQuiz,
+          score: score,
+          setScore: setScore
         }}
       ></GridLayout>
     </div>

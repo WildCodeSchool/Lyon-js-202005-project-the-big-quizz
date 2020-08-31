@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function SelectParameters(props) {
-  // console.log("props de SelectParameters:",props);
+  //  console.log("props de SelectParameters:",props);
 
   const [lstCategories, setLstCategories] = useState([]);
-  //const [selectedType, setSelectedType] = useState("anytype");
-  
-  
+
   //recupération de l'API catégory
   useEffect(() => {
     let configAPI = {
@@ -24,14 +22,14 @@ function SelectParameters(props) {
   }, []);
 
   //changement au select :
-  function handleChoosenLevel(event) {
+  function handleLevel(event) {
     props.gameParameters.setDifficultyLevel(event.target.value);
   }
-  function handleChoosenCategory(event) {
-    props.gameParameters.setChoosenCategory(event.target.value);
+  function handleCategory(event) {
+    props.gameParameters.setCategory(event.target.value);
   }
-  function handleChoosenTimer(event) {
-    props.gameParameters.setChoosenTimer(event.target.value);
+  function handleTimer(event) {
+    props.gameParameters.setTimer(event.target.value);
   }
   function handleNbQuestionsPerPlayer(event) {
     props.gameParameters.setNbQuestionsPerPlayer(event.target.value);
@@ -39,43 +37,6 @@ function SelectParameters(props) {
 
   return (
     <div>
-      <div>
-        <label htmlFor="selectDifficultyLevel">Difficulty level : </label>
-        <select
-          id="selectDifficultyLevel"
-          onChange={(event) => handleChoosenLevel(event)}
-        >
-          <option value="" >Any</option>
-          <option value="easy"> Easy </option>
-          <option value="medium"> Medium </option>
-          <option value="hard"> Hard </option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="selectChoosenCategory"> Category : </label>
-        <select
-          id="selectChoosenCategory"
-          onChange={(event) => handleChoosenCategory(event)}
-        >
-          <option value="" >Any</option>
-          {lstCategories.map((item) => {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}{" "}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="selectTimer">Timer :</label>
-        <select id="selectTimer" onChange={handleChoosenTimer}>
-          <option value="" />
-          <option value="30"> 30' </option>
-          <option value="60"> 60' </option>
-          <option value="90"> 90'</option>
-        </select>
-      </div>
       <div>
         <label htmlFor="nbQuestions">Numbers of questions per player: </label>
         <input
@@ -88,29 +49,79 @@ function SelectParameters(props) {
           onChange={handleNbQuestionsPerPlayer}
         />
       </div>
-      <div 
-      >
-        <p>Type of Questions :</p>
-        <input type="radio" id="anytype" name="typeofquestions"   onChange={()=>props.gameParameters.setQuestionsType("anytype") } 
-        checked="false"
-         value={props.gameParameters.questionsType}
+      <div>
+        <label htmlFor="selectCategory"> Category : </label>
+        <select id="selectCategory" onChange={(event) => handleCategory(event)}>
+          <option value="">Any</option>
+          {lstCategories.map((item) => {
+            return (
+              <option key={item.id} value={item.id}>
+                {item.name}{" "}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="selectDifficultyLevel">Difficulty level : </label>
+        <select
+          id="selectDifficultyLevel"
+          onChange={(event) => handleLevel(event)}
+        >
+          <option value="">Any</option>
+          <option value="easy"> Easy </option>
+          <option value="medium"> Medium </option>
+          <option value="hard"> Hard </option>
+        </select>
+      </div>
+      <div>
+        <span>Type of Questions :</span>
+        <input
+          type="radio"
+          id="anyType"
+          name="typeOfQuestions"
+          onChange={() => props.gameParameters.setQuestionsType("")}
+          checked={props.gameParameters.questionsType === ""}
+          value=""
         />
-        <label htmlfor="anytype">Any type</label>
-        <input type="radio" id="truefalse" name="typeofquestions" onChange={()=>props.gameParameters.setQuestionsType("truefalse")}
-        value={props.gameParameters.questionsType}
+        <label htmlFor="anyType">Any type</label>
+
+        <input
+          type="radio"
+          id="boolean"
+          name="typeOfQuestions"
+          onChange={() => props.gameParameters.setQuestionsType("boolean")}
+          checked={props.gameParameters.questionsType === "boolean"}
+          value="boolean"
         />
-        <label htmlfor="truefalse">True / False</label>
-        <input type="radio" id="multichoice" name="typeofquestions" onChange={()=>props.gameParameters.setQuestionsType("multichoice")} 
-       value={props.gameParameters.questionsType}
+        <label htmlFor="boolean">True / False</label>
+
+        <input
+          type="radio"
+          id="multiple"
+          name="typeOfQuestions"
+          onChange={() => props.gameParameters.setQuestionsType("multiple")}
+          checked={props.gameParameters.questionsType === "multiple"}
+          value="multiple"
         />
-        <label htmlfor="truefalse">Multiple choice</label>
+        <label htmlFor="multiple">Multiple choice</label>
+      </div>
+      <div>
+        <label htmlFor="selectTimer">Timer :</label>
+        <select id="selectTimer" onChange={handleTimer}>
+          <option value={0}>None</option>
+          <option value={5}>5″</option>
+          <option value={10}> 10″ </option>
+          <option value={15}> 15″ </option>
+          <option value={20}> 20″ </option>
+          <option value={30}> 30″</option>
+          <option value={40}> 40″</option>
+          <option value={50}> 50″</option>
+          <option value={60}> 60″</option>
+        </select>
       </div>
     </div>
   );
 }
 
 export default SelectParameters;
-
-// _ type de questions
-
-

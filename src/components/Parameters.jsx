@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Parameters(props) {
    // console.log("props de Parameters",props);
 
-  const testCondition = true;
+  // const testCondition = true;
 
   // const handleClick = (e) => {
   //   console.log(e);
@@ -18,7 +18,7 @@ function Parameters(props) {
   // };
 
   return (
-    <div className="Parameters">
+    <div className="parameters">
       <h1>Parameters</h1>
 
       <NbPlayers gameParameters={props.gameParameters} />
