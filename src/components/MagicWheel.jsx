@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 function MagicWheel() {
   return (
     <div>
-      <h1>Magic Wheel</h1>
-      <button>paramétrer le jeu</button>
+      <h1>This is a Magic Wheel !</h1>
     </div>
   );
 }
