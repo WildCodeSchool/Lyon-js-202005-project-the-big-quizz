@@ -3,10 +3,26 @@ import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
 import axios from "axios";
  
-const Game = (props) => {
+function Game(props) {
+
+  //console.log("props de Game:",props.gameParameters);
+
+  const [timer, setTimer] = useState(props.gameParameters.timerParameter);
+  const [timerOn, setTimerOn] = useState(true);
+
+  useEffect(() => {
+    if (timerOn) {
+      const id = setInterval(() => {
+        setTimer((timer) => timer - 1);
+      }, 1000);
+      return () => clearInterval(id);
+    }
+    return undefined;
+  }, [timerOn]);
 
 
 
+  
   const [goodAnswerModalIsOpen, setGoodAnswerModalIsOpen] = useState(false);
   const [wrongAnswerModalIsOpen, setWrongAnswerModalIsOpen] = useState(false);
   const [goodCounter, setGoodCounter] = useState(0); 
@@ -16,16 +32,20 @@ const Game = (props) => {
   let difficulty = props.gameParameters.difficultyLevel;
 
   let numberOfQuestion = props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
-  let categoryOfQuestion = props.gameParameters.choosenCategory;
+  let categoryOfQuestion = props.gameParameters.category;
   
 
   const handleModalGoodAnswer = () => {
+    setTimerOn(true)
+    setTimer(props.gameParameters.timerParameter)
     setId(id + 1);
     setGoodAnswerModalIsOpen(false);
-    setGoodCounter(goodCounter + 1)
+    setGoodCounter(goodCounter + 1);
 
   }
   const handleModalWrongAnswer = () => {
+    setTimerOn(true)
+    setTimer(props.gameParameters.timerParameter)
     setId(id + 1);
     setWrongAnswerModalIsOpen(false);
     setWrongCounter(wrongCounter + 1)
@@ -37,11 +57,19 @@ const Game = (props) => {
        `https://opentdb.com/api.php?amount=${numberOfQuestion}&category=${categoryOfQuestion}&difficulty=${difficulty}`
       )
       .then((res) => {
-        props.gameParameters.setResReq(res.data.results);
+        props.gameParameters.setQuiz(res.data.results);
+        console.log('res.data.results: ', res.data.results);
+
       });
   }, []);
-  return props.gameParameters.resReq !== null ? (
+
+
+
+
+
+  return props.gameParameters.quiz !== null ? (
     <div className="game">
+      <h1>{timer}</h1>
       <Modal
         isOpen = {goodAnswerModalIsOpen}
         style={{
@@ -81,7 +109,7 @@ const Game = (props) => {
         }}
       >
       <h2>Wrong Answer</h2>
-      <p>The good answer is : {props.gameParameters.resReq[id].correct_answer}</p>
+      <p>The good answer is : {props.gameParameters.quiz[id].correct_answer}</p>
       <button
         style={{ width: "15%", fontSize: "xx-large", color: "black" }}
         onClick= {handleModalWrongAnswer} 
@@ -89,16 +117,23 @@ const Game = (props) => {
         Next
       </button>
       </Modal>
-      <p>category : {props.gameParameters.resReq[id].category}</p>
-      <p>Difficulty : {props.gameParameters.resReq[id].difficulty}</p>
-      <p>{props.gameParameters.resReq[id].question}</p>
-      <button onClick = {() => setWrongAnswerModalIsOpen(true)}  class="btn btn-primary">{props.gameParameters.resReq[id].correct_answer}</button>
-      <button onClick = {() => setWrongAnswerModalIsOpen(true)} class="btn btn-secondary">
-        {props.gameParameters.resReq[id].incorrect_answers[0]}
-      </button>
+      <p>category : {props.gameParameters.quiz[id].category}</p>
+      <p>Difficulty : {props.gameParameters.quiz[id].difficulty}</p>
+      {props.gameParameters.quiz[id].type === 'boolean' ? <>
+
+
+      <button onClick = {() => setWrongAnswerModalIsOpen(true)}  className="btn btn-primary" dangerouslySetInnerHTML = {{__html : props.gameParameters.quiz[id].correct_answer}}></button>
+      <button onClick = {() => setGoodAnswerModalIsOpen(true)} className="btn btn-dark" dangerouslySetInnerHTML = {{__html : props.gameParameters.quiz[id].incorrect_answers}}></button>
+       </>
+       : 
+       <>
+      <button onClick = {() => setWrongAnswerModalIsOpen(true)}  className="btn btn-primary" dangerouslySetInnerHTML = {{__html : props.gameParameters.quiz[id].correct_answer}}></button>
+      <button onClick = {() => setWrongAnswerModalIsOpen(true)} className="btn btn-secondary" dangerouslySetInnerHTML = {{__html : props.gameParameters.quiz[id].incorrect_answers[0]}}></button>
       <br />
-      <button onClick = {() => setWrongAnswerModalIsOpen(true)} class="btn btn-warning">{props.gameParameters.resReq[id].incorrect_answers[1]}</button>
-      <button onClick = {() => setGoodAnswerModalIsOpen(true)} class="btn btn-dark">{props.gameParameters.resReq[id].incorrect_answers[2]}</button>
+      <button onClick = {() => setWrongAnswerModalIsOpen(true)} className="btn btn-warning" dangerouslySetInnerHTML = {{__html : props.gameParameters.quiz[id].incorrect_answers[1]}}></button>
+      <button onClick = {() => setGoodAnswerModalIsOpen(true)} className="btn btn-dark" dangerouslySetInnerHTML = {{__html : props.gameParameters.quiz[id].incorrect_answers[2]}}></button>
+        </>
+    }
       <br />
       <p>Question #{id}/{props.gameParameters.nbQuestionsPerPlayer}</p>
       <p>Number of good answers : {goodCounter}</p>
@@ -110,3 +145,14 @@ const Game = (props) => {
 };
 
 export default Game;
+
+
+/*
+
+let score = [
+ [ [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
+ [ [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
+]
+
+
+*/

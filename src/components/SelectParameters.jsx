@@ -29,7 +29,7 @@ function SelectParameters(props) {
     props.gameParameters.setCategory(event.target.value);
   }
   function handleTimer(event) {
-    props.gameParameters.setTimer(event.target.value);
+    props.gameParameters.setTimerParameter(event.target.value);
   }
   function handleNbQuestionsPerPlayer(event) {
     props.gameParameters.setNbQuestionsPerPlayer(event.target.value);
@@ -109,7 +109,7 @@ function SelectParameters(props) {
       <div>
         <label htmlFor="selectTimer">Timer :</label>
         <select id="selectTimer" onChange={handleTimer}>
-          <option value={0}>None</option>
+          <option value={-1}>None</option>
           <option value={5}>5″</option>
           <option value={10}> 10″ </option>
           <option value={15}> 15″ </option>
