@@ -117,4 +117,20 @@ button {
   position: absolute;
 }
 
+.blur {
+  animation: blur 5s;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(1.5px);
+  }
+  80% {
+    filter: blur(1.5px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
 /* css Magic Wheel */
