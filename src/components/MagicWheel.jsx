@@ -24,6 +24,9 @@ function MagicWheel() {
           width={500}
         ></img>
       </div>
+      <div>
+        <button className="MagicButton">Spin The Wheel !</button>
+      </div>
     </>
   );
 }
