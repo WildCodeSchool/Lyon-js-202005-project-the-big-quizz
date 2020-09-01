@@ -50,7 +50,7 @@
 }
 
 .footer {
-  background-color: #DDDDDD;
+  background-color: #dddddd;
   grid-area: foot;
 }
 
@@ -60,29 +60,27 @@
 }
 
 .header {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   grid-area: head;
-  background-image: url('./images/Logo.png');
+  background-image: url("./images/Logo.png");
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .main {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   grid-area: main;
 }
 
 .nav {
-  background-color: #CCCCCC;
+  background-color: #cccccc;
   grid-area: nav;
 }
 
 .Parameters {
-  background-color: #FFCCCC;
-
+  background-color: #ffcccc;
 }
-
 
 /* CSS of the question of day */
 .answer {
@@ -106,3 +104,12 @@ button {
   color: "white";
   font-weight: "bold";
 }
+
+/* css Magic Wheel */
+.WheelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* css Magic Wheel */
