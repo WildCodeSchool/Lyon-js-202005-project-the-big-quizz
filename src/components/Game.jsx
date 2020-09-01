@@ -147,6 +147,11 @@ function Game(props) {
       </Modal>
       <p>category : {props.gameParameters.quiz[id].category}</p>
       <p>Difficulty : {props.gameParameters.quiz[id].difficulty}</p>
+
+      <p>Question : <span dangerouslySetInnerHTML={{
+              __html: props.gameParameters.quiz[id].question,
+            }}></span></p>
+      
       {props.gameParameters.quiz[id].type === "boolean" ? (
         <>
           <button
