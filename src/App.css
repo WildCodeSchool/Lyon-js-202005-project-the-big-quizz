@@ -112,4 +112,9 @@ button {
   align-items: center;
 }
 
+.Selector {
+  z-index: 1;
+  position: absolute;
+}
+
 /* css Magic Wheel */

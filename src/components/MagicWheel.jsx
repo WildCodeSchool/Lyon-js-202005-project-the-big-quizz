@@ -13,8 +13,8 @@ function MagicWheel() {
           className="Selector"
           src={Selector}
           alt="wheel selector"
-          height={50}
-          width={60}
+          height={600}
+          width={600}
         ></img>
         <img
           className="Wheel"
