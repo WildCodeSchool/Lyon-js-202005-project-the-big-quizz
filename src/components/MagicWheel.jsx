@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Wheel from "../images/wheel.png";
 import Selector from "../images/selector.png";
-import WheelRotation from "../components/WheelRotation;";
+import WheelRotation from "./WheelRotation";
 import "../App.css";
 
 function MagicWheel() {
