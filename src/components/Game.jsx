@@ -148,11 +148,8 @@ export default Game;
 
 
 /*
-
 let score = [
  [ [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
  [ [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
 ]
-
-
 */
