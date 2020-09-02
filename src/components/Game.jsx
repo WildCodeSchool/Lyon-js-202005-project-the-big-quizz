@@ -55,7 +55,16 @@ function Game(props) {
     setTimeOffModal(false);
     setWrongCounter(wrongCounter + 1);
   };
+ const timerdGoodAnswer = () => {
+  setGoodAnswerModalIsOpen(true)
+  setTimerOn(false)
 
+ }
+ const timerWrongAnswer = () => {
+  setWrongAnswerModalIsOpen(true)
+  setTimerOn(false)
+
+ }
   useEffect(() => {
     axios
       .get(
@@ -70,6 +79,7 @@ function Game(props) {
   return props.gameParameters.quiz !== null ? (
     <div className="game">
       {timer === 0 && timeOffModal === false ? setTimeOffModal(true) : timer}
+      {timer === 0 && timeOffModal === false ? setTimerOn(false): ""}
       <Modal
         isOpen={goodAnswerModalIsOpen}
         style={{
@@ -155,14 +165,14 @@ function Game(props) {
       {props.gameParameters.quiz[id].type === "boolean" ? (
         <>
           <button
-            onClick={() => setWrongAnswerModalIsOpen(true)}
+            onClick={timerdGoodAnswer}
             className="btn btn-primary"
             dangerouslySetInnerHTML={{
               __html: props.gameParameters.quiz[id].correct_answer,
             }}
           ></button>
           <button
-            onClick={() => setGoodAnswerModalIsOpen(true)}
+            onClick={timerWrongAnswer}
             className="btn btn-dark"
             dangerouslySetInnerHTML={{
               __html: props.gameParameters.quiz[id].incorrect_answers,
@@ -172,29 +182,30 @@ function Game(props) {
       ) : (
         <>
           <button
-            onClick={() => setWrongAnswerModalIsOpen(true)}
+            onClick={timerdGoodAnswer}
             className="btn btn-primary"
             dangerouslySetInnerHTML={{
               __html: props.gameParameters.quiz[id].correct_answer,
             }}
           ></button>
           <button
-            onClick={() => setWrongAnswerModalIsOpen(true)}
+            onClick={timerWrongAnswer}
             className="btn btn-secondary"
             dangerouslySetInnerHTML={{
               __html: props.gameParameters.quiz[id].incorrect_answers[0],
             }}
+            
           ></button>
           <br />
           <button
-            onClick={() => setWrongAnswerModalIsOpen(true)}
+            onClick={timerWrongAnswer}
             className="btn btn-warning"
             dangerouslySetInnerHTML={{
               __html: props.gameParameters.quiz[id].incorrect_answers[1],
             }}
           ></button>
           <button
-            onClick={() => setGoodAnswerModalIsOpen(true)}
+            onClick={timerWrongAnswer}
             className="btn btn-dark"
             dangerouslySetInnerHTML={{
               __html: props.gameParameters.quiz[id].incorrect_answers[2],
