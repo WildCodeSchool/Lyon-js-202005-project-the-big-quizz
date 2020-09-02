@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
 import axios from "axios";
 
 function Game(props) {
-  //console.log("props de Game:",props.gameParameters);
-
-  // il faut mettre une condition  à la ligne 123
+  let history = useHistory();
 
   const [timer, setTimer] = useState(props.gameParameters.timerParameter);
   const [timerOn, setTimerOn] = useState(true);
@@ -27,7 +26,7 @@ function Game(props) {
   const [goodCounter, setGoodCounter] = useState(0);
   const [wrongCounter, setWrongCounter] = useState(0);
 
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(0);
   let difficulty = props.gameParameters.difficultyLevel;
 
   let numberOfQuestion =
@@ -55,16 +54,38 @@ function Game(props) {
     setTimeOffModal(false);
     setWrongCounter(wrongCounter + 1);
   };
- const timerdGoodAnswer = () => {
-  setGoodAnswerModalIsOpen(true)
-  setTimerOn(false)
-
- }
- const timerWrongAnswer = () => {
-  setWrongAnswerModalIsOpen(true)
-  setTimerOn(false)
-
- }
+  const handleModalGoodAnswer2 = () => {
+    setTimerOn(true);
+    setTimer(props.gameParameters.timerParameter);
+    setId(id + 1);
+    setGoodAnswerModalIsOpen(false);
+    setGoodCounter(goodCounter + 1);
+    history.push("/stats");
+  };
+  const handleModalWrongAnswer2 = () => {
+    setTimerOn(true);
+    setTimer(props.gameParameters.timerParameter);
+    setId(id + 1);
+    setWrongAnswerModalIsOpen(false);
+    setWrongCounter(wrongCounter + 1);
+    history.push("/stats");
+  };
+  const handelModalTimerOff2 = () => {
+    setTimerOn(true);
+    setTimer(props.gameParameters.timerParameter);
+    setId(id + 1);
+    setTimeOffModal(false);
+    setWrongCounter(wrongCounter + 1);
+    history.push("/stats");
+  };
+  const timerdGoodAnswer = () => {
+    setGoodAnswerModalIsOpen(true);
+    setTimerOn(false);
+  };
+  const timerWrongAnswer = () => {
+    setWrongAnswerModalIsOpen(true);
+    setTimerOn(false);
+  };
   useEffect(() => {
     axios
       .get(
@@ -79,7 +100,7 @@ function Game(props) {
   return props.gameParameters.quiz !== null ? (
     <div className="game">
       {timer === 0 && timeOffModal === false ? setTimeOffModal(true) : timer}
-      {timer === 0 && timeOffModal === false ? setTimerOn(false): ""}
+      {timer === 0 && timeOffModal === false ? setTimerOn(false) : ""}
       <Modal
         isOpen={goodAnswerModalIsOpen}
         style={{
@@ -98,9 +119,9 @@ function Game(props) {
         <h2>Good Answer</h2>
         <button
           style={{ width: "15%", fontSize: "xx-large", color: "black" }}
-          onClick={handleModalGoodAnswer}
+          onClick={ id + 1 !== numberOfQuestion ? handleModalGoodAnswer : handleModalGoodAnswer2}
         >
-          Next
+          {id + 1 !== numberOfQuestion ? "Next" : "results"}
         </button>
       </Modal>
       <Modal
@@ -124,9 +145,9 @@ function Game(props) {
         </p>
         <button
           style={{ width: "15%", fontSize: "xx-large", color: "black" }}
-          onClick={handleModalWrongAnswer}
+          onClick={id + 1 !== numberOfQuestion ? handleModalWrongAnswer : handleModalWrongAnswer2}
         >
-          Next
+          {id + 1 !== numberOfQuestion ? "Next" : "results"}
         </button>
       </Modal>
       <Modal
@@ -150,18 +171,23 @@ function Game(props) {
         </p>
         <button
           style={{ width: "15%", fontSize: "xx-large", color: "black" }}
-          onClick={handelModalTimerOff}
+          onClick={ id + 1 !== numberOfQuestion ? handelModalTimerOff : handelModalTimerOff2}
         >
-          Next
+          {id + 1 !== numberOfQuestion ? "Next" : "results"}
         </button>
       </Modal>
       <p>category : {props.gameParameters.quiz[id].category}</p>
       <p>Difficulty : {props.gameParameters.quiz[id].difficulty}</p>
 
-      <p>Question : <span dangerouslySetInnerHTML={{
-              __html: props.gameParameters.quiz[id].question,
-            }}></span></p>
-      
+      <p>
+        Question :{" "}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: props.gameParameters.quiz[id].question,
+          }}
+        ></span>
+      </p>
+
       {props.gameParameters.quiz[id].type === "boolean" ? (
         <>
           <button
@@ -194,7 +220,6 @@ function Game(props) {
             dangerouslySetInnerHTML={{
               __html: props.gameParameters.quiz[id].incorrect_answers[0],
             }}
-            
           ></button>
           <br />
           <button
@@ -215,7 +240,7 @@ function Game(props) {
       )}
       <br />
       <p>
-        Question #{id}/{props.gameParameters.nbQuestionsPerPlayer}
+        Question #{id + 1}/{props.gameParameters.nbQuestionsPerPlayer}
       </p>
       <p>Number of good answers : {goodCounter}</p>
       <p>Number of wrong answers : {wrongCounter}</p>
