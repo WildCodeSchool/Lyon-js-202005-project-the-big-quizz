@@ -105,32 +105,4 @@ button {
   font-weight: "bold";
 }
 
-/* css Magic Wheel */
-.WheelContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.Selector {
-  z-index: 1;
-  position: absolute;
-}
-
-.blur {
-  animation: blur 5s;
-}
-
-@keyframes blur {
-  0% {
-    filter: blur(1.5px);
-  }
-  80% {
-    filter: blur(1.5px);
-  }
-  100% {
-    filter: blur(0px);
-  }
-}
-
-/* css Magic Wheel */

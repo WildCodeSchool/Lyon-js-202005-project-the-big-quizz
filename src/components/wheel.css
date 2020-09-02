@@ -1,0 +1,90 @@
+/* css Magic Wheel */
+.WheelContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Selector {
+    z-index: 1;
+    position: absolute;
+  }
+  
+  .blur {
+    animation: blur 5s;
+  }
+  
+  @keyframes blur {
+    0% {
+      filter: blur(1.5px);
+    }
+    80% {
+      filter: blur(1.5px);
+    }
+    100% {
+      filter: blur(0px);
+    }
+  }
+  
+/* 
+  :root {
+      --initialPosition:0deg;
+      --actualPosition:var(--initialPosition);
+      --rotateAngle:90deg;
+  } */
+
+
+  @keyframes spinWheel {
+    from {
+      transform: rotate(var(--actualPosition));
+    }
+    to {
+
+      transform: rotate(var(--rotateAngle));
+      /* transform: rotate((var(--actualPosition)+var(--rotateAngle))); */
+      
+
+    }
+  }
+
+ .rotationOn {
+    
+     /* background-color:green; */
+
+    /* animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; */
+    /* animation: spinWheel 5s ease forwards; */
+    /* --actualPosition:var(--actualPosition)+var(--rotateAngle); */
+    
+
+    /* transition: "all 5s ease-out"; */
+    
+/* 
+    transform: rotate(360deg);
+
+    /* MagicButton.style.pointerEvents = "none";
+    deg = Math.floor(5000 + Math.random() * 5000);
+    wheel.classList.add("blur"); */
+
+} 
+
+.rotationOff {
+    /* --deg:var(--actualPosition); */
+
+    /* transform: rotate(var(--actualPosition)); */
+/* background-color:red; */
+    
+/* transform: rotate(500deg); */
+
+  
+    /* wheel.classList.remove("blur");
+    MagicButton.style.pointerEvents = "auto";
+    wheel.style.transition = "none";
+    const actualDeg = deg % 360;
+    wheel.style.transform = `rotate(${actualDeg}deg)`; */
+
+} 
+
+  /* css Magic Wheel */
