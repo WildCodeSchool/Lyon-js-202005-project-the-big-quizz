@@ -115,3 +115,17 @@ button {
   color: "white";
   font-weight: "bold";
 }
+
+
+/* CSS stats */
+
+.correctAnswer {
+  color: green;
+  font-weight: bold;
+}
+
+
+.badAnswer {
+  color: red;
+  font-weight: bold;
+}
