@@ -94,46 +94,65 @@ const QuestionOfTheDay = () => {
       <p style={{ fontSize: "xx-large" }}>
         Difficulty : <span>{difficultys}</span>
       </p>
-      <p
-        className="questionWrite"
-        style={{ fontWeight: "bold", fontSize: "large", color: "SaddleBrown" }}
-      >p1</p>
-        <p style={{ color: "black" }}>Question :</p> <br />
-        {questions}
-      
-      <div>
-        <button
-          onClick={() => setModelIsOpen(true)}
-          className="answer"
-          style={{ backgroundColor: "LimeGreen" }}
-        >
-          {" "}
-          {wrongAnswer[0]}
-        </button>
-        <button
-          onClick={() => setModalGoodIsOpen(true)}
-          className="answer"
-          style={{ backgroundColor: "Teal" }}
-        >
-          {goodAnswer}
-        </button>
-      </div>
-      <div>
-        <button
-          onClick={() => setModelIsOpen(true)}
-          className="answer"
-          style={{ backgroundColor: "MediumBlue" }}
-        >
-          {wrongAnswer[2]}
-        </button>
-        <button
-          onClick={() => setModelIsOpen(true)}
-          className="answer"
-          style={{ backgroundColor: "SandyBrown" }}
-        >
-          {wrongAnswer[1]}
-        </button>
-      </div>
+      <p style={{ color: "black" }}>Question :</p> <br />
+      {questions}
+      {types !== "boolean" ? (
+        <>
+          <div>
+            <button
+              onClick={() => setModelIsOpen(true)}
+              className="answer"
+              style={{ backgroundColor: "LimeGreen" }}
+            >
+              {" "}
+              {wrongAnswer[0]}
+            </button>
+            <button
+              onClick={() => setModalGoodIsOpen(true)}
+              className="answer"
+              style={{ backgroundColor: "Teal" }}
+            >
+              {goodAnswer}
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={() => setModelIsOpen(true)}
+              className="answer"
+              style={{ backgroundColor: "MediumBlue" }}
+            >
+              {wrongAnswer[2]}
+            </button>
+            <button
+              onClick={() => setModelIsOpen(true)}
+              className="answer"
+              style={{ backgroundColor: "SandyBrown" }}
+            >
+              {wrongAnswer[1]}
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <button
+              onClick={() => setModelIsOpen(true)}
+              className="answer"
+              style={{ backgroundColor: "LimeGreen" }}
+            >
+              {" "}
+              {wrongAnswer}
+            </button>
+            <button
+              onClick={() => setModalGoodIsOpen(true)}
+              className="answer"
+              style={{ backgroundColor: "Teal" }}
+            >
+              {goodAnswer}
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
