@@ -95,7 +95,11 @@ const QuestionOfTheDay = () => {
         Difficulty : <span>{difficultys}</span>
       </p>
       <p style={{ color: "black" }}>Question :</p> <br />
-      {questions}
+
+     <span dangerouslySetInnerHTML={{
+              __html: questions,
+            }}></span>
+            
       {types !== "boolean" ? (
         <>
           <div>
@@ -103,16 +107,19 @@ const QuestionOfTheDay = () => {
               onClick={() => setModelIsOpen(true)}
               className="answer"
               style={{ backgroundColor: "LimeGreen" }}
+              dangerouslySetInnerHTML={{
+              __html: wrongAnswer[0],
+            }}
             >
-              {" "}
-              {wrongAnswer[0]}
             </button>
             <button
               onClick={() => setModalGoodIsOpen(true)}
               className="answer"
               style={{ backgroundColor: "Teal" }}
+              dangerouslySetInnerHTML={{
+              __html: goodAnswer,
+            }}
             >
-              {goodAnswer}
             </button>
           </div>
           <div>
@@ -120,15 +127,21 @@ const QuestionOfTheDay = () => {
               onClick={() => setModelIsOpen(true)}
               className="answer"
               style={{ backgroundColor: "MediumBlue" }}
+              dangerouslySetInnerHTML={{
+              __html: wrongAnswer[2],
+            }}
             >
-              {wrongAnswer[2]}
+              
             </button>
             <button
               onClick={() => setModelIsOpen(true)}
               className="answer"
               style={{ backgroundColor: "SandyBrown" }}
+              dangerouslySetInnerHTML={{
+              __html: wrongAnswer[1],
+            }}
             >
-              {wrongAnswer[1]}
+             
             </button>
           </div>
         </>
