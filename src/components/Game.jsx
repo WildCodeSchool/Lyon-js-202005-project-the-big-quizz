@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
@@ -7,7 +7,11 @@ import axios from "axios";
 function Game(props) {
   let history = useHistory();
 
-  const [timer, setTimer] = useState(props.gameParameters.timerParameter);
+  const [timer, setTimer] = useState(
+    props.gameParameters.timerParameter === 0
+      ? ""
+      : props.gameParameters.timerParameter
+  );
   const [timerOn, setTimerOn] = useState(true);
 
   useEffect(() => {
@@ -20,37 +24,52 @@ function Game(props) {
     return undefined;
   }, [timerOn]);
 
+  const [id, setId] = useState(0);
+  const [idActualPlayer, setIdActualPlayer] = useState(0);
+  const [
+    questionNumberOfActualPlayer,
+    setQuestionNumberOfActualPlayer,
+  ] = useState(1);
   const [goodAnswerModalIsOpen, setGoodAnswerModalIsOpen] = useState(false);
   const [wrongAnswerModalIsOpen, setWrongAnswerModalIsOpen] = useState(false);
   const [timeOffModal, setTimeOffModal] = useState(false);
   const [goodCounter, setGoodCounter] = useState(0);
   const [wrongCounter, setWrongCounter] = useState(0);
+  const [displayQuestionNumber, setDisplayQuestionNumber] = useState(
+    idActualPlayer + "/" + props.gameParameters.nbQuestionsPerPlayer
+  );
 
-  const [id, setId] = useState(0);
   let difficulty = props.gameParameters.difficultyLevel;
-
   let numberOfQuestion =
     props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
   let categoryOfQuestion = props.gameParameters.category;
 
   const handleModalGoodAnswer = () => {
+    browseTable();
     setTimerOn(true);
-    setTimer(props.gameParameters.timerParameter);
-    setId(id + 1);
+    setTimer(
+      props.gameParameters.timerParameter === 0
+        ? ""
+        : props.gameParameters.timerParameter
+    );
     setGoodAnswerModalIsOpen(false);
     setGoodCounter(goodCounter + 1);
   };
   const handleModalWrongAnswer = () => {
+    browseTable();
     setTimerOn(true);
-    setTimer(props.gameParameters.timerParameter);
-    setId(id + 1);
+    setTimer(
+      props.gameParameters.timerParameter === 0
+        ? ""
+        : props.gameParameters.timerParameter
+    );
     setWrongAnswerModalIsOpen(false);
     setWrongCounter(wrongCounter + 1);
   };
   const handelModalTimerOff = () => {
+    browseTable();
     setTimerOn(true);
     setTimer(props.gameParameters.timerParameter);
-    setId(id + 1);
     setTimeOffModal(false);
     setWrongCounter(wrongCounter + 1);
   };
@@ -93,14 +112,41 @@ function Game(props) {
       )
       .then((res) => {
         props.gameParameters.setQuiz(res.data.results);
-        console.log("res.data.results: ", res.data.results);
+        // console.log("res.data.results: ", res.data.results);
       });
   }, []);
 
+  function browseTable() {
+    setIdActualPlayer(
+      idActualPlayer === props.gameParameters.nbPlayers - 1
+        ? 0
+        : idActualPlayer + 1
+    );
+    setId(id + 1);
+    setQuestionNumberOfActualPlayer(questionNumberOfActualPlayer + 1);
+    setDisplayQuestionNumber(
+      `${questionNumberOfActualPlayer} / ${props.gameParameters.nbQuestionsPerPlayer}`
+      // `${Math.ceil((parseInt(idActualPlayer)+1)/5)} / ${props.gameParameters.nbQuestionsPerPlayer}`
+    );
+    console.log(
+      "player :",
+      idActualPlayer,
+      "numero de la question",
+      questionNumberOfActualPlayer,
+      "id question :",
+      id,
+      "nombre de question pas joueur",
+      props.gameParameters.nbQuestionsPerPlayer
+    );
+  }
+
   return props.gameParameters.quiz !== null ? (
     <div className="game">
-      {timer === 0 && timeOffModal === false ? setTimeOffModal(true) : timer}
-      {timer === 0 && timeOffModal === false ? setTimerOn(false) : ""}
+      {timer === 1 && timeOffModal === false ? setTimeOffModal(true) : timer}
+      {timer === 1 && timeOffModal === false ? setTimerOn(false) : ""}
+      {timer === -1 && timerOn === true ? setTimerOn(false) : ""}
+      {timer === -1 && timerOn === true ? setTimer("") : ""}
+
       <Modal
         isOpen={goodAnswerModalIsOpen}
         style={{
@@ -119,7 +165,11 @@ function Game(props) {
         <h2>Good Answer</h2>
         <button
           style={{ width: "15%", fontSize: "xx-large", color: "black" }}
-          onClick={ id + 1 !== numberOfQuestion ? handleModalGoodAnswer : handleModalGoodAnswer2}
+          onClick={
+            id + 1 !== numberOfQuestion
+              ? handleModalGoodAnswer
+              : handleModalGoodAnswer2
+          }
         >
           {id + 1 !== numberOfQuestion ? "Next" : "results"}
         </button>
@@ -145,7 +195,11 @@ function Game(props) {
         </p>
         <button
           style={{ width: "15%", fontSize: "xx-large", color: "black" }}
-          onClick={id + 1 !== numberOfQuestion ? handleModalWrongAnswer : handleModalWrongAnswer2}
+          onClick={
+            id + 1 !== numberOfQuestion
+              ? handleModalWrongAnswer
+              : handleModalWrongAnswer2
+          }
         >
           {id + 1 !== numberOfQuestion ? "Next" : "results"}
         </button>
@@ -171,11 +225,36 @@ function Game(props) {
         </p>
         <button
           style={{ width: "15%", fontSize: "xx-large", color: "black" }}
-          onClick={ id + 1 !== numberOfQuestion ? handelModalTimerOff : handelModalTimerOff2}
+          onClick={
+            id + 1 !== numberOfQuestion
+              ? handelModalTimerOff
+              : handelModalTimerOff2
+          }
         >
           {id + 1 !== numberOfQuestion ? "Next" : "results"}
         </button>
       </Modal>
+      <div className="tableOfGamers">
+        <table className="board">
+          <thead>
+            <tr>
+              <th>the list of players</th>
+              <th>Question Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.gameParameters.playerNames.map((name) => {
+              return (
+                <tr>
+                  <td>{name}</td>
+                  <td>{displayQuestionNumber} </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p>Type of question : {props.gameParameters.quiz[id].type}</p>
       <p>category : {props.gameParameters.quiz[id].category}</p>
       <p>Difficulty : {props.gameParameters.quiz[id].difficulty}</p>
 
@@ -239,9 +318,6 @@ function Game(props) {
         </>
       )}
       <br />
-      <p>
-        Question #{id + 1}/{props.gameParameters.nbQuestionsPerPlayer}
-      </p>
       <p>Number of good answers : {goodCounter}</p>
       <p>Number of wrong answers : {wrongCounter}</p>
     </div>
@@ -255,8 +331,8 @@ export default Game;
 /*
 
 let score = [
- [ [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
- [ [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
+ [ [playerName, idQuest, responseOk, idResp, duration ], [playerName, idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
+ [ [playerName, idQuest, responseOk, idResp, duration ], [playerName, idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
 ]
 
 
