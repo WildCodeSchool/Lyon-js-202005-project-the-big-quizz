@@ -109,11 +109,3 @@ button {
   color: "white";
   font-weight: "bold";
 }
-table,
-thead,
-th,
-tbody,
-tr,
-td {
-  border: 2px solid black;
-}
