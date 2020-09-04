@@ -13,7 +13,6 @@ function Main(props) {
 
   return (
     <div className="main">
-      <p>Main</p>
 
       <Switch>
         <Route exact path="/" component={Home} />

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import axios from "axios";
+import "./../App.css";
+import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
 
 const QuestionOfTheDay = () => {
   const [categorys, setcategorys] = useState("");
@@ -39,7 +41,7 @@ const QuestionOfTheDay = () => {
           },
         }}
       >
-        <h2>wrong answer</h2>
+        <h2>Uncorrect answer</h2>
         <button
           onClick={() => setModelIsOpen(false)}
           style={{
@@ -51,7 +53,7 @@ const QuestionOfTheDay = () => {
             fontSize: "x-large",
           }}
         >
-          hide the modal
+          Close
         </button>
       </Modal>
       <Modal
@@ -69,7 +71,7 @@ const QuestionOfTheDay = () => {
           },
         }}
       >
-        <h2>right answer</h2>
+        <h2>Correct answer</h2>
         <button
           onClick={() => setModalGoodIsOpen(false)}
           style={{
@@ -81,78 +83,115 @@ const QuestionOfTheDay = () => {
             fontSize: "x-large",
           }}
         >
-          hide the modal
+          Close
         </button>
       </Modal>
-      <h1 style={{ marginTop: "10%" }}>Question Of The Day</h1>
-      <p style={{ fontWeight: "bold", fontSize: "xx-large" }}>
-        Category of question : <span>{categorys}</span>
-      </p>
-      <p style={{ fontWeight: "bold", fontSize: "xx-large" }}>
-        Type of question : <span>{types}</span>
-      </p>
-      <p style={{ fontSize: "xx-large" }}>
-        Difficulty : <span>{difficultys}</span>
-      </p>
-      <p style={{ color: "black" }}>Question :</p> <br />
-      {questions}
-      {types !== "boolean" ? (
-        <>
-          <div>
-            <button
-              onClick={() => setModelIsOpen(true)}
-              className="answer"
-              style={{ backgroundColor: "LimeGreen" }}
-            >
-              {" "}
-              {wrongAnswer[0]}
-            </button>
-            <button
-              onClick={() => setModalGoodIsOpen(true)}
-              className="answer"
-              style={{ backgroundColor: "Teal" }}
-            >
-              {goodAnswer}
-            </button>
-          </div>
-          <div>
-            <button
-              onClick={() => setModelIsOpen(true)}
-              className="answer"
-              style={{ backgroundColor: "MediumBlue" }}
-            >
-              {wrongAnswer[2]}
-            </button>
-            <button
-              onClick={() => setModelIsOpen(true)}
-              className="answer"
-              style={{ backgroundColor: "SandyBrown" }}
-            >
-              {wrongAnswer[1]}
-            </button>
-          </div>
-        </>
-      ) : (
-        <>
-          <div>
-            <button
-              onClick={() => setModelIsOpen(true)}
-              className="answer"
-              style={{ backgroundColor: "LimeGreen" }}
-            >
-              {" "}
-              {wrongAnswer}
-            </button>
-            <button
-              onClick={() => setModalGoodIsOpen(true)}
-              className="answer"
-              style={{ backgroundColor: "Teal" }}
-            >
-              {goodAnswer}
-            </button>
-          </div>
-        </>
-      )}
+      <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Card className="test">
+            <CardText className="daily-question">Question Of The Day</CardText>
+            <CardTitle className="question-style">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: questions,
+                }}
+              ></span>
+            </CardTitle>
+            <br />
+            <p className="question-category">Question category: </p>
+            <p className="category-name">{categorys}</p>
+            <p>Level :</p>
+             { difficultys === "hard" ? <p style={{color: "#FF0921"}} > {difficultys} </p>
+              : difficultys === "medium" ? <span style={{color:"#dc7f9bs"}}> {difficultys} </span>
+                :<span style={{color: "#f6b83c"}}> {difficultys} </span>
+          
+            }
+              
+            <br />
+          </Card> 
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Card className="bordureCardReponse">
+          {/* TeRnaire pour affichage reponse soit true/false soit choix multiple*/}
+            {types !== "boolean" ? (
+              <>
+                <div>
+                  <button
+                    onClick={() => setModelIsOpen(true)}
+                    className="answer"
+                    style={{ backgroundColor: "#FDF1D8" }}
+                  >
+                    {" "}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: wrongAnswer[0],
+                      }}
+                    ></span>
+                  </button>
+                  <button
+                    onClick={() => setModalGoodIsOpen(true)}
+                    className="answer"
+                    style={{ backgroundColor: "#E3CACD" }}
+                  >
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: goodAnswer,
+                      }}
+                    ></span>
+                  </button>
+                </div>
+                <div>
+                  <button
+                    onClick={() => setModelIsOpen(true)}
+                    className="answer"
+                    style={{ backgroundColor: "#D1C2EB" }}
+                  >
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: wrongAnswer[2],
+                      }}
+                    ></span>
+                  </button>
+                  <button
+                    onClick={() => setModelIsOpen(true)}
+                    className="answer"
+                    style={{ backgroundColor: "#E0B5E3" }}
+                  >
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: wrongAnswer[1],
+                      }}
+                    ></span>
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <button
+                    onClick={() => setModelIsOpen(true)}
+                    className="answer"
+                    style={{ backgroundColor: "#E0B5E3" }}
+                  >
+                    {" "}
+                    {wrongAnswer}
+                  </button>
+                  <button
+                    onClick={() => setModalGoodIsOpen(true)}
+                    className="answer"
+                    style={{ backgroundColor: "#D1C2EB" }}
+                  >
+                    {goodAnswer}
+                  </button>
+                </div>
+              </>
+            )}
+            {/*Fin TeRnaire*/}
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };
