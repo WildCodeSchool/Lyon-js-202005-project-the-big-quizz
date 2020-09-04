@@ -265,8 +265,7 @@ text-align:center;
   padding: 5px;
 }
 
-.questionCard .questionAnswers {
-  color: #0d080b;
+.questionCard .questionAnswers {  
   font-family: "Hind Siliguri", sans-serif;
   padding-left: 20%;
   text-align: left;
