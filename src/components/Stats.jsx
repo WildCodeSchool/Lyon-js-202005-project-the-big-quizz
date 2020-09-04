@@ -4,6 +4,37 @@ import "../App.css";
 function Stats(props) {
   // console.log("props de Stats",props);
 
+  let categoryIcons = {
+    "General Knowledge": "👨‍🎓",
+    "Entertainment: Books": "🧙‍",
+    "Entertainment: Film": "🎬",
+    "Entertainment: Music": "🎙️",
+    "Entertainment: Musicals & Theatres": "🎭",
+    "Entertainment: Television": "🖥️",
+    "Entertainment: Video Games": "🕹️",
+    "Entertainment: Board Games": "🎲",
+    "Science & Nature": "🌀",
+    "Science: Computer": "💾",
+    "Science: Mathematics": "🤓",
+    "Mythology": "🔱",
+    "Sports": "🏆",
+    "Geography": "🌍",
+    "History": "🗿",
+    "Politics": "🧛‍",
+    "Art": "👨‍🎨‍",
+    "Celebrities": "👩‍🎤‍",
+    "Animals": "🐵",
+    "Vehicles": "🚂",
+    "Entertainment: Comics": "🤖",
+    "Science: Gadgets": "📡",
+    "Entertainment: Japanese Anime & Manga": "⛩️",
+    "Entertainment: Cartoon & Animations": "👻"
+  };
+
+
+
+
+
   let quiz = [
     {
       category: "History",
@@ -231,14 +262,14 @@ function Stats(props) {
   ];
 
   let scores = [
-    {playerName: "playerName1",
+    {playerName: "Shanti",
       answers: [
         { idQuestion: 0,  correctAnswer: true,  idIncorrectAnswer:-1,  duration: 8, },
         { idQuestion: 6, correctAnswer: false, idIncorrectAnswer: 1, duration: 8, },
         { idQuestion: 12, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
-        // { idQuestion: 18, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
+        { idQuestion: 18, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
       ],},
-    {playerName: "playerName2",
+    {playerName: "Amine",
       answers: [
         { idQuestion: 1, correctAnswer: true, idIncorrectAnswer: -1, duration: 10, },
         { idQuestion: 7, correctAnswer: true, idIncorrectAnswer: -1, duration: 15, },
@@ -246,7 +277,7 @@ function Stats(props) {
         { idQuestion: 19, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
       ],},
 
-    {playerName: "playerName3",
+    {playerName: "Isma",
       answers: [
         { idQuestion: 2, correctAnswer: true, idIncorrectAnswer: -1, duration: 5, },
         { idQuestion: 8, correctAnswer: false, idIncorrectAnswer: 1, duration: 9, },
@@ -254,7 +285,7 @@ function Stats(props) {
         { idQuestion: 20, correctAnswer: true, idIncorrectAnswer: -1, duration: 8, },
       ],},
 
-    {playerName: "playerName4",
+    {playerName: "Mada",
       answers: [
         { idQuestion: 3, correctAnswer: true, idIncorrectAnswer: -1, duration: 10, },
         { idQuestion: 9, correctAnswer: true, idIncorrectAnswer: -1, duration: 15, },
@@ -262,7 +293,7 @@ function Stats(props) {
         { idQuestion: 21, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
       ],},
 
-    {playerName: "playerName5",
+    {playerName: "Nico",
       answers: [
         { idQuestion: 4, correctAnswer: false, idIncorrectAnswer: 1, duration: 2, },
         { idQuestion: 10, correctAnswer: false, idIncorrectAnswer: 1, duration: 13, },
@@ -270,7 +301,7 @@ function Stats(props) {
         { idQuestion: 22, correctAnswer: false, idIncorrectAnswer: 0, duration: 9, },
       ],},
 
-    {playerName: "playerName6",
+    {playerName: "Gégé",
       answers: [
         { idQuestion: 5, correctAnswer: true, idIncorrectAnswer: -1, duration: 18, },
         { idQuestion: 11, correctAnswer: true, idIncorrectAnswer: -1, duration: 15, },
@@ -284,7 +315,6 @@ function Stats(props) {
 
   return (
     <div>
-      <h1>Stats</h1>
       <div>
         {scores
           // Tri par nombre de bonnes réponses / nombre de réponses
@@ -299,12 +329,10 @@ function Stats(props) {
           // map des joueurs
           .map((player) => (
             <div key={player.playerName}>
-              <p>
-                <b>Nom du jouer : {player.playerName}</b>
+              <p className="playerName">
+                {player.playerName}
               </p>
-              <p>
-                <b>
-                  Score :{" "}
+              <p className="playerScore">
                   {
                     player.answers.filter((answer) => answer.correctAnswer)
                       .length
@@ -319,7 +347,6 @@ function Stats(props) {
                   ) /
                     100 +
                     " %"}
-                </b>
               </p>
 
               {/* map des question d'un joueur */}
@@ -327,18 +354,19 @@ function Stats(props) {
                 {player.answers.map((answer, i) => (
                   <div className="questionCard" key={"answer" + i}>
                     <div className="questionCategory">
+                      {categoryIcons[quiz[answer.idQuestion].category]+" "}
                       {quiz[answer.idQuestion].category.toUpperCase()}
                     </div>
                     <div className="questionDifficulty">
                       {quiz[answer.idQuestion].difficulty.toUpperCase()}
                     </div>
-                    <p>
+                    <p className="questionText">
                       {i + 1}
                       {". "}
                       {quiz[answer.idQuestion].question}
                     </p>
                     {/* bonne réponse */}
-                    <p className="correctAnswer">
+                    <p className="correctAnswer questionAnswers">
                       {quiz[answer.idQuestion].correct_answer}
                     </p>
 
@@ -349,8 +377,8 @@ function Stats(props) {
                           key={"incorrectAnswer" + i}
                           className={
                             i === answer.idIncorrectAnswer
-                              ? "incorrectAnswer"
-                              : ""
+                              ? "incorrectAnswer questionAnswers"
+                              : "questionAnswers"
                           }
                         >
                           {incorrectAnswer}
@@ -369,15 +397,7 @@ function Stats(props) {
   );
 }
 
-// https://wprock.fr/blog/emoji-smiley-copier-coller/
-// let arr =
-// ["😀","😁","😂","🤣","😃","😄","😅","😆","😉","😊","😋","😎","😍","😘","😗","😙","😚","🙂","🤗","🤩",
-// "😈","👿","🤡","👹","👺","💀","👻","👽","👾","🤖","💩","👨‍🎓","👩‍🎓","👨‍🏫","👩‍🏫","👨‍🌾","👩‍🌾","👨‍🍳","👩‍🍳","👨‍🔧","👩‍🔧","👨‍🏭","👩‍🏭",
-// "👨‍💼","👩‍💼","👨‍🔬","👩‍🔬","👨‍💻","👩‍💻","👨‍🎤","👩‍🎤","👨‍🎨","👩‍🎨","👨‍🚀","👩‍🚀","👨‍🚒","👩‍🚒","👮‍","👮‍","🕵️‍","🕵️‍","💂‍","💂‍","👷‍","👷‍","🤴","👸",
-// "🤳","💪","👈","👉","👆","🖕","👇","🤞","✌","🖖","🤘","🤙","🖐️","✋","👌","👍","👎","✊","👊","🤛","🤜","🤚","👋","🤟",
-// "👏","👐","🙌","🤲","🙏","🤝","🤏","👂","🦻","👃","👀","👁️","🦾","🦿","🧠","👅","🦷","👄","💋"];
-  
-// for (let i=0; i<arr.length; i++) console.log(arr[i]);
+
 
 export default Stats;
 

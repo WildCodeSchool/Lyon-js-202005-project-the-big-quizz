@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&family=Junge&family=Montserrat+Alternates:wght@800&display=swap");
+@import url(//db.onlinewebfonts.com/c/831e1041c97169ac1d4dc3d161b235cc?family=Burbank+Big+Condensed);
 
 /* 
 font-family: 'Hind Siliguri', sans-serif;
 font-family: 'Junge', serif;
-font-family: 'Montserrat Alternates', sans-serif; */
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: "Burbank Big Condensed";
+*/
 
 .App {
   text-align: center;
@@ -167,14 +170,27 @@ button {
 /* CSS stats                                */
 /****************************************** */
 
-@import url(//db.onlinewebfonts.com/c/831e1041c97169ac1d4dc3d161b235cc?family=Burbank+Big+Condensed);
-
-.cardContainer{
+.cardContainer {
   display: flex;
   flex-wrap: wrap;
+  font-family: "Hind Siliguri", sans-serif;
+
 }
 
-.questionCard {  
+.playerName {
+  font-size: xx-large;
+  font-weight: bold;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.playerScore {
+  font-size: x-large;
+  font-weight: bold;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.questionCard {
+  font-family: "Hind Siliguri", sans-serif;
   background-color: #f0f0f0;
   border-radius: 10px;
   border-style: solid;
@@ -183,23 +199,38 @@ button {
   margin: 10px;
   box-shadow: black;
   box-shadow: 0px 0px 5px #0d080b;
-  width: 350px;
+  width: 340px;
+  margin: 0px 5px;
 }
+
 
 .questionCard .questionCategory {
   background-color: #0d080b;
-  color:#f0f0f0;
- font-family: "Burbank Big Condensed";
- font-size: xx-large;
- font-weight: bold; 
+  color: #f0f0f0;
+  font-family: "Burbank Big Condensed";
+  font-size: x-large;
+  font-weight: bold;
 }
 
 .questionCard .questionDifficulty {
-  background-color: #0d080b;
-  color:#f0f0f0;
- font-family: "Burbank Big Condensed";
- font-size: xx-large;
- 
+  background-color: #dc7f9b;
+  color: #f0f0f0;
+  font-family: "Burbank Big Condensed";
+  font-size: xx-large;
+}
+
+.questionCard .questionText {
+  color: #0d080b;
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: large;
+  padding: 5px;
+}
+
+.questionCard .questionAnswers {
+  color: #0d080b;
+  font-family: "Hind Siliguri", sans-serif;
+  padding-left: 20%;
+  text-align: left;
 }
 
 .correctAnswer {
