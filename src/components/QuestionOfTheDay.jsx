@@ -30,26 +30,26 @@ const QuestionOfTheDay = () => {
         isOpen={modalWrongIsOpen}
         style={{
           content: {
-            backgroundColor: "red",
-            width: "40%",
+            backgroundColor: "#FC2622",
+            width: "30%",
             height: "20%",
             textAlign: "center",
-            fontSize: "large",
+            fontSize: "x-large",
             position: "absolute",
             left: "30%",
             top: "25%",
           },
         }}
       >
-        <h2>Uncorrect answer</h2>
+        <h2 className="modal-answer">Uncorrect answer</h2>
         <button
           onClick={() => setModelIsOpen(false)}
           style={{
-            backgroundColor: "blue",
-            width: "30%",
-            height: "40px",
+            backgroundColor: "#FFE74C",
+            width: "90px",
+            height: "50px",
             borderRadius: "5px",
-            color: "white",
+            color: "black",
             fontSize: "x-large",
           }}
         >
@@ -60,24 +60,24 @@ const QuestionOfTheDay = () => {
         isOpen={modalGoodIsOpen}
         style={{
           content: {
-            backgroundColor: "green",
-            width: "40%",
+            backgroundColor: "#BBFD5D",
+            width: "30%",
             height: "20%",
             textAlign: "center",
-            fontSize: "large",
+            fontSize: "x-large",
             position: "absolute",
             left: "30%",
             top: "25%",
           },
         }}
       >
-        <h2>Correct answer</h2>
+        <h2 className="modal-answer">Correct answer</h2>
         <button
           onClick={() => setModalGoodIsOpen(false)}
           style={{
             backgroundColor: "blue",
-            width: "30%",
-            height: "40px",
+            width: "90px",
+            height: "50px",
             borderRadius: "5px",
             color: "white",
             fontSize: "x-large",
