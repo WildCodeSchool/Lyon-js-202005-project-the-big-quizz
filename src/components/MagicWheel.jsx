@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import wheel from "../images/wheel.png";
 import selector from "../images/selector.png";
 import WheelRotation from "./WheelRotation";
 import {motion} from "framer-motion";
 import "./magicwheel.css";
+import "../App.css"
 
 // const Gk = [1,15];
 // const Books = [16,30]
@@ -181,7 +182,7 @@ let wheelObj = [
         }]
 ]
 
-let spinning = Math.floor(Math.random()*(-100));
+let spinning = Math.floor(Math.random()*(-1000));
 console.log(spinning);
  
 let spinningValue = spinning;
@@ -192,14 +193,25 @@ let spinningValue = spinning;
         console.log("🤦‍");
     }
 
-const rotateTransition = {
-    duration : 1,
-    ease : "easeOut",
-}
+// const rotateTransition = {
+//     duration : 1,
+//     ease : "easeOut",
+// }
 
-const styleWheel = {
+// const loaderParams = {
 
-}
+// }
+// const Loader = () => {
+//     return (
+//         <>
+//             <motion.div className="loader">
+
+//             </motion.div>
+//         </>
+//     )
+// }
+
+
 
 function MagicWheel() {
     return(
@@ -214,21 +226,21 @@ function MagicWheel() {
 
     
             <motion.img className="wheel"
+                initial={{rotate:0}}
                 src={wheel}
                 alt="wheel "
                 height={500}
-                width={500} style={styleWheel} transition={rotateTransition} animate={{
+                width={500}  animate={{
                     x: 0,
                     y:0,
-                    blur: 2,
                     rotate:--spinning,
                 }}/>
         <br></br>
-        <div>
+        <motion.div>
           <button className="magicButton">
             🎰 Squiz-Me ! 🎰
           </button>
-        </div>
+        </motion.div>
     </div>
     
     );
