@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 function SelectParameters(props) {
   //  console.log("props de SelectParameters:",props);
@@ -38,8 +40,9 @@ function SelectParameters(props) {
   return (
     <div>
       <div>
-        <label htmlFor="nbQuestions">Numbers of questions per player: </label>
+        <label htmlFor="nbQuestions" className="player-info">Numbers of questions per player: </label>
         <input
+          className="input-style"
           type="number"
           id="nbQuestions"
           name="nbQuestions"
@@ -50,9 +53,9 @@ function SelectParameters(props) {
         />
       </div>
       <div>
-        <label htmlFor="selectCategory"> Category : </label>
-        <select id="selectCategory" onChange={(event) => handleCategory(event)}>
-          <option value="">Any</option>
+        <label htmlFor="selectCategory" className="player-info"> Category : </label>
+        <select id="selectCategory" className="input-style" onChange={(event) => handleCategory(event)}>
+       <option className="input-style" value="">Any</option>
           {lstCategories.map((item) => {
             return (
               <option key={item.id} value={item.id}>
@@ -63,20 +66,37 @@ function SelectParameters(props) {
         </select>
       </div>
       <div>
-        <label htmlFor="selectDifficultyLevel">Difficulty level : </label>
+        <label htmlFor="selectDifficultyLevel" className="player-info">Difficulty level : </label>
         <select
+          className="input-style"
           id="selectDifficultyLevel"
           onChange={(event) => handleLevel(event)}
         >
-          <option value="">Any</option>
-          <option value="easy"> Easy </option>
-          <option value="medium"> Medium </option>
-          <option value="hard"> Hard </option>
+          <option className="input-style" value="">Any</option>
+          <option className="input-style" value="easy"> Easy </option>
+          <option className="input-style" value="medium"> Medium </option>
+          <option className="input-style" value="hard"> Hard </option>
         </select>
       </div>
       <div>
-        <span>Type of Questions :</span>
+        <label htmlFor="selectTimer" className="player-info">Timer :</label>
+        <select className="input-style" id="selectTimer" onChange={handleTimer}>
+          <option value={-1} className="input-style">None</option>
+          <option value={5} className="input-style">5″</option>
+          <option value={10} className="input-style"> 10″ </option>
+          <option value={15} className="input-style"> 15″ </option>
+          <option value={20} className="input-style"> 20″ </option>
+          <option value={30} className="input-style"> 30″</option>
+          <option value={40} className="input-style"> 40″</option>
+          <option value={50} className="input-style"> 50″</option>
+          <option value={60} className="input-style"> 60″</option>
+        </select>
+      </div>
+      <div>
+        <span className="player-info">Type of Questions :</span>
+        <p>
         <input
+          className="input-style"
           type="radio"
           id="anyType"
           name="typeOfQuestions"
@@ -84,9 +104,10 @@ function SelectParameters(props) {
           checked={props.gameParameters.questionsType === ""}
           value=""
         />
-        <label htmlFor="anyType">Any type</label>
+        <label className="player-info" htmlFor="anyType">Any type</label>
 
         <input
+          className="input-style"
           type="radio"
           id="boolean"
           name="typeOfQuestions"
@@ -94,9 +115,10 @@ function SelectParameters(props) {
           checked={props.gameParameters.questionsType === "boolean"}
           value="boolean"
         />
-        <label htmlFor="boolean">True / False</label>
+        <label htmlFor="boolean" className="player-info">True / False</label>
 
         <input
+          className="input-style"
           type="radio"
           id="multiple"
           name="typeOfQuestions"
@@ -104,22 +126,10 @@ function SelectParameters(props) {
           checked={props.gameParameters.questionsType === "multiple"}
           value="multiple"
         />
-        <label htmlFor="multiple">Multiple choice</label>
+        <label htmlFor="multiple" className="player-info">Multiple choice</label>
+        </p>
       </div>
-      <div>
-        <label htmlFor="selectTimer">Timer :</label>
-        <select id="selectTimer" onChange={handleTimer}>
-          <option value={-1}>None</option>
-          <option value={5}>5″</option>
-          <option value={10}> 10″ </option>
-          <option value={15}> 15″ </option>
-          <option value={20}> 20″ </option>
-          <option value={30}> 30″</option>
-          <option value={40}> 40″</option>
-          <option value={50}> 50″</option>
-          <option value={60}> 60″</option>
-        </select>
-      </div>
+
     </div>
   );
 }

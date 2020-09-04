@@ -60,6 +60,7 @@ font-family: 'Montserrat Alternates', sans-serif; */
 .footer {
   background-color: #dddddd;
   grid-area: foot;
+  margin-top: 30px;
 }
 
 .linkedin {
@@ -93,7 +94,11 @@ font-family: 'Montserrat Alternates', sans-serif; */
 }
 
 .parameters {
-  background-color: #ffcccc;
+  font-family: "Junge", serif;
+  margin: 15px;
+  color: #dc7f9b;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 /* CSS of the question of day */
@@ -163,3 +168,37 @@ button {
 .largeBtn {
   background-color: #dc7f9b !important;
 }
+
+/* /////////////////////////Parametres/////////////////////////////////// */
+
+.player-info{
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 22px; 
+  margin: 10px;
+  text-align: center;
+}
+
+.input-style{
+  font-family: "Hind Siliguri", sans-serif;
+  padding: 5px;
+  border-radius: 12px;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+}
+
+.button-style {
+color: white;
+padding: 10px;
+border:0.1em solid #43404F;
+margin: 10px;
+border-radius: 12px;
+box-sizing: border-box;
+font-family: "Hind Siliguri", sans-serif;
+font-size: 20px;
+color: white;
+background-color:#DC7F9B;
+text-align:center;
+  }
+
+

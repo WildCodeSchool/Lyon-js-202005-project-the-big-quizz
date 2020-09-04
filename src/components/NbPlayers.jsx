@@ -1,5 +1,7 @@
 import React from "react";
 import "../App.css";
+import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
+
 
 function NbPlayers(props) {
   //console.log("props de NbPlayers:", props);
@@ -51,8 +53,9 @@ function NbPlayers(props) {
   return (
     <>
       <div>
-        <label htmlFor="nbPlayers">Numbers of players: </label>
+        <label htmlFor="nbPlayers" className="player-info">Numbers of players: </label>
         <input
+          className="input-style"
           type="number"
           id="nbPlayers"
           name="nbPlayers"
@@ -71,8 +74,9 @@ function NbPlayers(props) {
       <div>
         {props.gameParameters.playerNames.map((playerName, i) => (
           <div key={i}>
-            <label htmlFor={i}>Name of player #{i + 1}: </label>
+            <label htmlFor={i} className="player-info">Name of player #{i + 1}: </label>
             <input
+              className="input-style"
               id={i}
               type="text"
               value={playerName}
