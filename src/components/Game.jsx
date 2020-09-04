@@ -345,12 +345,3 @@ function Game(props) {
 
 export default Game;
 
-/*
-
-let score = [
- [ [playerName, idQuest, responseOk, idResp, duration ], [playerName, idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
- [ [playerName, idQuest, responseOk, idResp, duration ], [playerName, idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
-]
-
-
-*/
