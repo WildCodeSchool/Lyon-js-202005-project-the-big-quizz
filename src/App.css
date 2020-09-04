@@ -79,7 +79,6 @@ font-family: 'Montserrat Alternates', sans-serif; */
 
 .main {
   background-color: #cccccc;
-
   grid-area: main;
 }
 
@@ -169,6 +168,7 @@ button {
   background-color: #dc7f9b !important;
 }
 
+
 /* /////////////////////////Parametres/////////////////////////////////// */
 
 .player-info{
@@ -202,3 +202,61 @@ text-align:center;
   }
 
 
+/****************************************** */
+/* CSS stats                                */
+/****************************************** */
+
+@import url(//db.onlinewebfonts.com/c/831e1041c97169ac1d4dc3d161b235cc?family=Burbank+Big+Condensed);
+
+.cardContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.questionCard {  
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #f6b83c;
+  border-width: 20px;
+  margin: 10px;
+  box-shadow: black;
+  box-shadow: 0px 0px 5px #0d080b;
+  width: 350px;
+}
+
+.questionCard .questionCategory {
+  background-color: #0d080b;
+  color:#f0f0f0;
+ font-family: "Burbank Big Condensed";
+ font-size: xx-large;
+ font-weight: bold; 
+}
+
+.questionCard .questionDifficulty {
+  background-color: #0d080b;
+  color:#f0f0f0;
+ font-family: "Burbank Big Condensed";
+ font-size: xx-large;
+ 
+}
+
+.correctAnswer {
+  color: green;
+  font-weight: bold;
+}
+
+.incorrectAnswer {
+  color: red;
+  font-weight: bold;
+}
+
+/* palette graphique */
+.colors {
+  color: #f0f0f0;
+  color: #dc7f9b;
+  color: #f6b83c;
+  color: #43404f;
+  color: #0d080b;
+}
+/************************ */
