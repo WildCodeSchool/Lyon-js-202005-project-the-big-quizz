@@ -1,0 +1,21 @@
+.herodiv {
+    margin-top: 5%;
+    margin-left: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 50vw;
+    min-height: 50vh;
+    background-color: blue;
+
+}
+
+.selector {
+    position : fixed;
+    z-index: 4;
+}
+
+.wheel {
+    position : relative;
+}
