@@ -50,7 +50,7 @@
 }
 
 .footer {
-  background-color: #DDDDDD;
+  background-color: #dddddd;
   grid-area: foot;
 }
 
@@ -60,38 +60,32 @@
 }
 
 .header {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   grid-area: head;
-  background-image: url('./images/Logo.png');
+  background-image: url("./images/Logo.png");
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .main {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   grid-area: main;
 }
 
 .paramsSummary {
-  background-color: #CCCCCC;
+  background-color: #cccccc;
   grid-area: nav;
   text-align: left;
-
 }
 
 .paramsSummary h5 {
   font-weight: bold;
-
 }
-
-
 
 .parameters {
-  background-color: #FFCCCC;
-
+  background-color: #ffcccc;
 }
-
 
 /* CSS of the question of day */
 .answer {
@@ -116,16 +110,64 @@ button {
   font-weight: "bold";
 }
 
-
 /* CSS stats */
+
+@import url(//db.onlinewebfonts.com/c/831e1041c97169ac1d4dc3d161b235cc?family=Burbank+Big+Condensed);
+
+.cardContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.questionCard {
+  
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #f6b83c;
+  border-width: 20px;
+  margin: 10px;
+  box-shadow: black;
+  box-shadow: 0px 0px 5px #0d080b;
+  width: 350px;
+}
+
+.questionCard .questionCategory {
+  background-color: #0d080b;
+  color:#f0f0f0;
+ font-family: "Burbank Big Condensed";
+ font-size: xx-large;
+ font-weight: bold;
+ 
+ 
+
+}
+.questionCard .questionDifficulty {
+  background-color: #0d080b;
+  color:#f0f0f0;
+ font-family: "Burbank Big Condensed";
+ font-size: xx-large;
+ 
+}
+
+
 
 .correctAnswer {
   color: green;
   font-weight: bold;
 }
 
-
-.badAnswer {
+.incorrectAnswer {
   color: red;
   font-weight: bold;
 }
+
+/* palette graphique */
+.colors {
+  color: #f0f0f0;
+  color: #dc7f9b;
+  color: #f6b83c;
+  color: #43404f;
+  color: #0d080b;
+}
+/************************ */

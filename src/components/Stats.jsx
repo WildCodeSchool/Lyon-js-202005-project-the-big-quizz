@@ -142,12 +142,12 @@ function Stats(props) {
     },
     {
       category: "Science & Nature",
-      correct_answer: "Hydrogen &amp; Helium",
+      correct_answer: "Hydrogen & Helium",
       difficulty: "medium",
       incorrect_answers: [
-        "Hydrogen &amp; Nitrogen",
-        "Carbon &amp; Nitrogen",
-        "Carbon &amp; Helium",
+        "Hydrogen & Nitrogen",
+        "Carbon & Nitrogen",
+        "Carbon & Helium",
       ],
       question: "The Sun consists of mostly which two elements?",
       type: "multiple",
@@ -231,89 +231,154 @@ function Stats(props) {
   ];
 
   let scores = [
-    [
-      [0, true, 0, 8],
-      [6, false, 1, 8],
-      [12, true, 0, 7],
-      [18, true, 0, 7],
-    ],
-    [
-      [1, true, 0, 10],
-      [7, true, 0, 15],
-      [13, false, 2, 5],
-      [19, true, 0, 7],
-    ],
-    [
-      [2, true, 0, 8],
-      [8, false, 1, 8],
-      [14, true, 0, 7],
-      [20, true, 0, 7],
-    ],
-    [
-      [3, true, 0, 10],
-      [9, true, 0, 15],
-      [15, false, 2, 5],
-      [21, true, 0, 7],
-    ],
-    [
-      [4, false, 1, 8],
-      [10, false, 1, 8],
-      [16, false, 1, 7],
-      [22, false, 0, 7],
-    ],
-    [
-      [5, true, 0, 10],
-      [11, true, 0, 15],
-      [17, true, 0, 5],
-      [23, true, 0, 7],
-    ],
+    {playerName: "playerName1",
+      answers: [
+        { idQuestion: 0,  correctAnswer: true,  idIncorrectAnswer:-1,  duration: 8, },
+        { idQuestion: 6, correctAnswer: false, idIncorrectAnswer: 1, duration: 8, },
+        { idQuestion: 12, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
+        // { idQuestion: 18, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
+      ],},
+    {playerName: "playerName2",
+      answers: [
+        { idQuestion: 1, correctAnswer: true, idIncorrectAnswer: -1, duration: 10, },
+        { idQuestion: 7, correctAnswer: true, idIncorrectAnswer: -1, duration: 15, },
+        { idQuestion: 13, correctAnswer: true, idIncorrectAnswer: -1, duration: 5, },
+        { idQuestion: 19, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
+      ],},
+
+    {playerName: "playerName3",
+      answers: [
+        { idQuestion: 2, correctAnswer: true, idIncorrectAnswer: -1, duration: 5, },
+        { idQuestion: 8, correctAnswer: false, idIncorrectAnswer: 1, duration: 9, },
+        { idQuestion: 14, correctAnswer: true, idIncorrectAnswer: -1, duration: 28, },
+        { idQuestion: 20, correctAnswer: true, idIncorrectAnswer: -1, duration: 8, },
+      ],},
+
+    {playerName: "playerName4",
+      answers: [
+        { idQuestion: 3, correctAnswer: true, idIncorrectAnswer: -1, duration: 10, },
+        { idQuestion: 9, correctAnswer: true, idIncorrectAnswer: -1, duration: 15, },
+        { idQuestion: 15, correctAnswer: false, idIncorrectAnswer: 2, duration: 5, },
+        { idQuestion: 21, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
+      ],},
+
+    {playerName: "playerName5",
+      answers: [
+        { idQuestion: 4, correctAnswer: false, idIncorrectAnswer: 1, duration: 2, },
+        { idQuestion: 10, correctAnswer: false, idIncorrectAnswer: 1, duration: 13, },
+        { idQuestion: 16, correctAnswer: false, idIncorrectAnswer: 1, duration: 3, },
+        { idQuestion: 22, correctAnswer: false, idIncorrectAnswer: 0, duration: 9, },
+      ],},
+
+    {playerName: "playerName6",
+      answers: [
+        { idQuestion: 5, correctAnswer: true, idIncorrectAnswer: -1, duration: 18, },
+        { idQuestion: 11, correctAnswer: true, idIncorrectAnswer: -1, duration: 15, },
+        { idQuestion: 17, correctAnswer: false, idIncorrectAnswer: 0, duration: 10, },
+        { idQuestion: 23, correctAnswer: false, idIncorrectAnswer: 0, duration: 7, },
+      ],},
   ];
 
-  // scores.map((player, indexPlayer) =>   {console.log("player "+ (indexPlayer + 1)+" "+ player[1])}) ;
+
+
 
   return (
     <div>
       <h1>Stats</h1>
       <div>
-        {scores.map((player, indexPlayer) => (
-          <div key={indexPlayer}>
-            <b>player {indexPlayer + 1} :</b>
+        {scores
+          // Tri par nombre de bonnes réponses / nombre de réponses
+          .sort((playerA, playerB) => {
+            return (
+              playerB.answers.filter((answer) => answer.correctAnswer).length /
+                playerB.answers.length -
+              playerA.answers.filter((answer) => answer.correctAnswer).length /
+                playerA.answers.length
+            );
+          })
+          // map des joueurs
+          .map((player) => (
+            <div key={player.playerName}>
+              <p>
+                <b>Nom du jouer : {player.playerName}</b>
+              </p>
+              <p>
+                <b>
+                  Score :{" "}
+                  {
+                    player.answers.filter((answer) => answer.correctAnswer)
+                      .length
+                  }
+                  /{player.answers.length}
+                  {" - "}
+                  {Math.floor(
+                    (player.answers.filter((answer) => answer.correctAnswer)
+                      .length /
+                      player.answers.length) *
+                      10000
+                  ) /
+                    100 +
+                    " %"}
+                </b>
+              </p>
 
-            {player.map((question, indexQuestion) => (
-              <div key={indexQuestion}>
-                {" "}
-                player {indexPlayer + 1} - question {indexQuestion + 1} -{" "}
-                {quiz[scores[indexPlayer][indexQuestion][0]].question} <br />
-                {scores[indexPlayer][indexQuestion][1]
-                  ? "bonne réponse"
-                  : "mauvaise réponse"}{" "}
-                <br />
-                
-                <p className="correctAnswer">
-                  {quiz[scores[indexPlayer][indexQuestion][0]].correct_answer}
-                </p>
-                {quiz[
-                  scores[indexPlayer][indexQuestion][0]
-                ].incorrect_answers.map((wrongAnswer, index) => (
-                  <p
-                    key={index}
-                    className={
-                      scores[indexPlayer][indexQuestion][2] === index &&
-                      !scores[indexPlayer][indexQuestion][1]
-                        ? "badAnswer"
-                        : ""
-                    }
-                  >
-                    {wrongAnswer}
-                  </p>
+              {/* map des question d'un joueur */}
+              <div className="cardContainer">
+                {player.answers.map((answer, i) => (
+                  <div className="questionCard" key={"answer" + i}>
+                    <div className="questionCategory">
+                      {quiz[answer.idQuestion].category.toUpperCase()}
+                    </div>
+                    <div className="questionDifficulty">
+                      {quiz[answer.idQuestion].difficulty.toUpperCase()}
+                    </div>
+                    <p>
+                      {i + 1}
+                      {". "}
+                      {quiz[answer.idQuestion].question}
+                    </p>
+                    {/* bonne réponse */}
+                    <p className="correctAnswer">
+                      {quiz[answer.idQuestion].correct_answer}
+                    </p>
+
+                    {/* map des mauvaises réponses d'une question */}
+                    {quiz[answer.idQuestion].incorrect_answers.map(
+                      (incorrectAnswer, i) => (
+                        <p
+                          key={"incorrectAnswer" + i}
+                          className={
+                            i === answer.idIncorrectAnswer
+                              ? "incorrectAnswer"
+                              : ""
+                          }
+                        >
+                          {incorrectAnswer}
+                        </p>
+                      )
+                    )}
+                  </div>
                 ))}
               </div>
-            ))}
-          </div>
-        ))}
+
+              <hr />
+            </div>
+          ))}
       </div>
     </div>
   );
 }
 
+// https://wprock.fr/blog/emoji-smiley-copier-coller/
+// let arr =
+// ["😀","😁","😂","🤣","😃","😄","😅","😆","😉","😊","😋","😎","😍","😘","😗","😙","😚","🙂","🤗","🤩",
+// "😈","👿","🤡","👹","👺","💀","👻","👽","👾","🤖","💩","👨‍🎓","👩‍🎓","👨‍🏫","👩‍🏫","👨‍🌾","👩‍🌾","👨‍🍳","👩‍🍳","👨‍🔧","👩‍🔧","👨‍🏭","👩‍🏭",
+// "👨‍💼","👩‍💼","👨‍🔬","👩‍🔬","👨‍💻","👩‍💻","👨‍🎤","👩‍🎤","👨‍🎨","👩‍🎨","👨‍🚀","👩‍🚀","👨‍🚒","👩‍🚒","👮‍","👮‍","🕵️‍","🕵️‍","💂‍","💂‍","👷‍","👷‍","🤴","👸",
+// "🤳","💪","👈","👉","👆","🖕","👇","🤞","✌","🖖","🤘","🤙","🖐️","✋","👌","👍","👎","✊","👊","🤛","🤜","🤚","👋","🤟",
+// "👏","👐","🙌","🤲","🙏","🤝","🤏","👂","🦻","👃","👀","👁️","🦾","🦿","🧠","👅","🦷","👄","💋"];
+  
+// for (let i=0; i<arr.length; i++) console.log(arr[i]);
+
 export default Stats;
+
+
