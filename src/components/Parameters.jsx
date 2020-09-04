@@ -3,6 +3,7 @@ import "../App.css";
 import NbPlayers from "./NbPlayers";
 import SelectParameters from './SelectParameters';
 import { Link } from "react-router-dom";
+import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
 
 
 function Parameters(props) {
@@ -18,16 +19,22 @@ function Parameters(props) {
   // };
 
   return (
-    <div className="parameters">
-      <h1>Parameters</h1>
+    <div>
+      <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Card className="test">
+          <CardText><h1 className="parameters">Parameters</h1></CardText>
 
-      <NbPlayers gameParameters={props.gameParameters} />
-      <SelectParameters gameParameters={props.gameParameters}/>
+          <NbPlayers gameParameters={props.gameParameters} />
+          <SelectParameters gameParameters={props.gameParameters}/>
 
-      <Link to="/game">
-        <button>commencer le jeu</button>
-      </Link>
+          <Link to="/game">
+            <button className="button-style">Commencer le jeu</button>
+          </Link>
       {/* <button onClick={handleClick}>commencer le jeu (conditionnel)</button> */}
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 }
