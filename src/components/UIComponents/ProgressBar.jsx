@@ -1,7 +1,6 @@
 import React from 'react';
 import { Progress } from 'reactstrap';
 
-
 const ProgressExample = (props) => {
     return (
       <div>
@@ -12,3 +11,4 @@ const ProgressExample = (props) => {
     );
   };
   export default ProgressExample;
+  

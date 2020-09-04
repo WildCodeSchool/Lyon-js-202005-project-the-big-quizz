@@ -13,7 +13,7 @@ function GridLayout(props) {
     <div className="gridLayout">
       <Header />
 
-      <Nav gameParameters={props.gameParameters} />
+      {/*<Nav gameParameters={props.gameParameters} />*/}
 
       <Main gameParameters={props.gameParameters} />
 

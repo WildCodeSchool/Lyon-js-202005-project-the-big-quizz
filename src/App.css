@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&family=Junge&family=Montserrat+Alternates:wght@800&display=swap");
+
+/* 
+font-family: 'Hind Siliguri', sans-serif;
+font-family: 'Junge', serif;
+font-family: 'Montserrat Alternates', sans-serif; */
+
 .App {
   text-align: center;
 }
@@ -43,10 +50,11 @@
   display: grid;
   grid-template-areas:
     "head head"
-    "nav  main"
+    "main  main"
     "foot  foot";
   grid-template-rows: 100px 1fr 30px;
   grid-template-columns: 350px 1fr;
+  background-color: #282c34;
 }
 
 .footer {
@@ -69,7 +77,8 @@
 }
 
 .main {
-  background-color: #ffffff;
+  background-color: #cccccc;
+
   grid-area: main;
 }
 
@@ -89,10 +98,10 @@
 
 /* CSS of the question of day */
 .answer {
-  width: 25%;
+  min-width: 40%;
   height: 75px;
   font-size: large;
-  color: wheat;
+  color: black;
   font-weight: bold;
   margin: 10px;
   cursor: pointer;
@@ -108,4 +117,49 @@ button {
   height: "45px";
   color: "white";
   font-weight: "bold";
+}
+
+.daily-question {
+  margin-top: 15px;
+  color: #dc7f9b;
+  font-family: "Junge", serif;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.question-style {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.question-category {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.category-name {
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.test {
+  border: solid 4px #f6b83c !important;
+  font-family: "Junge", serif;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 10px 5px 5px grey;
+}
+.bordureCardReponse {
+  border: 4px solid #f6b83c !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.largeBtn {
+  background-color: #dc7f9b !important;
 }
