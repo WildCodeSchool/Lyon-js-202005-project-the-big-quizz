@@ -36,8 +36,9 @@ const QuestionOfTheDay = () => {
             textAlign: "center",
             fontSize: "x-large",
             position: "absolute",
-            left: "30%",
-            top: "25%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
           },
         }}
       >
@@ -49,7 +50,6 @@ const QuestionOfTheDay = () => {
             width: "90px",
             height: "50px",
             borderRadius: "5px",
-            color: "black",
             fontSize: "x-large",
           }}
         >
@@ -66,8 +66,9 @@ const QuestionOfTheDay = () => {
             textAlign: "center",
             fontSize: "x-large",
             position: "absolute",
-            left: "30%",
-            top: "25%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
           },
         }}
       >
@@ -79,7 +80,6 @@ const QuestionOfTheDay = () => {
             width: "90px",
             height: "50px",
             borderRadius: "5px",
-            color: "white",
             fontSize: "x-large",
           }}
         >
@@ -121,7 +121,7 @@ const QuestionOfTheDay = () => {
                   <button
                     onClick={() => setModelIsOpen(true)}
                     className="answer"
-                    style={{ backgroundColor: "#FDF1D8" }}
+                    style={{ backgroundColor: "#FDF1D8", color: "black" }}
                   >
                     {" "}
                     <span
@@ -133,7 +133,7 @@ const QuestionOfTheDay = () => {
                   <button
                     onClick={() => setModalGoodIsOpen(true)}
                     className="answer"
-                    style={{ backgroundColor: "#E3CACD" }}
+                    style={{ backgroundColor: "#E3CACD", color: "black" }}
                   >
                     <span
                       dangerouslySetInnerHTML={{
