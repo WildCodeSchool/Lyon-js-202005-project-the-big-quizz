@@ -291,6 +291,84 @@ if (spinningValue >= 1 && spinningValue <= 15) {
   console.log("👻‍");
 }
 
+
+/* conditional call of API :
+
+General Knowledge
+https://opentdb.com/api.php?amount=1&category=9
+
+Books
+https://opentdb.com/api.php?amount=1&category=10
+
+Film
+https://opentdb.com/api.php?amount=1&category=11
+
+Music
+https://opentdb.com/api.php?amount=1&category=12
+
+Musical & Theatre
+https://opentdb.com/api.php?amount=1&category=13
+
+Television
+https://opentdb.com/api.php?amount=1&category=14
+
+Video Games
+https://opentdb.com/api.php?amount=1&category=15
+
+Board Games
+https://opentdb.com/api.php?amount=1&category=16
+
+Science & Nature
+https://opentdb.com/api.php?amount=1&category=17
+
+Computer
+https://opentdb.com/api.php?amount=1&category=18
+
+Mathematics
+https://opentdb.com/api.php?amount=1&category=19
+
+Mythology
+https://opentdb.com/api.php?amount=1&category=20
+
+Sports
+https://opentdb.com/api.php?amount=1&category=21
+
+Geography
+https://opentdb.com/api.php?amount=1&category=22
+
+History
+https://opentdb.com/api.php?amount=1&category=23
+
+Politics
+https://opentdb.com/api.php?amount=1&category=24
+
+Arts
+https://opentdb.com/api.php?amount=1&category=25
+
+Celebrities
+https://opentdb.com/api.php?amount=1&category=26
+
+Animals
+https://opentdb.com/api.php?amount=1&category=27
+
+Vehicles
+https://opentdb.com/api.php?amount=1&category=28
+
+Comics
+https://opentdb.com/api.php?amount=1&category=29
+
+Gadgets
+https://opentdb.com/api.php?amount=1&category=30
+
+Anime & Manga
+https://opentdb.com/api.php?amount=1&category=31
+
+Cartoons
+https://opentdb.com/api.php?amount=1&category=32
+
+
+*/
+
 // const rotateTransition = {
 //     duration : 1,
 //     ease : "easeOut",
