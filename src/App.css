@@ -54,7 +54,6 @@ font-family: 'Montserrat Alternates', sans-serif; */
     "foot  foot";
   grid-template-rows: 100px 1fr 30px;
   grid-template-columns: 350px 1fr;
-  background-color: #282c34;
 }
 
 .footer {
@@ -77,8 +76,6 @@ font-family: 'Montserrat Alternates', sans-serif; */
 }
 
 .main {
-  background-color: #cccccc;
-
   grid-area: main;
 }
 
