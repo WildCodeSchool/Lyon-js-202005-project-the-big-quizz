@@ -389,6 +389,11 @@ https://opentdb.com/api.php?amount=1&category=32
 
 function MagicWheel() {
   return (
+    <>
+    <div className='landingtest'>
+
+    </div>
+    
     <div className="herodiv">
       <img
         className="selector"
@@ -417,6 +422,7 @@ function MagicWheel() {
         <button className="magicButton">🎰 Squiz-Me ! 🎰</button>
       </motion.div>
     </div>
+    </>
   );
 }
 
