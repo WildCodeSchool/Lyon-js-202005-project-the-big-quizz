@@ -4,6 +4,18 @@ import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
 import axios from "axios";
 
+
+
+function randomize(array) {
+  let i, j, mixed;
+  for (i = array.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    mixed = array[i];
+    array[i] = array[j];
+    array[j] = mixed;
+  }
+  return array;
+}
 function Game(props) {
   let history = useHistory();
 
@@ -33,12 +45,11 @@ function Game(props) {
   const [goodAnswerModalIsOpen, setGoodAnswerModalIsOpen] = useState(false);
   const [wrongAnswerModalIsOpen, setWrongAnswerModalIsOpen] = useState(false);
   const [timeOffModal, setTimeOffModal] = useState(false);
-  const [goodCounter, setGoodCounter] = useState(0);
-  const [wrongCounter, setWrongCounter] = useState(0);
+  const [tableAnswer, setTableAnswer] = useState(null);
   const [displayQuestionNumber, setDisplayQuestionNumber] = useState(
     idActualPlayer +
-      "/" +
-      props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
+    "/" +
+    props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
   );
 
   let difficulty = props.gameParameters.difficultyLevel;
@@ -55,7 +66,6 @@ function Game(props) {
         : props.gameParameters.timerParameter
     );
     setGoodAnswerModalIsOpen(false);
-    setGoodCounter(goodCounter + 1);
   };
   const handleModalWrongAnswer = () => {
     browseTable();
@@ -66,46 +76,52 @@ function Game(props) {
         : props.gameParameters.timerParameter
     );
     setWrongAnswerModalIsOpen(false);
-    setWrongCounter(wrongCounter + 1);
   };
   const handelModalTimerOff = () => {
     browseTable();
     setTimerOn(true);
     setTimer(props.gameParameters.timerParameter);
     setTimeOffModal(false);
-    setWrongCounter(wrongCounter + 1);
   };
   const handleModalGoodAnswer2 = () => {
     setTimerOn(true);
     setTimer(props.gameParameters.timerParameter);
-    setId(id + 1);
     setGoodAnswerModalIsOpen(false);
-    setGoodCounter(goodCounter + 1);
     history.push("/stats");
   };
   const handleModalWrongAnswer2 = () => {
     setTimerOn(true);
     setTimer(props.gameParameters.timerParameter);
-    setId(id + 1);
     setWrongAnswerModalIsOpen(false);
-    setWrongCounter(wrongCounter + 1);
     history.push("/stats");
   };
   const handelModalTimerOff2 = () => {
     setTimerOn(true);
     setTimer(props.gameParameters.timerParameter);
-    setId(id + 1);
     setTimeOffModal(false);
-    setWrongCounter(wrongCounter + 1);
     history.push("/stats");
   };
-  const timerdGoodAnswer = () => {
-    setGoodAnswerModalIsOpen(true);
+
+  const handelGoogAnswer = () => {
+
     setTimerOn(false);
+    setTimer(
+      props.gameParameters.timerParameter === 0
+        ? ""
+        : props.gameParameters.timerParameter
+    );
+    setGoodAnswerModalIsOpen(true)
   };
-  const timerWrongAnswer = () => {
-    setWrongAnswerModalIsOpen(true);
+  const handleWrongAnswer = () => {
+
     setTimerOn(false);
+    setTimer(
+      props.gameParameters.timerParameter === 0
+        ? ""
+        : props.gameParameters.timerParameter
+    );
+
+    setWrongAnswerModalIsOpen(true)
   };
   useEffect(() => {
     axios
@@ -114,8 +130,34 @@ function Game(props) {
       )
       .then((res) => {
         props.gameParameters.setQuiz(res.data.results);
+        setTableAnswer(
+          randomize([
+            res.data.results[id].correct_answer,
+            res.data.results[id].incorrect_answers[0],
+            res.data.results[id].incorrect_answers[1],
+            res.data.results[id].incorrect_answers[2],
+          ])
+        );
       });
   }, []);
+
+  useEffect(() => {
+    if (props.gameParameters.quiz !== null) {
+      setTableAnswer(props.gameParameters.quiz[id].type !== "boolean" ?
+        (randomize([
+          props.gameParameters.quiz[id].correct_answer,
+          props.gameParameters.quiz[id].incorrect_answers[0],
+          props.gameParameters.quiz[id].incorrect_answers[1],
+          props.gameParameters.quiz[id].incorrect_answers[2],
+        ])) :
+        (randomize([
+          props.gameParameters.quiz[id].correct_answer,
+          props.gameParameters.quiz[id].incorrect_answers[0],
+
+        ]))
+      );
+    }
+  }, [id]);
 
   function browseTable() {
     setIdActualPlayer(
@@ -128,17 +170,9 @@ function Game(props) {
     setDisplayQuestionNumber(
       `${questionNumberOfActualPlayer} / ${props.gameParameters.nbQuestionsPerPlayer}`
     );
-    console.log(
-      "player :",
-      idActualPlayer,
-      "numero de la question",
-      questionNumberOfActualPlayer,
-      "/",
-      props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
-    );
   }
 
-  return props.gameParameters.quiz !== null ? (
+  return props.gameParameters.quiz !== null && tableAnswer !== null ? (
     <div className="game">
       {timer === 1 && timeOffModal === false ? setTimeOffModal(true) : timer}
       {timer === 1 && timeOffModal === false ? setTimerOn(false) : ""}
@@ -278,69 +312,28 @@ function Game(props) {
         ></span>
       </p>
 
-      {props.gameParameters.quiz[id].type === "boolean" ? (
-        <>
-          <button
-            onClick={timerdGoodAnswer}
-            className="btn btn-primary"
-            dangerouslySetInnerHTML={{
-              __html: props.gameParameters.quiz[id].correct_answer,
-            }}
-          ></button>
-          <button
-            onClick={timerWrongAnswer}
-            className="btn btn-dark"
-            dangerouslySetInnerHTML={{
-              __html: props.gameParameters.quiz[id].incorrect_answers,
-            }}
-          ></button>
-        </>
-      ) : (
-        <>
-          <button
-            onClick={timerdGoodAnswer}
-            className="btn btn-primary"
-            dangerouslySetInnerHTML={{
-              __html: props.gameParameters.quiz[id].correct_answer,
-            }}
-          ></button>
-          <button
-            onClick={timerWrongAnswer}
-            className="btn btn-secondary"
-            dangerouslySetInnerHTML={{
-              __html: props.gameParameters.quiz[id].incorrect_answers[0],
-            }}
-          ></button>
-          <br />
-          <button
-            onClick={timerWrongAnswer}
-            className="btn btn-warning"
-            dangerouslySetInnerHTML={{
-              __html: props.gameParameters.quiz[id].incorrect_answers[1],
-            }}
-          ></button>
-          <button
-            onClick={timerWrongAnswer}
-            className="btn btn-dark"
-            dangerouslySetInnerHTML={{
-              __html: props.gameParameters.quiz[id].incorrect_answers[2],
-            }}
-          ></button>
-        </>
-      )}
-      <br />
-      <p>
-        Number of good answers : {goodCounter}/{" "}
-        {props.gameParameters.playerNames[idActualPlayer]}
-      </p>
-      <p>
-        Number of wrong answers : {wrongCounter} /{" "}
-        {props.gameParameters.playerNames[idActualPlayer]}
-      </p>
+      {tableAnswer.map((answer, i) => {
+        return (
+          <div>
+            <button
+              key={i}
+              onClick={
+                answer === props.gameParameters.quiz[id].correct_answer
+                  ? handelGoogAnswer
+                  : handleWrongAnswer
+              }
+            >
+              <p dangerouslySetInnerHTML={{ __html: answer }}></p>
+            </button>
+            ;
+          </div>
+        );
+      })}
+
     </div>
   ) : (
-    <p>pas de data</p>
-  );
+      <p>pas de data</p>
+    );
 }
 
 export default Game;
