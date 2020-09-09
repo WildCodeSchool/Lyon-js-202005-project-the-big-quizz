@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
 import axios from "axios";
+import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
+import "./../App.css";
+
 
 
 
@@ -173,24 +176,29 @@ function Game(props) {
   }
 
   return props.gameParameters.quiz !== null && tableAnswer !== null ? (
+    <div>
+    <Row>
+      <Col sm="12" md={{ size: 6, offset: 3 }}>
+        <Card className="test">
     <div className="game">
       {timer === 1 && timeOffModal === false ? setTimeOffModal(true) : timer}
       {timer === 1 && timeOffModal === false ? setTimerOn(false) : ""}
       {timer === -1 && timerOn === true ? setTimerOn(false) : ""}
       {timer === -1 && timerOn === true ? setTimer("") : ""}
 
-      <Modal
-        isOpen={goodAnswerModalIsOpen}
-        style={{
-          content: {
-            backgroundColor: "green",
-            width: "40%",
-            height: "20%",
-            textAlign: "center",
-            fontSize: "large",
-            position: "absolute",
-            left: "30%",
-            top: "25%",
+          <Modal
+            isOpen={goodAnswerModalIsOpen}
+            style={{
+              content: {
+                backgroundColor: "#BBFD5D",
+                width: "30%",
+                height: "20%",
+                textAlign: "center",
+                fontSize: "x-large",
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
           },
         }}
       >
@@ -198,7 +206,13 @@ function Game(props) {
           Good Answer : {props.gameParameters.playerNames[idActualPlayer]}
         </h2>
         <button
-          style={{ width: "15%", fontSize: "xx-large", color: "black" }}
+          style={{
+          backgroundColor: "blue",
+          width: "90px",
+          height: "50px",
+          borderRadius: "5px",
+          fontSize: "x-large",
+        }} 
           onClick={
             id + 1 !== numberOfQuestion
               ? handleModalGoodAnswer
@@ -212,25 +226,32 @@ function Game(props) {
         isOpen={wrongAnswerModalIsOpen}
         style={{
           content: {
-            backgroundColor: "red",
-            width: "40%",
+            backgroundColor: "#FC2622",
+            width: "30%",
             height: "20%",
             textAlign: "center",
-            fontSize: "large",
+            fontSize: "x-large",
             position: "absolute",
-            left: "30%",
-            top: "25%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
           },
         }}
       >
-        <h2>
+        <h2 className="modal-answer">
           Wrong Answer : {props.gameParameters.playerNames[idActualPlayer]}
         </h2>
-        <p>
+        <p className="modal-answer">
           The good answer is : {props.gameParameters.quiz[id].correct_answer}
         </p>
         <button
-          style={{ width: "15%", fontSize: "xx-large", color: "black" }}
+          style={{
+            backgroundColor: "#FFE74C",
+            width: "90px",
+            height: "50px",
+            borderRadius: "5px",
+            fontSize: "x-large",
+          }}
           onClick={
             id + 1 !== numberOfQuestion
               ? handleModalWrongAnswer
@@ -288,22 +309,30 @@ function Game(props) {
             })}
           </tbody>
         </table>
-        <p>
+        </div>
+        <CardText className="">
           Nom de l'actuel joueur :{" "}
           {props.gameParameters.playerNames[idActualPlayer]}
-        </p>
-        <p>Question Number : {questionNumberOfActualPlayer}</p>
-        <p>
+        </CardText>
+        <CardText className="">Question Number : {questionNumberOfActualPlayer}</CardText>
+        <CardText className="">
           Total Questions :{" "}
           {props.gameParameters.nbQuestionsPerPlayer *
             props.gameParameters.nbPlayers}
-        </p>
-      </div>
-      <p>Type of question : {props.gameParameters.quiz[id].type}</p>
-      <p>category : {props.gameParameters.quiz[id].category}</p>
-      <p>Difficulty : {props.gameParameters.quiz[id].difficulty}</p>
+        </CardText>
+      {/* <CardText className="">Type of question : {props.gameParameters.quiz[id].type}</CardText> */}
+      <CardText className="">category : {props.gameParameters.quiz[id].category}</CardText>
+      <CardText className="">Difficulty :  
+      {props.gameParameters.quiz[id].difficulty === "hard" ? 
+      <span style={{color: "#FF0921"}}> {props.gameParameters.quiz[id].difficulty}</span> 
+      : props.gameParameters.quiz[id].difficulty === "medium" ? 
+      <span style={{color:"#dc7f9bs"}}> {props.gameParameters.quiz[id].difficulty}</span> : 
+      <span style={{color: "#f6b83c"}}> {props.gameParameters.quiz[id].difficulty} </span>}
+      </CardText>
 
-      <p>
+
+
+      <CardText className="question-style">
         Question :{" "}
         <span
           dangerouslySetInnerHTML={{
@@ -331,6 +360,7 @@ function Game(props) {
       })}
 
     </div>
+        
   ) : (
       <p>pas de data</p>
     );
