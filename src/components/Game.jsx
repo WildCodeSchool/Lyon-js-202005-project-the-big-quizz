@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import axios from "axios";
 
 
+// resolve conflit : 
 
 function randomize(array) {
   let i, j, mixed;
