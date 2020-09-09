@@ -19,26 +19,35 @@ const GameTest = () => {
   const [id, setId] = useState(0);
   const [tableAnswer, setTableAnswer] = useState(null);
   const [quiz, setQuiz] = useState(null);
+
   useEffect(() => {
+    console.log("UseEffect 1");
     axios.get("https://opentdb.com/api.php?amount=50").then((resp) => {
       setQuiz(resp.data.results);
-      console.log(resp.data.results);
-      
+
+      setTableAnswer(
+        randomize([
+          resp.data.results[id].correct_answer,
+          resp.data.results[id].incorrect_answers[0],
+          resp.data.results[id].incorrect_answers[1],
+          resp.data.results[id].incorrect_answers[2],
+        ])
+      );
     });
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
+    if (quiz !== null) {
       setTableAnswer(
         randomize([
           quiz[id].correct_answer,
           quiz[id].incorrect_answers[0],
           quiz[id].incorrect_answers[1],
-          quiz[id].incorrect_answers[2]
+          quiz[id].incorrect_answers[2],
         ])
       );
-
-  console.log(id)
-    }, [id])
+    }
+  }, [id]);
 
   const handelGoogAnswer = () => {
     setId(id + 1);
@@ -48,6 +57,7 @@ const GameTest = () => {
     setId(id + 1);
     setModalWrongIsOpen(true);
   };
+
   return quiz !== null && tableAnswer !== null ? (
     <div>
       <Modal
@@ -61,8 +71,8 @@ const GameTest = () => {
             fontSize: "large",
             position: "absolute",
             left: "30%",
-            top: "25%"
-          }
+            top: "25%",
+          },
         }}
       >
         <button onClick={() => setModalGoodIsOpen(false)}>X</button>
@@ -78,8 +88,8 @@ const GameTest = () => {
             fontSize: "large",
             position: "absolute",
             left: "30%",
-            top: "25%"
-          }
+            top: "25%",
+          },
         }}
       >
         <button onClick={() => setModalWrongIsOpen(false)}>X</button>
