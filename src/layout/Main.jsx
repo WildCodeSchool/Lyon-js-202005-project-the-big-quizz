@@ -29,7 +29,13 @@ function Main(props) {
         <Route path="/game">
           <GameTest {...props} gameParameters={props.gameParameters} />
         </Route>
-        <Route path="/stats" component={Stats} />
+
+        <Route path="/stats">
+          <Stats {...props} gameParameters={props.gameParameters} />
+        </Route>
+
+
+        {/* <Route path="/stats" component={Stats} /> */}
         <Route path="/ReactStrap" component={ReactStrap} />
       </Switch>
     </div>
