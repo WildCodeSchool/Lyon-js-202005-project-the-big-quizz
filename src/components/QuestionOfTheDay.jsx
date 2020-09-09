@@ -4,7 +4,7 @@ import axios from "axios";
 import "./../App.css";
 import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
 
-const QuestionOfTheDay = () => {
+const QuestionOfTheDay = (props) => {
   const [categorys, setcategorys] = useState("");
   const [types, setType] = useState("");
   const [difficultys, setDifficultys] = useState("");
@@ -13,6 +13,14 @@ const QuestionOfTheDay = () => {
   const [wrongAnswer, setWrongAnswer] = useState("");
   const [modalWrongIsOpen, setModelIsOpen] = useState(false);
   const [modalGoodIsOpen, setModalGoodIsOpen] = useState(false);
+
+  const divStyle = {
+    backgroundImage: `url("/${categorys}.jpg")` ,
+    backgroundSize: 'cover'
+  }
+  console.log(categorys);
+
+
   useEffect(() => {
     axios.get("https://opentdb.com/api.php?amount=10").then((response) => {
       let myId = Math.floor(Math.random() * 10);
@@ -24,7 +32,11 @@ const QuestionOfTheDay = () => {
       setWrongAnswer(response.data.results[myId].incorrect_answers);
     });
   }, []);
+
+
+
   return (
+    <div style={divStyle}>
     <div>
       <Modal
         isOpen={modalWrongIsOpen}
@@ -101,9 +113,9 @@ const QuestionOfTheDay = () => {
             <p className="question-category">Question category: </p>
             <p className="category-name">{categorys}</p>
             <p>Level :</p>
-             { difficultys === "hard" ? <p style={{color: "#FF0921"}} > {difficultys} </p>
-              : difficultys === "medium" ? <span style={{color:"#dc7f9bs"}}> {difficultys} </span>
-                :<span style={{color: "#f6b83c"}}> {difficultys} </span>
+             { difficultys === "hard" ? <p className="question-category" style={{color: "#FF0921"}} > {difficultys} </p>
+              : difficultys === "medium" ? <span className="question-category" style={{color:"#dc7f9b"}}> {difficultys} </span>
+                :<span className="question-category" style={{color: "#f6b83c"} }> {difficultys} </span>
           
             }
               
@@ -192,6 +204,7 @@ const QuestionOfTheDay = () => {
           </Card>
         </Col>
       </Row>
+    </div>
     </div>
   );
 };

@@ -9,13 +9,15 @@ import Stats from "../components/Stats";
 import ReactStrap from "../components/ReactStrap";
 
 function Main(props) {
-  //   console.log("props de Main :", props);
+     console.log("props de Main :", props);
 
   return (
     <div className="main">
 
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" >
+          <Home />
+        </Route>
         <Route path="/parameters">
           <Parameters {...props} gameParameters={props.gameParameters} />
         </Route>
