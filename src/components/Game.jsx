@@ -36,7 +36,9 @@ function Game(props) {
   const [goodCounter, setGoodCounter] = useState(0);
   const [wrongCounter, setWrongCounter] = useState(0);
   const [displayQuestionNumber, setDisplayQuestionNumber] = useState(
-    idActualPlayer + "/" + props.gameParameters.nbQuestionsPerPlayer
+    idActualPlayer +
+      "/" +
+      props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
   );
 
   let difficulty = props.gameParameters.difficultyLevel;
@@ -112,7 +114,6 @@ function Game(props) {
       )
       .then((res) => {
         props.gameParameters.setQuiz(res.data.results);
-        // console.log("res.data.results: ", res.data.results);
       });
   }, []);
 
@@ -126,17 +127,14 @@ function Game(props) {
     setQuestionNumberOfActualPlayer(questionNumberOfActualPlayer + 1);
     setDisplayQuestionNumber(
       `${questionNumberOfActualPlayer} / ${props.gameParameters.nbQuestionsPerPlayer}`
-      // `${Math.ceil((parseInt(idActualPlayer)+1)/5)} / ${props.gameParameters.nbQuestionsPerPlayer}`
     );
     console.log(
       "player :",
       idActualPlayer,
       "numero de la question",
       questionNumberOfActualPlayer,
-      "id question :",
-      id,
-      "nombre de question pas joueur",
-      props.gameParameters.nbQuestionsPerPlayer
+      "/",
+      props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
     );
   }
 
@@ -162,7 +160,9 @@ function Game(props) {
           },
         }}
       >
-        <h2>Good Answer</h2>
+        <h2>
+          Good Answer : {props.gameParameters.playerNames[idActualPlayer]}
+        </h2>
         <button
           style={{ width: "15%", fontSize: "xx-large", color: "black" }}
           onClick={
@@ -189,7 +189,9 @@ function Game(props) {
           },
         }}
       >
-        <h2>Wrong Answer</h2>
+        <h2>
+          Wrong Answer : {props.gameParameters.playerNames[idActualPlayer]}
+        </h2>
         <p>
           The good answer is : {props.gameParameters.quiz[id].correct_answer}
         </p>
@@ -219,7 +221,7 @@ function Game(props) {
           },
         }}
       >
-        <h2>time is up</h2>
+        <h2>time is up : {props.gameParameters.playerNames[idActualPlayer]}</h2>
         <p>
           The good answer is : {props.gameParameters.quiz[id].correct_answer}
         </p>
@@ -239,7 +241,7 @@ function Game(props) {
           <thead>
             <tr>
               <th>the list of players</th>
-              <th>Question Number</th>
+              <th>Answer</th>
             </tr>
           </thead>
           <tbody>
@@ -247,12 +249,21 @@ function Game(props) {
               return (
                 <tr>
                   <td>{name}</td>
-                  <td>{displayQuestionNumber} </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+        <p>
+          Nom de l'actuel joueur :{" "}
+          {props.gameParameters.playerNames[idActualPlayer]}
+        </p>
+        <p>Question Number : {questionNumberOfActualPlayer}</p>
+        <p>
+          Total Questions :{" "}
+          {props.gameParameters.nbQuestionsPerPlayer *
+            props.gameParameters.nbPlayers}
+        </p>
       </div>
       <p>Type of question : {props.gameParameters.quiz[id].type}</p>
       <p>category : {props.gameParameters.quiz[id].category}</p>
@@ -318,8 +329,14 @@ function Game(props) {
         </>
       )}
       <br />
-      <p>Number of good answers : {goodCounter}</p>
-      <p>Number of wrong answers : {wrongCounter}</p>
+      <p>
+        Number of good answers : {goodCounter}/{" "}
+        {props.gameParameters.playerNames[idActualPlayer]}
+      </p>
+      <p>
+        Number of wrong answers : {wrongCounter} /{" "}
+        {props.gameParameters.playerNames[idActualPlayer]}
+      </p>
     </div>
   ) : (
     <p>pas de data</p>
@@ -328,12 +345,3 @@ function Game(props) {
 
 export default Game;
 
-/*
-
-let score = [
- [ [playerName, idQuest, responseOk, idResp, duration ], [playerName, idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
- [ [playerName, idQuest, responseOk, idResp, duration ], [playerName, idQuest, responseOk, idResp, duration ], [idQuest, responseOk, idResp, duration ]]
-]
-
-
-*/
