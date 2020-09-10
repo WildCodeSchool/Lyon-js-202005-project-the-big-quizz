@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
 import axios from "axios";
-import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
+import { Card, CardTitle, CardText, Row, Col, Progress } from "reactstrap";
 import "./../App.css";
 
 function randomize(array) {
@@ -52,12 +52,14 @@ function Game(props) {
       "/" +
       props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
   );
+  const [percentRange, setPercentRange] = useState(props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers);
 
   let difficulty = props.gameParameters.difficultyLevel;
   let numberOfQuestion =
     props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
   let categoryOfQuestion = props.gameParameters.category;
 //   let type = props.gameParameters.questionType;
+
 
   const handleModalGoodAnswer = () => {
     browseTable();
@@ -317,19 +319,13 @@ function Game(props) {
                   </tbody>
                 </table>
               </div>
+             <Progress style={{ backgroundColor: "#FFE74C", width: "70%", height: "50px", borderRadius: "5px",}} value={questionNumberOfActualPlayer*100/percentRange}>Check your progress here</Progress>
               <CardText className="">
                 Player name:{" "}
                 {props.gameParameters.playerNames[idActualPlayer]}
               </CardText>
               <CardText className="">
-                Question number : {questionNumberOfActualPlayer}
               </CardText>
-              <CardText className="">
-                Total questions :{" "}
-                {props.gameParameters.nbQuestionsPerPlayer *
-                  props.gameParameters.nbPlayers}
-              </CardText> 
-              {/* <CardText className="">Type of question : {props.gameParameters.quiz[id].type}</CardText> */}
               <CardText className="">
                 Category : {props.gameParameters.quiz[id].category}
               </CardText>
@@ -387,7 +383,7 @@ function Game(props) {
         );
       })}
         </Card>
-</Col>
+    </Col>
 </Row>
     </div>
   ) : (
