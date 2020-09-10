@@ -4,7 +4,7 @@ import "../App.css";
 
 import Home from "../components/Home";
 import Parameters from "../components/Parameters";
-import GameTest from "../components/GameTest";
+import Game from "../components/Game";
 import Stats from "../components/Stats";
 import ReactStrap from "../components/ReactStrap";
 
@@ -26,7 +26,7 @@ console.log ('props de main',props.category)
          />  */}
 
         <Route path="/game">
-          <GameTest {...props} gameParameters={props.gameParameters} />
+          <Game {...props} gameParameters={props.gameParameters} />
         </Route>
 
         <Route path="/stats">
