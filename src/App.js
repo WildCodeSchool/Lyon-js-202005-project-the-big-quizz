@@ -19,9 +19,9 @@ function App() {
   const [difficultyLevel, setDifficultyLevel] = useState("");
   const [questionsType, setQuestionsType] = useState("");
 
-  // const [timerParameter, setTimerParameter] = useState(0);
-  // timerParameter initialisé à 5 pour test
-  const [timerParameter, setTimerParameter] = useState(5);
+ const [timerParameter, setTimerParameter] = useState(-1);
+  //// timerParameter initialisé à 5 pour test
+  //const [timerParameter, setTimerParameter] = useState(5);
 
   // variables du jeux
 
