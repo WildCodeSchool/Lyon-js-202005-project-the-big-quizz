@@ -14,11 +14,15 @@ const QuestionOfTheDay = (props) => {
   const [modalWrongIsOpen, setModelIsOpen] = useState(false);
   const [modalGoodIsOpen, setModalGoodIsOpen] = useState(false);
 
+  const regTest = categorys.replace(/[^\w\s]/gi, '');
+  const okespace = regTest.replace(/ /g, "");
+  console.log(okespace);
+
   const divStyle = {
-    backgroundImage: `url("/${categorys}.jpg")` ,
+    backgroundImage: `url("/${okespace}.jpg")` ,
     backgroundSize: 'cover'
   }
-  console.log(categorys);
+  
 
 
   useEffect(() => {
