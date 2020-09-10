@@ -33,6 +33,30 @@ const QuestionOfTheDay = (props) => {
     });
   }, []);
 
+  function randomize(tab) {
+    let i, j, tmp;
+    for (i = tab.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      tmp = tab[i];
+      tab[i] = tab[j];
+      tab[j] = tmp;
+    }
+    return tab;
+  }
+  let tab = ["btnRandom0", "btnRandom1", "btnRandom2", "btnRandom3"];
+  tab = randomize(tab);
+ 
+  let tabForTwo = ["btnRandom0", "btnRandom1"];
+  tabForTwo = randomize(tabForTwo);
+  let answer = "answer";
+
+  let btnRandom0 = tab[0];
+  let btnRandom1 = tab[1];
+  let btnRandom2 = tab[2];
+  let btnRandom3 = tab[3];
+
+  let btnRandom0Two =  tabForTwo[0];
+  let btnRandom1Two =  tabForTwo[1];
 
 
   return (
@@ -113,27 +137,31 @@ const QuestionOfTheDay = (props) => {
             <p className="question-category">Question category: </p>
             <p className="category-name">{categorys}</p>
             <p>Level :</p>
+
              { difficultys === "hard" ? <p className="question-category" style={{color: "#FF0921"}} > {difficultys} </p>
               : difficultys === "medium" ? <span className="question-category" style={{color:"#dc7f9b"}}> {difficultys} </span>
                 :<span className="question-category" style={{color: "#f6b83c"} }> {difficultys} </span>
           
             }
-              
+
             <br />
-          </Card> 
+          </Card>
         </Col>
       </Row>
       <Row>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
-          <Card className="bordureCardReponse">
-          {/* TeRnaire pour affichage reponse soit true/false soit choix multiple*/}
+          <Card >
+          <div className="bordureCardReponse"> 
+            {/* TeRnaire pour affichage reponse soit true/false soit choix multiple*/}
             {types !== "boolean" ? (
               <>
-                <div>
+                
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
-                    style={{ backgroundColor: "#FDF1D8", color: "black" }}
+
+                    className={`${btnRandom0}   ${answer}`}
+                    style={{ backgroundColor: "#FDF1D8" }}
+
                   >
                     {" "}
                     <span
@@ -144,8 +172,10 @@ const QuestionOfTheDay = (props) => {
                   </button>
                   <button
                     onClick={() => setModalGoodIsOpen(true)}
-                    className="answer"
-                    style={{ backgroundColor: "#E3CACD", color: "black" }}
+
+                    className={`${btnRandom1}   ${answer}`}
+                    style={{ backgroundColor: "#E3CACD" }}
+
                   >
                     <span
                       dangerouslySetInnerHTML={{
@@ -153,11 +183,11 @@ const QuestionOfTheDay = (props) => {
                       }}
                     ></span>
                   </button>
-                </div>
-                <div>
+                
+                
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom2}   ${answer}`}
                     style={{ backgroundColor: "#D1C2EB" }}
                   >
                     <span
@@ -168,7 +198,7 @@ const QuestionOfTheDay = (props) => {
                   </button>
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom3}   ${answer}`}
                     style={{ backgroundColor: "#E0B5E3" }}
                   >
                     <span
@@ -177,30 +207,36 @@ const QuestionOfTheDay = (props) => {
                       }}
                     ></span>
                   </button>
-                </div>
+                
               </>
             ) : (
               <>
-                <div>
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom0Two}   ${answer}`}
                     style={{ backgroundColor: "#E0B5E3" }}
                   >
-                    {" "}
-                    {wrongAnswer}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: wrongAnswer[0],
+                      }}
+                    ></span>
                   </button>
                   <button
                     onClick={() => setModalGoodIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom1Two}   ${answer}`}
                     style={{ backgroundColor: "#D1C2EB" }}
                   >
-                    {goodAnswer}
+                     <span
+                      dangerouslySetInnerHTML={{
+                        __html: goodAnswer,
+                      }}
+                    ></span>
                   </button>
-                </div>
               </>
             )}
             {/*Fin TeRnaire*/}
+            </div>
           </Card>
         </Col>
       </Row>
