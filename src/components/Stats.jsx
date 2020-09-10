@@ -1,50 +1,15 @@
 import React from "react";
 import "../App.css";
 import Score from "./Score";
-
-const convertTime = (time) =>
-  (Math.floor(time / 60) > 0 ? Math.floor(time / 60) + "′" : "") +
-  (Math.round(time % 60) < 10 && Math.floor(time / 60) > 0 ? "0" : "") +
-  Math.round(time % 60) +
-  "″";
+import { convertTime } from "./convertTime.js";
+import { categoryIcons } from "./categoryIcons.js";
 
 function Stats(props) {
-  console.log("props de Stats", props);
-
-  let categoryIcons = {
-    "General Knowledge": "👨‍🎓",
-    "Entertainment: Books": "🧙‍",
-    "Entertainment: Film": "🎬",
-    "Entertainment: Music": "🎙️",
-    "Entertainment: Musicals & Theatres": "🎭",
-    "Entertainment: Television": "🖥️",
-    "Entertainment: Video Games": "🕹️",
-    "Entertainment: Board Games": "🎲",
-    "Science & Nature": "🌀",
-    "Science: Computer": "💾",
-    "Science: Mathematics": "🤓",
-    Mythology: "🔱",
-    Sports: "🏆",
-    Geography: "🌍",
-    History: "🗿",
-    Politics: "🧛‍",
-    Art: "👨‍🎨‍",
-    Celebrities: "👩‍🎤‍",
-    Animals: "🐵",
-    Vehicles: "🚂",
-    "Entertainment: Comics": "🤖",
-    "Science: Gadgets": "📡",
-    "Entertainment: Japanese Anime & Manga": "⛩️",
-    "Entertainment: Cartoon & Animations": "👻",
-  };
-
   let quiz = props.gameParameters.quiz;
   let score = props.gameParameters.score;
-
   return (
     <div>
-      <Score gameParameters={props.gameParameters} />
-
+      {/* <Score gameParameters={props.gameParameters} /> */}
       <div>
         {score
           // Tri par temps de réponse
@@ -120,7 +85,6 @@ function Stats(props) {
                   ""
                 )}
               </div>
-
               {/* map des question d'un joueur */}
               <div className="cardContainer">
                 {player.answers.map((answer, i) => (
@@ -141,7 +105,6 @@ function Stats(props) {
                     <p className="correctAnswer questionAnswers">
                       {quiz[answer.idQuestion].correct_answer}
                     </p>
-
                     {/* map des mauvaises réponses d'une question */}
                     {quiz[answer.idQuestion].incorrect_answers.map(
                       (incorrectAnswer, i) => (
@@ -165,8 +128,6 @@ function Stats(props) {
                   </div>
                 ))}
               </div>
-
-              {/* <hr /> */}
             </div>
           ))}
       </div>
