@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
 import axios from "axios";
+import Score from "./Score";
 import { Card, CardTitle, CardText, Row, Col, Progress } from "reactstrap";
 import "./../App.css";
 import { categoriesData } from "./categoriesData.js";
@@ -19,6 +20,24 @@ function randomize(array) {
 }
 
 function Game(props) {
+
+  const score = props.gameParameters.score;
+  const setScore = props.gameParameters.setScore;
+  const playerNames = props.gameParameters.playerNames;
+  const timerParameter = props.gameParameters.timerParameter
+  
+
+  useEffect(() => {
+    let array = [];
+    for (let player of props.gameParameters.playerNames) {
+      array.push({
+        playerName: player,
+        answers: []
+      });
+      setScore(array);
+    }
+  }, [])
+
   let history = useHistory();
 
   const [timer, setTimer] = useState(
@@ -50,8 +69,8 @@ function Game(props) {
   const [tableAnswer, setTableAnswer] = useState(null);
   const [displayQuestionNumber, setDisplayQuestionNumber] = useState(
     idActualPlayer +
-      "/" +
-      props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
+    "/" +
+    props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
   );
   const [percentRange, setPercentRange] = useState(
     props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
@@ -61,7 +80,10 @@ function Game(props) {
   let numberOfQuestion =
     props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
   let categoryOfQuestion = props.gameParameters.category;
-  //   let type = props.gameParameters.questionType;
+
+  // let questionType = props.gameParameters.questionType;
+
+
 
   const handleModalGoodAnswer = () => {
     browseTable();
@@ -116,16 +138,44 @@ function Game(props) {
         ? ""
         : props.gameParameters.timerParameter
     );
-    setGoodAnswerModalIsOpen(true);
+
+    let tmp = score;
+    console.log("tmp : ", tmp)
+    console.log("tmp2 : ", tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers);
+    let arr=tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers;
+    arr.push({idQuestion:id, correctAnswer: true, idIncorrectAnswer:-1, duration:timerParameter-timer});
+    console.log(arr);
+    
+    
+    
+    setGoodAnswerModalIsOpen(true)
+
   };
-  const handleWrongAnswer = () => {
+  const handleWrongAnswer = (e) => {
+    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",parseInt(e.target.attributes.idincorrectanswer.value));
+
     setTimerOn(false);
     setTimer(
       props.gameParameters.timerParameter === 0
-        ? ""
-        : props.gameParameters.timerParameter
-    );
-    setWrongAnswerModalIsOpen(true);
+
+      
+      ? ""
+      : props.gameParameters.timerParameter
+      );
+      let tmp = score;
+      console.log("tmp : ", tmp)
+      console.log("tmp2 : ", tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers);
+      let arr=tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers;
+      arr.push({idQuestion:id, correctAnswer: false, idIncorrectAnswer: parseInt(e.target.attributes.idincorrectanswer.value) ,duration:timerParameter-timer});
+      console.log(arr);
+      setScore(prevScore=> {let tmpArr = prevScore; tmpArr[idActualPlayer].answers=arr;return tmpArr})
+      console.log("score",score);
+
+
+
+    /******************************************************************************************* */
+    setWrongAnswerModalIsOpen(true)
+
   };
 
   useEffect(() => {
@@ -191,227 +241,228 @@ function Game(props) {
   };
 
   return props.gameParameters.quiz !== null && tableAnswer !== null ? (
-    <div style={divStyle}>
-      <Row>
-        <Col sm="12" md={{ size: 6, offset: 3 }}>
-          <Card className="test">
-            <div className="game">
-              {timer === 1 && timeOffModal === false
-                ? setTimeOffModal(true)
-                : timer}
-              {timer === 1 && timeOffModal === false ? setTimerOn(false) : ""}
-              {timer === -1 && timerOn === true ? setTimerOn(false) : ""}
-              {timer === -1 && timerOn === true ? setTimer("") : ""}
 
-              <Modal
-                isOpen={goodAnswerModalIsOpen}
-                style={{
-                  content: {
-                    backgroundColor: "#BBFD5D",
-                    width: "30%",
-                    height: "20%",
-                    textAlign: "center",
-                    fontSize: "x-large",
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                  },
-                }}
-              >
-                <h2>
-                  Good Answer :{" "}
-                  {props.gameParameters.playerNames[idActualPlayer]}
-                </h2>
-                <button
+    <>
+      <div style = {divStyle}>
+        <Row>
+          <Col sm="12" md={{ size: 6, offset: 3 }}>
+            <Card className="test">
+              <div className="game">
+                {timer === 1 && timeOffModal === false
+                  ? setTimeOffModal(true)
+                  : timer}
+                {timer === 1 && timeOffModal === false ? setTimerOn(false) : ""}
+                {timer === -1 && timerOn === true ? setTimerOn(false) : ""}
+                {timer === -1 && timerOn === true ? setTimer("") : ""}
+
+
+                <Modal
+                  isOpen={goodAnswerModalIsOpen}
                   style={{
-                    backgroundColor: "blue",
-                    width: "90px",
-                    height: "50px",
-                    borderRadius: "5px",
-                    fontSize: "x-large",
+                    content: {
+                      backgroundColor: "#BBFD5D",
+                      width: "30%",
+                      height: "20%",
+                      textAlign: "center",
+                      fontSize: "x-large",
+                      position: "absolute",
+                      left: "50%",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
+                    },
                   }}
-                  onClick={
-                    id + 1 !== numberOfQuestion
-                      ? handleModalGoodAnswer
-                      : handleModalGoodAnswer2
-                  }
                 >
-                  {id + 1 !== numberOfQuestion ? "Next" : "results"}
-                </button>
-              </Modal>
-              <Modal
-                isOpen={wrongAnswerModalIsOpen}
-                style={{
-                  content: {
-                    backgroundColor: "#FC2622",
-                    width: "30%",
-                    height: "20%",
-                    textAlign: "center",
-                    fontSize: "x-large",
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                  },
-                }}
-              >
-                <h2 className="modal-answer">
-                  Wrong Answer :{" "}
-                  {props.gameParameters.playerNames[idActualPlayer]}
-                </h2>
-                <p className="modal-answer">
-                  The good answer is :{" "}
-                  {props.gameParameters.quiz[id].correct_answer}
-                </p>
-                <button
+                  <h2>
+                    Good Answer :{" "}
+                    {props.gameParameters.playerNames[idActualPlayer]}
+                  </h2>
+                  <button
+                    style={{
+                      backgroundColor: "blue",
+                      width: "90px",
+                      height: "50px",
+                      borderRadius: "5px",
+                      fontSize: "x-large",
+                    }}
+                    onClick={
+                      id + 1 !== numberOfQuestion
+                        ? handleModalGoodAnswer
+                        : handleModalGoodAnswer2
+                    }
+                  >
+                    {id + 1 !== numberOfQuestion ? "Next" : "results"}
+                  </button>
+                </Modal>
+                <Modal
+                  isOpen={wrongAnswerModalIsOpen}
                   style={{
-                    backgroundColor: "#FFE74C",
-                    width: "90px",
-                    height: "50px",
-                    borderRadius: "5px",
-                    fontSize: "x-large",
+                    content: {
+                      backgroundColor: "#FC2622",
+                      width: "30%",
+                      height: "20%",
+                      textAlign: "center",
+                      fontSize: "x-large",
+                      position: "absolute",
+                      left: "50%",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
+                    },
                   }}
-                  onClick={
-                    id + 1 !== numberOfQuestion
-                      ? handleModalWrongAnswer
-                      : handleModalWrongAnswer2
-                  }
                 >
-                  {id + 1 !== numberOfQuestion ? "Next" : "results"}
-                </button>
-              </Modal>
-              <Modal
-                isOpen={timeOffModal}
-                style={{
-                  content: {
-                    backgroundColor: "red",
-                    width: "40%",
-                    height: "20%",
-                    textAlign: "center",
-                    fontSize: "large",
-                    position: "absolute",
-                    left: "30%",
-                    top: "25%",
-                  },
-                }}
-              >
-                <h2>
-                  Time is up :{" "}
+                  <h2 className="modal-answer">
+                    Wrong Answer :{" "}
+                    {props.gameParameters.playerNames[idActualPlayer]}
+                  </h2>
+                  <p className="modal-answer">
+                    The good answer is :{" "}
+                    {props.gameParameters.quiz[id].correct_answer}
+                  </p>
+                  <button
+                    style={{
+                      backgroundColor: "#FFE74C",
+                      width: "90px",
+                      height: "50px",
+                      borderRadius: "5px",
+                      fontSize: "x-large",
+                    }}
+                    onClick={
+                      id + 1 !== numberOfQuestion
+                        ? handleModalWrongAnswer
+                        : handleModalWrongAnswer2
+                    }
+                  >
+                    {id + 1 !== numberOfQuestion ? "Next" : "results"}
+                  </button>
+                </Modal>
+                <Modal
+                  isOpen={timeOffModal}
+                  style={{
+                    content: {
+                      backgroundColor: "red",
+                      width: "40%",
+                      height: "20%",
+                      textAlign: "center",
+                      fontSize: "large",
+                      position: "absolute",
+                      left: "30%",
+                      top: "25%",
+                    },
+                  }}
+                >
+
+                  <h2>
+                    Time is up :{" "}
+                    {props.gameParameters.playerNames[idActualPlayer]}
+                  </h2>
+                  <p>
+                    The good answer is :{" "}
+                    {props.gameParameters.quiz[id].correct_answer}
+                  </p>
+                  <button
+                    style={{ width: "15%", fontSize: "xx-large", color: "black" }}
+                    onClick={
+                      id + 1 !== numberOfQuestion
+                        ? handelModalTimerOff
+                        : handelModalTimerOff2
+                    }
+                  >
+                    {id + 1 !== numberOfQuestion ? "Next" : "results"}
+                  </button>
+                </Modal>
+                <div className="tableOfGamers">
+                  <table className="board">
+                    <thead>
+                      <tr>
+                        <th>The list of players</th>
+                        <th>Answer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {props.gameParameters.playerNames.map((name) => {
+                        return (
+                          <tr>
+                            <td>{name}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <Progress style={{ backgroundColor: "#FFE74C", width: "70%", height: "50px", borderRadius: "5px", }} value={questionNumberOfActualPlayer * 100 / percentRange}>Check your progress here</Progress>
+                <CardText className="">
+                  Player name:{" "}
                   {props.gameParameters.playerNames[idActualPlayer]}
-                </h2>
-                <p>
-                  The good answer is :{" "}
-                  {props.gameParameters.quiz[id].correct_answer}
-                </p>
-                <button
-                  style={{ width: "15%", fontSize: "xx-large", color: "black" }}
-                  onClick={
-                    id + 1 !== numberOfQuestion
-                      ? handelModalTimerOff
-                      : handelModalTimerOff2
-                  }
-                >
-                  {id + 1 !== numberOfQuestion ? "Next" : "results"}
-                </button>
-              </Modal>
-              <div className="tableOfGamers">
-                <table className="board">
-                  <thead>
-                    <tr>
-                      <th>The list of players</th>
-                      <th>Answer</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {props.gameParameters.playerNames.map((name) => {
-                      return (
-                        <tr>
-                          <td>{name}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <Progress
-                style={{
-                  backgroundColor: "#FFE74C",
-                  width: "70%",
-                  height: "50px",
-                  borderRadius: "5px",
-                }}
-                value={(questionNumberOfActualPlayer * 100) / percentRange}
-              >
-                Check your progress here
-              </Progress>
-              <CardText className="">
-                Player name: {props.gameParameters.playerNames[idActualPlayer]}
-              </CardText>
-              <CardText className=""></CardText>
-              <CardText className="">
-                Category : {props.gameParameters.quiz[id].category}
-              </CardText>
-              <CardText className="">
-                Difficulty :
+                </CardText>
+                <CardText className="">
+                </CardText>
+                <CardText className="">
+                  Category : {props.gameParameters.quiz[id].category}
+                </CardText>
+                <CardText className="">
+                  Difficulty :
+
                 {props.gameParameters.quiz[id].difficulty === "hard" ? (
-                  <span style={{ color: "#FF0921" }}>
-                    {" "}
-                    {props.gameParameters.quiz[id].difficulty}
-                  </span>
-                ) : props.gameParameters.quiz[id].difficulty === "medium" ? (
-                  <span style={{ color: "#dc7f9bs" }}>
-                    {" "}
-                    {props.gameParameters.quiz[id].difficulty}
-                  </span>
-                ) : (
-                  <span style={{ color: "#f6b83c" }}>
-                    {" "}
-                    {props.gameParameters.quiz[id].difficulty}{" "}
-                  </span>
-                )}
-              </CardText>
+                    <span style={{ color: "#FF0921" }}>
+                      {" "}
+                      {props.gameParameters.quiz[id].difficulty}
+                    </span>
+                  ) : props.gameParameters.quiz[id].difficulty === "medium" ? (
+                    <span style={{ color: "#dc7f9bs" }}>
+                      {" "}
+                      {props.gameParameters.quiz[id].difficulty}
+                    </span>
+                  ) : (
+                        <span style={{ color: "#f6b83c" }}>
+                          {" "}
+                          {props.gameParameters.quiz[id].difficulty}{" "}
+                        </span>
+                      )}
+                </CardText>
 
-              <CardText className="question-style">
-                Question :{" "}
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: props.gameParameters.quiz[id].question,
-                  }}
-                ></span>
-              </CardText>
-            </div>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col sm="12" md={{ size: 6, offset: 3 }}>
 
-        <Card>
-        <div  className="answerClass">
-      {tableAnswer.map((answer, i) => {
-        return (
-
-            <button
-                className={`answer buttonAnswer_${i}`} 
-                
-              key={i}
-              onClick={
-                answer === props.gameParameters.quiz[id].correct_answer
-                  ? handelGoodAnswer
-                  : handleWrongAnswer
-              }
-            >
-              <p dangerouslySetInnerHTML={{ __html: answer }}></p>
-            </button>
-          
-        );
-      })}
+                <CardText className="question-style">
+                  Question :{" "}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: props.gameParameters.quiz[id].question,
+                    }}
+                  ></span>
+                </CardText>
+              </div>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm="12" md={{ size: 6, offset: 3 }}>
+            <Card className="bordureCardReponse">
+              {tableAnswer.map((answer, i) => {
+                return (
+                  
+                    <button
+                      className={`answer buttonAnswer_${i}`}
+                      key={i}
+                      idincorrectanswer={props.gameParameters.quiz[id].incorrect_answers.indexOf(answer)}
+                      onClick={
+                        answer === props.gameParameters.quiz[id].correct_answer
+                          ? handelGoodAnswer
+                          : handleWrongAnswer
+                      }
+                    >
+                      <span dangerouslySetInnerHTML={{ __html: answer }}></span>
+                    </button>
+                  
+                );
+              })}
+            </Card>
+          </Col>
+        </Row>
       </div>
-        </Card>
-    </Col>
-</Row>
-    </div>
+      {id>=props.gameParameters.nbPlayers
+      ?
+      <Score gameParameters={props.gameParameters}/>:"" 
+      }
+    </>
+
   ) : (
     <p>pas de data</p>
   );
