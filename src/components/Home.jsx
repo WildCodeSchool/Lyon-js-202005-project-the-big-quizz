@@ -72,14 +72,10 @@ if (spinningValue >= 1 && spinningValue <= 15) {
 
 
 
-
 function Home(props) {
+  const [initScale, SetInitScale] = useState(0)
   
-
-    // }else if (categorys === "Entertainment: Cartoon & Animations"){
-
-
-
+  
   return (
     <>
       <div>
@@ -110,14 +106,18 @@ function Home(props) {
         }}
       />
       <br></br>
-      <motion.div>
+        <motion.div onClick={ () => { SetInitScale( initscale => initscale +1)} }>
         <button className="magicButton">🎰 Squiz-Me ! 🎰</button>
-      </motion.div>
+        </motion.div>
+      
     </div>
-       
-      <motion.div initial = {{ scale : 0}} animate= {{scale:0}}>
+      <motion.div 
+      animate={{ scale : initScale}} 
+      onClick={ () => { SetInitScale( initscale => initscale +1)} }
+      >
       <QuestionOfTheDay/>
       </motion.div>
+
       <Link to="/Parameters">
       <Button className="largeBtn"color="primary" size="lg" block>Start to play</Button>
       </Link>
