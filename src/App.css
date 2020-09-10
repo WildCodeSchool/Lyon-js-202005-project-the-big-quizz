@@ -227,10 +227,29 @@ text-align:center;
 /* CSS stats                                */
 /****************************************** */
 
+.statsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #61dafb;
+  /* width: 80%; */
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+.scoreContainer {
+
+  background-color: #DC7F9B;
+  width: 20%;
+
+}
+
 .cardContainer {
   display: flex;
   flex-wrap: wrap;
   font-family: "Hind Siliguri", sans-serif;
+  width: 50%;
 
 }
 
