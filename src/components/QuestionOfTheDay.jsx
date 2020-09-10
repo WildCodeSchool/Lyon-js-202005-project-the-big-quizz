@@ -14,11 +14,90 @@ const QuestionOfTheDay = (props) => {
   const [modalWrongIsOpen, setModelIsOpen] = useState(false);
   const [modalGoodIsOpen, setModalGoodIsOpen] = useState(false);
 
+  const [categoriesForImages, setcategoriesForImages] = useState("");
+
+
+  // function categoryiesForImage (categorys){
+  //   const categoriesTab =[
+  //       "General Knowledge",
+  //       "Entertainment: Books",
+  //       "Entertainment: Film",
+  //       "Entertainment: Music",
+  //       "Entertainment: Musicals & Theatres",
+  //       "Entertainment: Television",
+  //       "Entertainment: Video Games",
+  //       "Entertainment: Board Games",
+  //       "Science & Nature",
+  //       "Science: Computers",
+  //       "Science: Mathematics",
+  //       "Mythology",
+  //       "Sports",
+  //       "Geography",
+  //       "History",
+  //       "Politics",
+  //       "Art",
+  //       "Celebrities",
+  //       "Animals",
+  //       "Vehicles",
+  //       "Entertainment: Comics",
+  //       "Science: Gadgets",
+  //       "Entertainment: Japanese Anime & Manga",
+  //       "Entertainment: Cartoon & Animations",
+  //   ]
+  //   categoriesTab.map ((element) =>{
+  //     if (categorys === categoriesForImages){
+  //       setcategoriesForImages(categorys)
+  //     }else if (categorys === "Entertainment: Books"){
+  //         setcategoriesForImages("Entertainment_Books")
+  //     } 
+  //     if (categorys === "Entertainment: Video Games"){
+  //         setcategoriesForImages("Entertainment_Video_Games")
+  //     }
+  //     if (categorys === "Entertainment: Film"){
+  //       setcategoriesForImages("Entertainment_Film")
+  //     }
+  //     if (categorys === "Entertainment: Music"){
+  //       setcategoriesForImages("Entertainment_Music")
+  //     }
+  //     if (categorys === "Entertainment: Musicals & Theatres"){
+  //       setcategoriesForImages("Entertainment_Musicals_Theatres")
+  //     }
+  //     if (categorys === "Entertainment: Television"){
+  //       setcategoriesForImages("Entertainment_Television")
+  //     }
+  //     if (categorys === "Science & Nature"){
+  //       setcategoriesForImages("Science_Nature")
+  //     }
+  //     if (categorys === "Science: Computers"){
+  //       setcategoriesForImages("Science_Computers")
+  //     }
+  //     if (categorys === "Science: Mathematics"){
+  //       setcategoriesForImages("Science_Mathematics")
+  //     }
+  //     if (categorys === "Entertainment: Comics"){
+  //       setcategoriesForImages("Entertainment_Comics")
+  //     }
+  //     if (categorys === "Science: Gadgets"){
+  //       setcategoriesForImages("Science_Gadgets")
+  //     }
+  //     if (categorys === "Entertainment: Japanese Anime & Manga"){
+  //       setcategoriesForImages("Entertainment_Japanese_Anime_Manga")
+  //     }
+  //     if (categorys === "Entertainment: Cartoon & Animations"){
+  //       setcategoriesForImages("Entertainment_Cartoon_Animations")
+  //     }
+  //     if (categorys === "Entertainment: Board Games"){
+  //       setcategoriesForImages("Entertainment_Board_Games")
+  //     }
+  //   })  
+    
+
+  
+  // }
   const divStyle = {
-    backgroundImage: `url("/${categorys}.jpg")` ,
+    backgroundImage: `url("/${categoriesForImages}.jpg")` ,
     backgroundSize: 'cover'
   }
-  console.log(categorys);
 
 
   useEffect(() => {

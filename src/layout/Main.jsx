@@ -9,8 +9,7 @@ import Stats from "../components/Stats";
 import ReactStrap from "../components/ReactStrap";
 
 function Main(props) {
-     console.log("props de Main :", props);
-
+console.log ('props de main',props.category)
   return (
     <div className="main">
 
