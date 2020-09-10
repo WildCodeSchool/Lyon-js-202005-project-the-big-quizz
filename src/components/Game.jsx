@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import axios from "axios";
 import { Card, CardTitle, CardText, Row, Col, Progress } from "reactstrap";
 import "./../App.css";
+import { categoriesData } from "./categoriesData.js";
 
 function randomize(array) {
   let i, j, mixed;
@@ -52,14 +53,15 @@ function Game(props) {
       "/" +
       props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
   );
-  const [percentRange, setPercentRange] = useState(props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers);
+  const [percentRange, setPercentRange] = useState(
+    props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
+  );
 
   let difficulty = props.gameParameters.difficultyLevel;
   let numberOfQuestion =
     props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
   let categoryOfQuestion = props.gameParameters.category;
-//   let type = props.gameParameters.questionType;
-
+  //   let type = props.gameParameters.questionType;
 
   const handleModalGoodAnswer = () => {
     browseTable();
@@ -114,7 +116,7 @@ function Game(props) {
         ? ""
         : props.gameParameters.timerParameter
     );
-    setGoodAnswerModalIsOpen(true)
+    setGoodAnswerModalIsOpen(true);
   };
   const handleWrongAnswer = () => {
     setTimerOn(false);
@@ -123,9 +125,8 @@ function Game(props) {
         ? ""
         : props.gameParameters.timerParameter
     );
-    setWrongAnswerModalIsOpen(true)
+    setWrongAnswerModalIsOpen(true);
   };
-
 
   useEffect(() => {
     axios
@@ -135,29 +136,30 @@ function Game(props) {
       .then((res) => {
         props.gameParameters.setQuiz(res.data.results);
         setTableAnswer(
-            randomize([
-              res.data.results[id].correct_answer,
-              res.data.results[id].incorrect_answers[0],
-              res.data.results[id].incorrect_answers[1],
-              res.data.results[id].incorrect_answers[2],
-            ])
-          );
+          randomize([
+            res.data.results[id].correct_answer,
+            res.data.results[id].incorrect_answers[0],
+            res.data.results[id].incorrect_answers[1],
+            res.data.results[id].incorrect_answers[2],
+          ])
+        );
       });
   }, []);
 
   useEffect(() => {
     if (props.gameParameters.quiz !== null) {
-      setTableAnswer(props.gameParameters.quiz[id].type !== "boolean" ?
-        (randomize([
-          props.gameParameters.quiz[id].correct_answer,
-          props.gameParameters.quiz[id].incorrect_answers[0],
-          props.gameParameters.quiz[id].incorrect_answers[1],
-          props.gameParameters.quiz[id].incorrect_answers[2],
-        ])) :
-        (randomize([
-          props.gameParameters.quiz[id].correct_answer,
-          props.gameParameters.quiz[id].incorrect_answers[0],
-        ]))
+      setTableAnswer(
+        props.gameParameters.quiz[id].type !== "boolean"
+          ? randomize([
+              props.gameParameters.quiz[id].correct_answer,
+              props.gameParameters.quiz[id].incorrect_answers[0],
+              props.gameParameters.quiz[id].incorrect_answers[1],
+              props.gameParameters.quiz[id].incorrect_answers[2],
+            ])
+          : randomize([
+              props.gameParameters.quiz[id].correct_answer,
+              props.gameParameters.quiz[id].incorrect_answers[0],
+            ])
       );
     }
   }, [id]);
@@ -174,12 +176,25 @@ function Game(props) {
       `${questionNumberOfActualPlayer} / ${props.gameParameters.nbQuestionsPerPlayer}`
     );
   }
+  let catLinkImg = "";
+  if (props.gameParameters.quiz !== null) {
+    console.log(props.gameParameters.quiz[id].category);
+    catLinkImg = props.gameParameters.quiz[id].category;
+  }
+
+  const regTest = catLinkImg.replace(/[^\w\s]/gi, "");
+  const okespace = regTest.replace(/ /g, "");
+
+  const divStyle = {
+    backgroundImage: `url("${okespace}.jpg")`,
+    backgroundSize: "cover",
+  };
 
   return props.gameParameters.quiz !== null && tableAnswer !== null ? (
-      <div>
-                <Row>
-                <Col sm="12" md={{ size: 6, offset: 3 }}>
-                <Card className="test">
+    <div style={divStyle}>
+      <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Card className="test">
             <div className="game">
               {timer === 1 && timeOffModal === false
                 ? setTimeOffModal(true)
@@ -319,13 +334,21 @@ function Game(props) {
                   </tbody>
                 </table>
               </div>
-             <Progress style={{ backgroundColor: "#FFE74C", width: "70%", height: "50px", borderRadius: "5px",}} value={questionNumberOfActualPlayer*100/percentRange}>Check your progress here</Progress>
+              <Progress
+                style={{
+                  backgroundColor: "#FFE74C",
+                  width: "70%",
+                  height: "50px",
+                  borderRadius: "5px",
+                }}
+                value={(questionNumberOfActualPlayer * 100) / percentRange}
+              >
+                Check your progress here
+              </Progress>
               <CardText className="">
-                Player name:{" "}
-                {props.gameParameters.playerNames[idActualPlayer]}
+                Player name: {props.gameParameters.playerNames[idActualPlayer]}
               </CardText>
-              <CardText className="">
-              </CardText>
+              <CardText className=""></CardText>
               <CardText className="">
                 Category : {props.gameParameters.quiz[id].category}
               </CardText>
@@ -349,20 +372,21 @@ function Game(props) {
                 )}
               </CardText>
 
-              <CardText className="question-style"> 
+              <CardText className="question-style">
                 Question :{" "}
                 <span
-          dangerouslySetInnerHTML={{
-            __html: props.gameParameters.quiz[id].question,
-          }}
-        ></span>
-        </CardText>
-        </div>
-        </Card>
+                  dangerouslySetInnerHTML={{
+                    __html: props.gameParameters.quiz[id].question,
+                  }}
+                ></span>
+              </CardText>
+            </div>
+          </Card>
         </Col>
-        </Row>
-         <Row>
+      </Row>
+      <Row>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
+
         <Card>
         <div  className="answerClass">
       {tableAnswer.map((answer, i) => {
@@ -389,7 +413,7 @@ function Game(props) {
 </Row>
     </div>
   ) : (
-      <p>pas de data</p>
-    );
+    <p>pas de data</p>
+  );
 }
 export default Game;
