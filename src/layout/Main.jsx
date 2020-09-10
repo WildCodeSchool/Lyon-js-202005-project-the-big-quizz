@@ -7,7 +7,7 @@ import Home from "../components/Home";
 import Parameters from "../components/Parameters";
 import Game from "../components/Game";
 import Stats from "../components/Stats";
-import ReactStrap from "../components/ReactStrap";
+
 
 function Main(props) {
 console.log ('props de main',props.category)
@@ -36,7 +36,6 @@ console.log ('props de main',props.category)
 
 
         {/* <Route path="/stats" component={Stats} /> */}
-        <Route path="/ReactStrap" component={ReactStrap} />
       </Switch>
     </div>
   );
