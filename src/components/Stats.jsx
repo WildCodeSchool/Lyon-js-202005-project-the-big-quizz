@@ -7,6 +7,7 @@ import { categoriesData } from "./categoriesData.js";
 function Stats(props) {
   let quiz = props.gameParameters.quiz;
   let score = props.gameParameters.score;
+
   return (
     <div>
       {/* <Score gameParameters={props.gameParameters} /> */}
@@ -90,7 +91,8 @@ function Stats(props) {
                 {player.answers.map((answer, i) => (
                   <div className="questionCard" key={"answer" + i}>
                     <div className="questionCategory">
-                      {categoriesData[quiz[answer.idQuestion].category].icon + " "}
+                      {categoriesData[quiz[answer.idQuestion].category].icon +
+                        " "}
                       {quiz[answer.idQuestion].category.toUpperCase()}
                     </div>
                     <div className="questionDifficulty">
