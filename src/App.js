@@ -259,7 +259,7 @@ function App() {
   const [score, setScore] = useState([
     {playerName: "Shanti",
       answers: [
-        { idQuestion: 0,  correctAnswer: true,  idIncorrectAnswer:-1,  duration: 8, },
+        { idQuestion: 0,  correctAnswer: true,  idIncorrectAnswer:-1,  duration: 58, },
         { idQuestion: 6, correctAnswer: false, idIncorrectAnswer: 1, duration: 8, },
         { idQuestion: 12, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
         { idQuestion: 18, correctAnswer: true, idIncorrectAnswer: -1, duration: 7, },
