@@ -227,10 +227,29 @@ text-align:center;
 /* CSS stats                                */
 /****************************************** */
 
+.statsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #61dafb;
+  /* width: 80%; */
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+.scoreContainer {
+
+  background-color: #DC7F9B;
+  width: 20%;
+
+}
+
 .cardContainer {
   display: flex;
   flex-wrap: wrap;
   font-family: "Hind Siliguri", sans-serif;
+  width: 50%;
 
 }
 
@@ -325,9 +344,40 @@ text-align:center;
   box-shadow: 10px 5px 5px grey;
 }
 
+
+.buttonAnswer_0{
+  background-color: #E0B5E3;
+  color: black; 
+  }
+
+.buttonAnswer_1{
+  background-color: #D1C2EB;
+  color: black; 
+}
+.buttonAnswer_2{
+  background-color: #E3CACD;
+  color: black; 
+}
+.buttonAnswer_3{
+  background-color: #FDF1D8;
+  color: black;
+}   
+  
 .game-parameter{
   font-family: "Hind Siliguri", sans-serif;
   font-size: 18px;
   text-transform: capitalize;
 }
 
+.progress-container {
+
+}
+
+.progress2{
+  padding: 6px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.25);  
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.progress-moved{}

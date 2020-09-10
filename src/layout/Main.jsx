@@ -4,13 +4,12 @@ import "../App.css";
 
 import Home from "../components/Home";
 import Parameters from "../components/Parameters";
-import GameTest from "../components/GameTest";
+import Game from "../components/Game";
 import Stats from "../components/Stats";
 import ReactStrap from "../components/ReactStrap";
 
 function Main(props) {
-     console.log("props de Main :", props);
-
+console.log ('props de main',props.category)
   return (
     <div className="main">
 
@@ -27,9 +26,15 @@ function Main(props) {
          />  */}
 
         <Route path="/game">
-          <GameTest {...props} gameParameters={props.gameParameters} />
+          <Game {...props} gameParameters={props.gameParameters} />
         </Route>
-        <Route path="/stats" component={Stats} />
+
+        <Route path="/stats">
+          <Stats {...props} gameParameters={props.gameParameters} />
+        </Route>
+
+
+        {/* <Route path="/stats" component={Stats} /> */}
         <Route path="/ReactStrap" component={ReactStrap} />
       </Switch>
     </div>

@@ -25,6 +25,8 @@ const QuestionOfTheDay = (props) => {
   
 
 
+
+
   useEffect(() => {
     axios.get("https://opentdb.com/api.php?amount=10").then((response) => {
       let myId = Math.floor(Math.random() * 10);
