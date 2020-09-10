@@ -1,18 +1,9 @@
 import React from "react";
 import "../App.css";
-
-const convertTime = (time) =>
-  (Math.floor(time / 60) > 0 ? Math.floor(time / 60) + "′" : "") +
-  (Math.round(time % 60) < 10 && Math.floor(time / 60) > 0 ? "0" : "") +
-  Math.round(time % 60) +
-  "″";
+import { convertTime } from "./convertTime.js";
 
 function Score(props) {
-  //   console.log("props de Score", props);
-
-  let quiz = props.gameParameters.quiz;
   let scores = props.gameParameters.score;
-
   return (
     <div>
       <div>
@@ -28,7 +19,6 @@ function Score(props) {
                 .reduce((acc, val) => acc + val)
             );
           })
-
           // Tri par nombre de bonnes réponses / nombre de réponses
           .sort((playerA, playerB) => {
             return (
@@ -91,8 +81,6 @@ function Score(props) {
                   ""
                 )}
               </div>
-
-              {/* map des question d'un joueur */}
             </div>
           ))}
       </div>
