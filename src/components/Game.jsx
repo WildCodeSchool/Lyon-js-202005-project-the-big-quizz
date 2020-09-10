@@ -363,10 +363,11 @@ function Game(props) {
         </Row>
          <Row>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
-        <Card className="bordureCardReponse">
+        <Card>
+        <div  className="answerClass">
       {tableAnswer.map((answer, i) => {
         return (
-          <div>
+
             <button
                 className={`answer buttonAnswer_${i}`} 
                 
@@ -379,9 +380,10 @@ function Game(props) {
             >
               <p dangerouslySetInnerHTML={{ __html: answer }}></p>
             </button>
-          </div>
+          
         );
       })}
+      </div>
         </Card>
     </Col>
 </Row>
