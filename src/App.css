@@ -344,6 +344,24 @@ text-align:center;
   box-shadow: 10px 5px 5px grey;
 }
 
+
+.buttonAnswer_0{
+  background-color: #E0B5E3;
+  color: black; 
+  }
+
+.buttonAnswer_1{
+  background-color: #D1C2EB;
+  color: black; 
+}
+.buttonAnswer_2{
+  background-color: #E3CACD;
+  color: black; 
+}
+.buttonAnswer_3{
+  background-color: #FDF1D8;
+  color: black;   
+  
 .game-parameter{
   font-family: "Hind Siliguri", sans-serif;
   font-size: 18px;
