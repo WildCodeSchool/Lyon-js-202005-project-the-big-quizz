@@ -3,7 +3,7 @@ import "../App.css";
 
 function Footer (){
   return (
-  <div className="footer">
+  <footer>
     <p>Created by:</p>
     <ul className="linkedin">
       <li><a href='https://www.linkedin.com/in/stambouli-d%C3%A9veloppeur/' target="_blank" rel="noopener noreferrer">Amine STAMBOULI</a></li>
@@ -15,7 +15,7 @@ function Footer (){
     </ul>
     <p>squizer.com © 2020. All Rights Reserved.</p>
     <a href="https://www.wildcodeschool.com/" target="_blank" rel="noopener noreferrer">Wild Code School</a>
-    </div>);
+    </footer>);
 }
 
 export default Footer;
