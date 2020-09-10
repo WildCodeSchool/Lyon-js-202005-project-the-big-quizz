@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&family=Junge&family=Montserrat+Alternates:wght@800&display=swap");
+@import url(//db.onlinewebfonts.com/c/831e1041c97169ac1d4dc3d161b235cc?family=Burbank+Big+Condensed);
 
 /* 
 font-family: 'Hind Siliguri', sans-serif;
 font-family: 'Junge', serif;
-font-family: 'Montserrat Alternates', sans-serif; */
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: "Burbank Big Condensed";
+*/
 
 .App {
   text-align: center;
@@ -54,12 +57,12 @@ font-family: 'Montserrat Alternates', sans-serif; */
     "foot  foot";
   grid-template-rows: 100px 1fr 30px;
   grid-template-columns: 350px 1fr;
-  background-color: #282c34;
 }
 
 .footer {
   background-color: #dddddd;
   grid-area: foot;
+  margin-top: 30px;
 }
 
 .linkedin {
@@ -92,7 +95,11 @@ font-family: 'Montserrat Alternates', sans-serif; */
 }
 
 .parameters {
-  background-color: #ffcccc;
+  font-family: "Junge", serif;
+  margin: 15px;
+  color: #dc7f9b;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 /* CSS of the question of day */
@@ -168,6 +175,7 @@ button {
   background-color: #dc7f9b !important;
 }
 
+
 .btnRandom0{
   grid-area: btn1;
 }
@@ -180,3 +188,146 @@ button {
 .btnRandom3{
   grid-area: btn4;
 }
+
+
+/* /////////////////////////Parametres/////////////////////////////////// */
+
+.player-info{
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 22px; 
+  margin: 10px;
+  text-align: center;
+}
+
+.input-style{
+  font-family: "Hind Siliguri", sans-serif;
+  padding: 5px;
+  border-radius: 12px;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+}
+
+.button-style {
+color: white;
+padding: 10px;
+border:0.1em solid #43404F;
+margin: 10px;
+border-radius: 12px;
+box-sizing: border-box;
+font-family: "Hind Siliguri", sans-serif;
+font-size: 20px;
+color: white;
+background-color:#DC7F9B;
+text-align:center;
+  }
+
+
+/****************************************** */
+/* CSS stats                                */
+/****************************************** */
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Hind Siliguri", sans-serif;
+
+}
+
+.playerName {
+  font-size: xx-large;
+  font-weight: bold;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.playerScore {
+  font-size: x-large;
+  font-weight: bold;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.questionCard {
+  font-family: "Hind Siliguri", sans-serif;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #f6b83c;
+  border-width: 20px;
+  margin: 10px;
+  box-shadow: black;
+  box-shadow: 0px 0px 5px #0d080b;
+  width: 340px;
+  margin: 0px 5px;
+}
+
+
+.questionCard .questionCategory {
+  background-color: #0d080b;
+  color: #f0f0f0;
+  font-family: "Burbank Big Condensed";
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.questionCard .questionDifficulty {
+  background-color: #dc7f9b;
+  color: #f0f0f0;
+  font-family: "Burbank Big Condensed";
+  font-size: xx-large;
+}
+
+.questionCard .questionText {
+  color: #0d080b;
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: large;
+  padding: 5px;
+}
+
+.questionCard .questionAnswers {  
+  font-family: "Hind Siliguri", sans-serif;
+  padding-left: 20%;
+  text-align: left;
+}
+
+.correctAnswer {
+  color: green;
+  font-weight: bold;
+}
+
+.incorrectAnswer {
+  color: red;
+  font-weight: bold;
+}
+
+/* palette graphique */
+.colors {
+  color: #f0f0f0;
+  color: #dc7f9b;
+  color: #f6b83c;
+  color: #43404f;
+  color: #0d080b;
+}
+/************************ */
+/* /////////////////////////Modal//////////////////////////// */
+
+.modal-answer{
+  font-family: "Hind Siliguri", sans-serif;
+  color: black;
+}
+
+/* //////////////////Game Card////////////////////// */
+
+.game-card {
+  border: solid 4px #f6b83c !important;
+  font-family: "Junge", serif;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 10px 5px 5px grey;
+}
+
+.game-parameter{
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+

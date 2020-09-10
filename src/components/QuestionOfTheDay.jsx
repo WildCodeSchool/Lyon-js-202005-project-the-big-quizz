@@ -4,7 +4,7 @@ import axios from "axios";
 import "./../App.css";
 import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
 
-const QuestionOfTheDay = () => {
+const QuestionOfTheDay = (props) => {
   const [categorys, setcategorys] = useState("");
   const [types, setType] = useState("");
   const [difficultys, setDifficultys] = useState("");
@@ -13,6 +13,14 @@ const QuestionOfTheDay = () => {
   const [wrongAnswer, setWrongAnswer] = useState("");
   const [modalWrongIsOpen, setModelIsOpen] = useState(false);
   const [modalGoodIsOpen, setModalGoodIsOpen] = useState(false);
+
+  const divStyle = {
+    backgroundImage: `url("/${categorys}.jpg")` ,
+    backgroundSize: 'cover'
+  }
+  console.log(categorys);
+
+
   useEffect(() => {
     axios.get("https://opentdb.com/api.php?amount=10").then((response) => {
       let myId = Math.floor(Math.random() * 10);
@@ -24,6 +32,7 @@ const QuestionOfTheDay = () => {
       setWrongAnswer(response.data.results[myId].incorrect_answers);
     });
   }, []);
+
   function randomize(tab) {
     let i, j, tmp;
     for (i = tab.length - 1; i > 0; i--) {
@@ -49,32 +58,34 @@ const QuestionOfTheDay = () => {
   let btnRandom0Two =  tabForTwo[0];
   let btnRandom1Two =  tabForTwo[1];
 
+
   return (
+    <div style={divStyle}>
     <div>
       <Modal
         isOpen={modalWrongIsOpen}
         style={{
           content: {
-            backgroundColor: "red",
-            width: "40%",
+            backgroundColor: "#FC2622",
+            width: "30%",
             height: "20%",
             textAlign: "center",
-            fontSize: "large",
+            fontSize: "x-large",
             position: "absolute",
-            left: "30%",
-            top: "25%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
           },
         }}
       >
-        <h2>Uncorrect answer</h2>
+        <h2 className="modal-answer">Uncorrect answer</h2>
         <button
           onClick={() => setModelIsOpen(false)}
           style={{
-            backgroundColor: "blue",
-            width: "30%",
-            height: "40px",
+            backgroundColor: "#FFE74C",
+            width: "90px",
+            height: "50px",
             borderRadius: "5px",
-            color: "white",
             fontSize: "x-large",
           }}
         >
@@ -85,26 +96,26 @@ const QuestionOfTheDay = () => {
         isOpen={modalGoodIsOpen}
         style={{
           content: {
-            backgroundColor: "green",
-            width: "40%",
+            backgroundColor: "#BBFD5D",
+            width: "30%",
             height: "20%",
             textAlign: "center",
-            fontSize: "large",
+            fontSize: "x-large",
             position: "absolute",
-            left: "30%",
-            top: "25%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
           },
         }}
       >
-        <h2>Correct answer</h2>
+        <h2 className="modal-answer">Correct answer</h2>
         <button
           onClick={() => setModalGoodIsOpen(false)}
           style={{
             backgroundColor: "blue",
-            width: "30%",
-            height: "40px",
+            width: "90px",
+            height: "50px",
             borderRadius: "5px",
-            color: "white",
             fontSize: "x-large",
           }}
         >
@@ -126,13 +137,12 @@ const QuestionOfTheDay = () => {
             <p className="question-category">Question category: </p>
             <p className="category-name">{categorys}</p>
             <p>Level :</p>
-            {difficultys === "hard" ? (
-              <p style={{ color: "#FF0921" }}> {difficultys} </p>
-            ) : difficultys === "medium" ? (
-              <span style={{ color: "#dc7f9bs" }}> {difficultys} </span>
-            ) : (
-              <span style={{ color: "#f6b83c" }}> {difficultys} </span>
-            )}
+
+             { difficultys === "hard" ? <p className="question-category" style={{color: "#FF0921"}} > {difficultys} </p>
+              : difficultys === "medium" ? <span className="question-category" style={{color:"#dc7f9b"}}> {difficultys} </span>
+                :<span className="question-category" style={{color: "#f6b83c"} }> {difficultys} </span>
+          
+            }
 
             <br />
           </Card>
@@ -148,8 +158,10 @@ const QuestionOfTheDay = () => {
                 
                   <button
                     onClick={() => setModelIsOpen(true)}
+
                     className={`${btnRandom0}   ${answer}`}
                     style={{ backgroundColor: "#FDF1D8" }}
+
                   >
                     {" "}
                     <span
@@ -160,8 +172,10 @@ const QuestionOfTheDay = () => {
                   </button>
                   <button
                     onClick={() => setModalGoodIsOpen(true)}
+
                     className={`${btnRandom1}   ${answer}`}
                     style={{ backgroundColor: "#E3CACD" }}
+
                   >
                     <span
                       dangerouslySetInnerHTML={{
@@ -226,6 +240,7 @@ const QuestionOfTheDay = () => {
           </Card>
         </Col>
       </Row>
+    </div>
     </div>
   );
 };
