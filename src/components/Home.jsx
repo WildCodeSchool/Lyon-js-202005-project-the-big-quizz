@@ -115,8 +115,9 @@ function Home(props) {
       </motion.div>
     </div>
        
-
+      <motion.div initial = {{ scale : 0}} animate= {{scale:0}}>
       <QuestionOfTheDay/>
+      </motion.div>
       <Link to="/Parameters">
       <Button className="largeBtn"color="primary" size="lg" block>Start to play</Button>
       </Link>
