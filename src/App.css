@@ -78,7 +78,6 @@ font-family: 'Montserrat Alternates', sans-serif; */
 
 .main {
   background-color: #cccccc;
-
   grid-area: main;
 }
 
@@ -158,8 +157,26 @@ button {
   border: 4px solid #f6b83c !important;
   margin-top: 20px;
   margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat (2,1fr);
+  grid-template-rows: repeat (2,1fr);
+  grid-template-areas:"btn1 btn2"
+                      "btn3 btn4";
 }
 
 .largeBtn {
   background-color: #dc7f9b !important;
+}
+
+.btnRandom0{
+  grid-area: btn1;
+}
+.btnRandom1{
+  grid-area: btn2;
+}
+.btnRandom2{
+  grid-area: btn3;
+}
+.btnRandom3{
+  grid-area: btn4;
 }
