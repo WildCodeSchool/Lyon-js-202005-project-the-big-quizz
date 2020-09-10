@@ -6,6 +6,7 @@ import axios from "axios";
 import Score from "./Score";
 import { Card, CardTitle, CardText, Row, Col, Progress } from "reactstrap";
 import "./../App.css";
+import { categoriesData } from "./categoriesData.js";
 
 function randomize(array) {
   let i, j, mixed;
@@ -74,13 +75,17 @@ function Game(props) {
     "/" +
     props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
   );
-  const [percentRange, setPercentRange] = useState(props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers);
+  const [percentRange, setPercentRange] = useState(
+    props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
+  );
 
   let difficulty = props.gameParameters.difficultyLevel;
   let numberOfQuestion =
     props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
   let categoryOfQuestion = props.gameParameters.category;
+
   // let questionType = props.gameParameters.questionType;
+
 
 
   const handleModalGoodAnswer = () => {
@@ -136,6 +141,7 @@ function Game(props) {
         ? ""
         : props.gameParameters.timerParameter
     );
+
     let tmp = score;
     console.log("tmp : ", tmp)
     console.log("tmp2 : ", tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers);
@@ -145,12 +151,8 @@ function Game(props) {
     
     
     
-    
-    
-    /******************************************************************************************* */
-    
-    
     setGoodAnswerModalIsOpen(true)
+
   };
   const handleWrongAnswer = (e) => {
     console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",parseInt(e.target.attributes.idincorrectanswer.value));
@@ -158,6 +160,8 @@ function Game(props) {
     setTimerOn(false);
     setTimer(
       props.gameParameters.timerParameter === 0
+
+      
       ? ""
       : props.gameParameters.timerParameter
       );
@@ -174,8 +178,8 @@ function Game(props) {
 
     /******************************************************************************************* */
     setWrongAnswerModalIsOpen(true)
-  };
 
+  };
 
   useEffect(() => {
     axios
@@ -197,17 +201,18 @@ function Game(props) {
 
   useEffect(() => {
     if (props.gameParameters.quiz !== null) {
-      setTableAnswer(props.gameParameters.quiz[id].type !== "boolean" ?
-        (randomize([
-          props.gameParameters.quiz[id].correct_answer,
-          props.gameParameters.quiz[id].incorrect_answers[0],
-          props.gameParameters.quiz[id].incorrect_answers[1],
-          props.gameParameters.quiz[id].incorrect_answers[2],
-        ])) :
-        (randomize([
-          props.gameParameters.quiz[id].correct_answer,
-          props.gameParameters.quiz[id].incorrect_answers[0],
-        ]))
+      setTableAnswer(
+        props.gameParameters.quiz[id].type !== "boolean"
+          ? randomize([
+              props.gameParameters.quiz[id].correct_answer,
+              props.gameParameters.quiz[id].incorrect_answers[0],
+              props.gameParameters.quiz[id].incorrect_answers[1],
+              props.gameParameters.quiz[id].incorrect_answers[2],
+            ])
+          : randomize([
+              props.gameParameters.quiz[id].correct_answer,
+              props.gameParameters.quiz[id].incorrect_answers[0],
+            ])
       );
     }
   }, [id]);
@@ -224,8 +229,22 @@ function Game(props) {
       `${questionNumberOfActualPlayer} / ${props.gameParameters.nbQuestionsPerPlayer}`
     );
   }
+  let catLinkImg = "";
+  if (props.gameParameters.quiz !== null) {
+    console.log(props.gameParameters.quiz[id].category);
+    catLinkImg = props.gameParameters.quiz[id].category;
+  }
+
+  const regTest = catLinkImg.replace(/[^\w\s]/gi, "");
+  const okespace = regTest.replace(/ /g, "");
+
+  const divStyle = {
+    backgroundImage: `url("${okespace}.jpg")`,
+    backgroundSize: "cover",
+  };
 
   return props.gameParameters.quiz !== null && tableAnswer !== null ? (
+
     <>
       <div>
         <Row>
@@ -238,6 +257,7 @@ function Game(props) {
                 {timer === 1 && timeOffModal === false ? setTimerOn(false) : ""}
                 {timer === -1 && timerOn === true ? setTimerOn(false) : ""}
                 {timer === -1 && timerOn === true ? setTimer("") : ""}
+
 
                 <Modal
                   isOpen={goodAnswerModalIsOpen}
@@ -332,6 +352,7 @@ function Game(props) {
                     },
                   }}
                 >
+
                   <h2>
                     Time is up :{" "}
                     {props.gameParameters.playerNames[idActualPlayer]}
@@ -382,6 +403,7 @@ function Game(props) {
                 </CardText>
                 <CardText className="">
                   Difficulty :
+
                 {props.gameParameters.quiz[id].difficulty === "hard" ? (
                     <span style={{ color: "#FF0921" }}>
                       {" "}
@@ -399,6 +421,7 @@ function Game(props) {
                         </span>
                       )}
                 </CardText>
+
 
                 <CardText className="question-style">
                   Question :{" "}
@@ -442,8 +465,9 @@ function Game(props) {
       <Score gameParameters={props.gameParameters}/>:"" 
       }
     </>
+
   ) : (
-      <p>pas de data</p>
-    );
+    <p>pas de data</p>
+  );
 }
 export default Game;
