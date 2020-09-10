@@ -4,7 +4,7 @@ import axios from "axios";
 import "./../App.css";
 import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
 
-const QuestionOfTheDay = () => {
+const QuestionOfTheDay = (props) => {
   const [categorys, setcategorys] = useState("");
   const [types, setType] = useState("");
   const [difficultys, setDifficultys] = useState("");
@@ -13,6 +13,93 @@ const QuestionOfTheDay = () => {
   const [wrongAnswer, setWrongAnswer] = useState("");
   const [modalWrongIsOpen, setModelIsOpen] = useState(false);
   const [modalGoodIsOpen, setModalGoodIsOpen] = useState(false);
+
+  const [categoriesForImages, setcategoriesForImages] = useState("");
+
+
+  // function categoryiesForImage (categorys){
+  //   const categoriesTab =[
+  //       "General Knowledge",
+  //       "Entertainment: Books",
+  //       "Entertainment: Film",
+  //       "Entertainment: Music",
+  //       "Entertainment: Musicals & Theatres",
+  //       "Entertainment: Television",
+  //       "Entertainment: Video Games",
+  //       "Entertainment: Board Games",
+  //       "Science & Nature",
+  //       "Science: Computers",
+  //       "Science: Mathematics",
+  //       "Mythology",
+  //       "Sports",
+  //       "Geography",
+  //       "History",
+  //       "Politics",
+  //       "Art",
+  //       "Celebrities",
+  //       "Animals",
+  //       "Vehicles",
+  //       "Entertainment: Comics",
+  //       "Science: Gadgets",
+  //       "Entertainment: Japanese Anime & Manga",
+  //       "Entertainment: Cartoon & Animations",
+  //   ]
+  //   categoriesTab.map ((element) =>{
+  //     if (categorys === categoriesForImages){
+  //       setcategoriesForImages(categorys)
+  //     }else if (categorys === "Entertainment: Books"){
+  //         setcategoriesForImages("Entertainment_Books")
+  //     } 
+  //     if (categorys === "Entertainment: Video Games"){
+  //         setcategoriesForImages("Entertainment_Video_Games")
+  //     }
+  //     if (categorys === "Entertainment: Film"){
+  //       setcategoriesForImages("Entertainment_Film")
+  //     }
+  //     if (categorys === "Entertainment: Music"){
+  //       setcategoriesForImages("Entertainment_Music")
+  //     }
+  //     if (categorys === "Entertainment: Musicals & Theatres"){
+  //       setcategoriesForImages("Entertainment_Musicals_Theatres")
+  //     }
+  //     if (categorys === "Entertainment: Television"){
+  //       setcategoriesForImages("Entertainment_Television")
+  //     }
+  //     if (categorys === "Science & Nature"){
+  //       setcategoriesForImages("Science_Nature")
+  //     }
+  //     if (categorys === "Science: Computers"){
+  //       setcategoriesForImages("Science_Computers")
+  //     }
+  //     if (categorys === "Science: Mathematics"){
+  //       setcategoriesForImages("Science_Mathematics")
+  //     }
+  //     if (categorys === "Entertainment: Comics"){
+  //       setcategoriesForImages("Entertainment_Comics")
+  //     }
+  //     if (categorys === "Science: Gadgets"){
+  //       setcategoriesForImages("Science_Gadgets")
+  //     }
+  //     if (categorys === "Entertainment: Japanese Anime & Manga"){
+  //       setcategoriesForImages("Entertainment_Japanese_Anime_Manga")
+  //     }
+  //     if (categorys === "Entertainment: Cartoon & Animations"){
+  //       setcategoriesForImages("Entertainment_Cartoon_Animations")
+  //     }
+  //     if (categorys === "Entertainment: Board Games"){
+  //       setcategoriesForImages("Entertainment_Board_Games")
+  //     }
+  //   })  
+    
+
+  
+  // }
+  const divStyle = {
+    backgroundImage: `url("/${categoriesForImages}.jpg")` ,
+    backgroundSize: 'cover'
+  }
+
+
   useEffect(() => {
     axios.get("https://opentdb.com/api.php?amount=10").then((response) => {
       let myId = Math.floor(Math.random() * 10);
@@ -24,7 +111,35 @@ const QuestionOfTheDay = () => {
       setWrongAnswer(response.data.results[myId].incorrect_answers);
     });
   }, []);
+
+  function randomize(tab) {
+    let i, j, tmp;
+    for (i = tab.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      tmp = tab[i];
+      tab[i] = tab[j];
+      tab[j] = tmp;
+    }
+    return tab;
+  }
+  let tab = ["btnRandom0", "btnRandom1", "btnRandom2", "btnRandom3"];
+  tab = randomize(tab);
+ 
+  let tabForTwo = ["btnRandom0", "btnRandom1"];
+  tabForTwo = randomize(tabForTwo);
+  let answer = "answer";
+
+  let btnRandom0 = tab[0];
+  let btnRandom1 = tab[1];
+  let btnRandom2 = tab[2];
+  let btnRandom3 = tab[3];
+
+  let btnRandom0Two =  tabForTwo[0];
+  let btnRandom1Two =  tabForTwo[1];
+
+
   return (
+    <div style={divStyle}>
     <div>
       <Modal
         isOpen={modalWrongIsOpen}
@@ -101,27 +216,31 @@ const QuestionOfTheDay = () => {
             <p className="question-category">Question category: </p>
             <p className="category-name">{categorys}</p>
             <p>Level :</p>
-             { difficultys === "hard" ? <p style={{color: "#FF0921"}} > {difficultys} </p>
-              : difficultys === "medium" ? <span style={{color:"#dc7f9bs"}}> {difficultys} </span>
-                :<span style={{color: "#f6b83c"}}> {difficultys} </span>
+
+             { difficultys === "hard" ? <p className="question-category" style={{color: "#FF0921"}} > {difficultys} </p>
+              : difficultys === "medium" ? <span className="question-category" style={{color:"#dc7f9b"}}> {difficultys} </span>
+                :<span className="question-category" style={{color: "#f6b83c"} }> {difficultys} </span>
           
             }
-              
+
             <br />
-          </Card> 
+          </Card>
         </Col>
       </Row>
       <Row>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
-          <Card className="bordureCardReponse">
-          {/* TeRnaire pour affichage reponse soit true/false soit choix multiple*/}
+          <Card >
+          <div className="bordureCardReponse"> 
+            {/* TeRnaire pour affichage reponse soit true/false soit choix multiple*/}
             {types !== "boolean" ? (
               <>
-                <div>
+                
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
-                    style={{ backgroundColor: "#FDF1D8", color: "black" }}
+
+                    className={`${btnRandom0}   ${answer}`}
+                    style={{ backgroundColor: "#FDF1D8" }}
+
                   >
                     {" "}
                     <span
@@ -132,8 +251,10 @@ const QuestionOfTheDay = () => {
                   </button>
                   <button
                     onClick={() => setModalGoodIsOpen(true)}
-                    className="answer"
-                    style={{ backgroundColor: "#E3CACD", color: "black" }}
+
+                    className={`${btnRandom1}   ${answer}`}
+                    style={{ backgroundColor: "#E3CACD" }}
+
                   >
                     <span
                       dangerouslySetInnerHTML={{
@@ -141,11 +262,11 @@ const QuestionOfTheDay = () => {
                       }}
                     ></span>
                   </button>
-                </div>
-                <div>
+                
+                
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom2}   ${answer}`}
                     style={{ backgroundColor: "#D1C2EB" }}
                   >
                     <span
@@ -156,7 +277,7 @@ const QuestionOfTheDay = () => {
                   </button>
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom3}   ${answer}`}
                     style={{ backgroundColor: "#E0B5E3" }}
                   >
                     <span
@@ -165,33 +286,40 @@ const QuestionOfTheDay = () => {
                       }}
                     ></span>
                   </button>
-                </div>
+                
               </>
             ) : (
               <>
-                <div>
                   <button
                     onClick={() => setModelIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom0Two}   ${answer}`}
                     style={{ backgroundColor: "#E0B5E3" }}
                   >
-                    {" "}
-                    {wrongAnswer}
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: wrongAnswer[0],
+                      }}
+                    ></span>
                   </button>
                   <button
                     onClick={() => setModalGoodIsOpen(true)}
-                    className="answer"
+                    className={`${btnRandom1Two}   ${answer}`}
                     style={{ backgroundColor: "#D1C2EB" }}
                   >
-                    {goodAnswer}
+                     <span
+                      dangerouslySetInnerHTML={{
+                        __html: goodAnswer,
+                      }}
+                    ></span>
                   </button>
-                </div>
               </>
             )}
             {/*Fin TeRnaire*/}
+            </div>
           </Card>
         </Col>
       </Row>
+    </div>
     </div>
   );
 };
