@@ -38,9 +38,6 @@ function Game(props) {
     }
   }, [])
 
-
-
-
   let history = useHistory();
 
   const [timer, setTimer] = useState(
@@ -246,7 +243,7 @@ function Game(props) {
   return props.gameParameters.quiz !== null && tableAnswer !== null ? (
 
     <>
-      <div>
+      <div style = {divStyle}>
         <Row>
           <Col sm="12" md={{ size: 6, offset: 3 }}>
             <Card className="test">
