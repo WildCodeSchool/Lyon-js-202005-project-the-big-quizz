@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { motion } from "framer-motion";
 import "./App.css";
 
 import GridLayout from "./layout/GridLayout";
