@@ -386,27 +386,31 @@ function Game(props) {
       </Row>
       <Row>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
-          <Card className="bordureCardReponse">
-            {tableAnswer.map((answer, i) => {
-              return (
-                <div>
-                  <button
-                    className={`answer buttonAnswer_${i}`}
-                    key={i}
-                    onClick={
-                      answer === props.gameParameters.quiz[id].correct_answer
-                        ? handelGoodAnswer
-                        : handleWrongAnswer
-                    }
-                  >
-                    <p dangerouslySetInnerHTML={{ __html: answer }}></p>
-                  </button>
-                </div>
-              );
-            })}
-          </Card>
-        </Col>
-      </Row>
+
+        <Card>
+        <div  className="answerClass">
+      {tableAnswer.map((answer, i) => {
+        return (
+
+            <button
+                className={`answer buttonAnswer_${i}`} 
+                
+              key={i}
+              onClick={
+                answer === props.gameParameters.quiz[id].correct_answer
+                  ? handelGoodAnswer
+                  : handleWrongAnswer
+              }
+            >
+              <p dangerouslySetInnerHTML={{ __html: answer }}></p>
+            </button>
+          
+        );
+      })}
+      </div>
+        </Card>
+    </Col>
+</Row>
     </div>
   ) : (
     <p>pas de data</p>
