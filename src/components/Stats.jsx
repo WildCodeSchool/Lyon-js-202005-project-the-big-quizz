@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import Score from "./Score";
 import { convertTime } from "./convertTime.js";
-import { categoryIcons } from "./categoryIcons.js";
+import { categoriesData } from "./categoriesData.js";
 
 function Stats(props) {
   let quiz = props.gameParameters.quiz;
@@ -90,7 +90,7 @@ function Stats(props) {
                 {player.answers.map((answer, i) => (
                   <div className="questionCard" key={"answer" + i}>
                     <div className="questionCategory">
-                      {categoryIcons[quiz[answer.idQuestion].category] + " "}
+                      {categoriesData[quiz[answer.idQuestion].category].icon + " "}
                       {quiz[answer.idQuestion].category.toUpperCase()}
                     </div>
                     <div className="questionDifficulty">
