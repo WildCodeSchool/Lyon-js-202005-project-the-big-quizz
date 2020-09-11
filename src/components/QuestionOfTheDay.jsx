@@ -38,7 +38,8 @@ const QuestionOfTheDay = (props) => {
       setWrongAnswer(response.data.results[myId].incorrect_answers);
     });
   }, []);
-
+  console.log(goodAnswer);
+  console.log(wrongAnswer);
   function randomize(tab) {
     let i, j, tmp;
     for (i = tab.length - 1; i > 0; i--) {
@@ -156,7 +157,7 @@ const QuestionOfTheDay = (props) => {
       </Row>
       <Row>
         <Col sm="12" md={{ size: 6, offset: 3 }}>
-          <Card >
+          <Card className="test">
           <div className="bordureCardReponse"> 
             {/* TeRnaire pour affichage reponse soit true/false soit choix multiple*/}
             {types !== "boolean" ? (
