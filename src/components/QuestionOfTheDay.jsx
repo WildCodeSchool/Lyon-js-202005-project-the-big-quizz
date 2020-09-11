@@ -70,6 +70,7 @@ const QuestionOfTheDay = (props) => {
     <div>
       <Modal
         isOpen={modalWrongIsOpen}
+        ariaHideApp = {false}
         style={{
           content: {
             backgroundColor: "#FC2622",
@@ -100,6 +101,7 @@ const QuestionOfTheDay = (props) => {
       </Modal>
       <Modal
         isOpen={modalGoodIsOpen}
+        ariaHideApp = {false}
         style={{
           content: {
             backgroundColor: "#BBFD5D",
