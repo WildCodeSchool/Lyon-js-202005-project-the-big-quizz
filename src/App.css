@@ -49,18 +49,14 @@ font-family: "Burbank Big Condensed";
 
 .gridLayout {
   width: 100%;
-  height: 100%;
-
   display: grid;
   grid-template-areas:
     "head head"
-    "main  main"    
+    "main  main"
     "foot  foot";
-  grid-template-rows: 100px 800px  30px;
+  grid-template-rows: 100px 520px 30px;
   grid-template-columns: 350px 1fr;
 }
-
-
 
 .header {
   background-color: #f0f0f0;
@@ -150,18 +146,18 @@ button {
   border: solid 4px #f6b83c !important;
   font-family: "Junge", serif;
   padding: 10px;
-  margin:20px;
-
+  margin: 20px;
 }
-.bordureCardReponse { 
+.bordureCardReponse {
   border: 4px solid #f6b83c !important;
   margin-top: 20px;
   margin-bottom: 20px;
   display: grid;
-  grid-template-columns: repeat (2,1fr);
-  grid-template-rows: repeat (2,1fr);
-  grid-template-areas:"btn1 btn2"
-                      "btn3 btn4";
+  grid-template-columns: repeat (2, 1fr);
+  grid-template-rows: repeat (2, 1fr);
+  grid-template-areas:
+    "btn1 btn2"
+    "btn3 btn4";
 }
 
 .largeBtn {
@@ -169,31 +165,29 @@ button {
   margin-top: 20px;
 }
 
-
-.btnRandom0{
+.btnRandom0 {
   grid-area: btn1;
 }
-.btnRandom1{
+.btnRandom1 {
   grid-area: btn2;
 }
-.btnRandom2{
+.btnRandom2 {
   grid-area: btn3;
 }
-.btnRandom3{
+.btnRandom3 {
   grid-area: btn4;
 }
 
-
 /* /////////////////////////Parametres/////////////////////////////////// */
 
-.player-info{
+.player-info {
   font-family: "Hind Siliguri", sans-serif;
-  font-size: 22px; 
+  font-size: 22px;
   margin: 10px;
   text-align: center;
 }
 
-.input-style{
+.input-style {
   font-family: "Hind Siliguri", sans-serif;
   padding: 5px;
   border-radius: 12px;
@@ -203,19 +197,18 @@ button {
 }
 
 .button-style {
-color: white;
-padding: 10px;
-border:0.1em solid #43404F;
-margin: 10px;
-border-radius: 12px;
-box-sizing: border-box;
-font-family: "Hind Siliguri", sans-serif;
-font-size: 20px;
-color: white;
-background-color:#DC7F9B;
-text-align:center;
-  }
-
+  color: white;
+  padding: 10px;
+  border: 0.1em solid #43404f;
+  margin: 10px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 20px;
+  color: white;
+  background-color: #dc7f9b;
+  text-align: center;
+}
 
 /****************************************** */
 /* CSS stats                                */
@@ -229,14 +222,13 @@ text-align:center;
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
-
 }
 
 .scoreContainer {
   background-color: rgba(220, 127, 155, 0.8);
   width: 100%;
-  margin-top:20px;
-  margin-left:10px;
+  margin-top: 20px;
+  margin-left: 10px;
   border: 1px solid black;
 }
 
@@ -272,7 +264,6 @@ text-align:center;
   margin: 15px 45px;
 }
 
-
 .questionCard .questionCategory {
   background-color: #0d080b;
   color: #f0f0f0;
@@ -295,7 +286,7 @@ text-align:center;
   padding: 5px;
 }
 
-.questionCard .questionAnswers {  
+.questionCard .questionAnswers {
   font-family: "Hind Siliguri", sans-serif;
   padding-left: 20%;
   text-align: left;
@@ -322,7 +313,7 @@ text-align:center;
 /************************ */
 /* /////////////////////////Modal//////////////////////////// */
 
-.modal-answer{
+.modal-answer {
   font-family: "Hind Siliguri", sans-serif;
   color: black;
 }
@@ -337,38 +328,35 @@ text-align:center;
   box-shadow: 10px 5px 5px grey;
 }
 
-
-.buttonAnswer_0{
-  background-color: #E0B5E3;
-  color: black; 
+.buttonAnswer_0 {
+  background-color: #e0b5e3;
+  color: black;
   grid-area: button1;
-  }
+}
 
-.buttonAnswer_1{
-  background-color: #D1C2EB;
+.buttonAnswer_1 {
+  background-color: #d1c2eb;
   color: black;
   grid-area: button2;
 }
-.buttonAnswer_2{
-  background-color: #E3CACD;
-  color: black; 
+.buttonAnswer_2 {
+  background-color: #e3cacd;
+  color: black;
   grid-area: button3;
 }
-.buttonAnswer_3{
-  background-color: #FDF1D8;
+.buttonAnswer_3 {
+  background-color: #fdf1d8;
   color: black;
   grid-area: button4;
-}   
-  
-.game-parameter{
+}
+
+.game-parameter {
   font-family: "Hind Siliguri", sans-serif;
   font-size: 18px;
   text-transform: capitalize;
 }
 
 /* /////////////Footer//////////////////// */
-
-
 
 .footer li {
   display: flex;
@@ -380,9 +368,9 @@ text-align:center;
   text-align: center;
 }
 
-li{
+li {
   border-right: 1px solid white;
-  padding-right: 35px;;
+  padding-right: 35px;
   margin-top: 15px;
 }
 
@@ -391,22 +379,21 @@ footer {
   justify-items: center;
   flex-direction: column;
   width: 100vw;
-  background-color: #43404F;
+  background-color: #43404f;
   height: 200px;
   margin-right: -15px;
-  margin-left: -15px;
 }
-footer hr{
-  border-top-color:#bbb;
-  opacity:0.5;
+footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
   width: 95%;
 }
 
-footer p{
+footer p {
   margin-top: 20px;
-  margin-bottom: 20px;;
+  margin-bottom: 20px;
   font-size: 18px;
-  font-family: 'Hind Siliguri', sans-serif;
+  font-family: "Hind Siliguri", sans-serif;
   color: white;
 }
 
@@ -422,28 +409,28 @@ footer p{
 .linkedin li a {
   color: white;
   font-weight: bold;
-  font-family: 'Junge', serif;
+  font-family: "Junge", serif;
   font-size: 15px;
 }
 
-.wild{
-font-family: 'Montserrat Alternates', sans-serif;
-color: white;
-font-size: 16px;
+.wild {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  font-size: 16px;
 }
 
-.wild-logo{
-width: 100px;
-margin-bottom: 5px;
+.wild-logo {
+  width: 100px;
+  margin-bottom: 5px;
 }
 
+/* Game */
 
- /* Game */
-
- .answerClass {
-   display: grid;
-   grid-template-columns: repeat(2, 1fr);
-   grid-template-rows: repeat(2, 1fr);
-   grid-template-areas: "button1 button2"
-                        "button3 button4 ";
- }
+.answerClass {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "button1 button2"
+    "button3 button4 ";
+}
