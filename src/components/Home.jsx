@@ -16,7 +16,7 @@ function Home(props) {
   return (
   
       <div>
-        <img src={logo} alt="Logo squizer" />
+        {/* <img src={logo} alt="Logo squizer" /> */}
       <QuestionOfTheDay/>
       <Link to="/Parameters">
       <Button className="largeBtn"color="primary" size="lg" block>Start to play</Button>

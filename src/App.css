@@ -49,13 +49,14 @@ font-family: "Burbank Big Condensed";
 
 .gridLayout {
   width: 100%;
-  height: 250px;
+  height: 100%;
+
   display: grid;
   grid-template-areas:
     "head head"
-    "main  main"
+    "main  main"    
     "foot  foot";
-  grid-template-rows: 100px 1fr 30px;
+  grid-template-rows: 100px 800px  30px;
   grid-template-columns: 350px 1fr;
 }
 
@@ -65,7 +66,7 @@ font-family: "Burbank Big Condensed";
   background-color: #f0f0f0;
   grid-area: head;
   background-image: url("./images/Logo.png");
-  background-position: left;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -73,6 +74,7 @@ font-family: "Burbank Big Condensed";
 .main {
   background-color: #cccccc;
   grid-area: main;
+  /* height:800px; */
 }
 
 .paramsSummary {
@@ -366,10 +368,12 @@ text-align:center;
 
 /* /////////////Footer//////////////////// */
 
+
+
 .footer li {
   display: flex;
   background-color: #dddddd;
-  grid-area: foot;
+  /* grid-area: foot; */
   margin-top: 40px;
   margin-right: 40px;
   justify-content: space-between;
@@ -382,7 +386,8 @@ li{
   margin-top: 15px;
 }
 
-footer{
+footer {
+  grid-area: foot;
   justify-items: center;
   flex-direction: column;
   width: 100vw;

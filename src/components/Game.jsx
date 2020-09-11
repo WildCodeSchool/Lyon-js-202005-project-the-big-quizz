@@ -394,7 +394,7 @@ function Game(props) {
                     {props.gameParameters.playerNames[idActualPlayer]}
                   </h2>
                   <p>
-                    The good answer is :{" "}
+                    The good answer was :{" "}
                     {props.gameParameters.quiz[id].correct_answer}
                   </p>
                   <button
@@ -412,7 +412,7 @@ function Game(props) {
                     {id + 1 !== numberOfQuestion ? "Next" : "results"}
                   </button>
                 </Modal>
-                <div className="tableOfGamers">
+                {/* <div className="tableOfGamers">
                   <table className="board">
                     <thead>
                       <tr>
@@ -430,7 +430,7 @@ function Game(props) {
                       })}
                     </tbody>
                   </table>
-                </div>
+                </div> */}
                 <Progress
                   style={{
                     backgroundColor: "#FFE74C",
@@ -447,16 +447,16 @@ function Game(props) {
                   Check your progress here
                 </Progress>
                 <CardText className="">
-                  Player name:{" "}
+                  Actual player:{" "}
                   {props.gameParameters.playerNames[idActualPlayer]}
                 </CardText>
                 <CardText className=""></CardText>
                 <CardText className="">
                   Category : {props.gameParameters.quiz[id].category}
                 </CardText>
-                <CardText className="">
+                {/* <CardText className="">
                   Type : {questionType || "Any Type"}
-                </CardText>
+                </CardText> */}
                 <CardText className="">
                   Difficulty :
                   {props.gameParameters.quiz[id].difficulty === "hard" ? (
