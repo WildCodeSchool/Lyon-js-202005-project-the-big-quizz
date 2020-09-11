@@ -16,7 +16,7 @@ const QuestionOfTheDay = (props) => {
 
   const regTest = categorys.replace(/[^\w\s]/gi, '');
   const okespace = regTest.replace(/ /g, "");
-  console.log(okespace);
+  // console.log(okespace);
 
   const divStyle = {
     backgroundImage: `url("/${okespace}.jpg")` ,
@@ -38,8 +38,8 @@ const QuestionOfTheDay = (props) => {
       setWrongAnswer(response.data.results[myId].incorrect_answers);
     });
   }, []);
-  console.log(goodAnswer);
-  console.log(wrongAnswer);
+  // console.log(goodAnswer);
+  // console.log(wrongAnswer);
   function randomize(tab) {
     let i, j, tmp;
     for (i = tab.length - 1; i > 0; i--) {
@@ -71,6 +71,7 @@ const QuestionOfTheDay = (props) => {
     <div>
       <Modal
         isOpen={modalWrongIsOpen}
+        ariaHideApp = {false}
         style={{
           content: {
             backgroundColor: "#FC2622",
@@ -101,6 +102,7 @@ const QuestionOfTheDay = (props) => {
       </Modal>
       <Modal
         isOpen={modalGoodIsOpen}
+        ariaHideApp = {false}
         style={{
           content: {
             backgroundColor: "#BBFD5D",

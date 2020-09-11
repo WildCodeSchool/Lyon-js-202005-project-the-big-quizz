@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import Score from "./Score";
+// import Score from "./Score";
 import { convertTime } from "./convertTime.js";
 import { categoriesData } from "./categoriesData.js";
 
@@ -98,14 +98,14 @@ function Stats(props) {
                     <div className="questionDifficulty">
                       {quiz[answer.idQuestion].difficulty.toUpperCase()}
                     </div>
-                    <p className="questionText">
-                      {i + 1}
+                    <p className="questionText" dangerouslySetInnerHTML={{ __html:  i + 1+". "+quiz[answer.idQuestion].question}}>
+                      {/* {i + 1}
                       {". "}
-                      {quiz[answer.idQuestion].question}
+                      {quiz[answer.idQuestion].question} */}
                     </p>
                     {/* bonne réponse */}
-                    <p className="correctAnswer questionAnswers">
-                      {quiz[answer.idQuestion].correct_answer}
+                    <p className="correctAnswer questionAnswers" dangerouslySetInnerHTML={{ __html:  quiz[answer.idQuestion].correct_answer}}> 
+                      
                     </p>
                     {/* map des mauvaises réponses d'une question */}
                     {quiz[answer.idQuestion].incorrect_answers.map(
@@ -117,8 +117,9 @@ function Stats(props) {
                               ? "incorrectAnswer questionAnswers"
                               : "questionAnswers"
                           }
+                          dangerouslySetInnerHTML={{ __html:  incorrectAnswer}}
                         >
-                          {incorrectAnswer}
+                          
                         </p>
                       )
                     )}

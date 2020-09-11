@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import Modal from "react-modal";
 import axios from "axios";
 import Score from "./Score";
-import { Card, CardTitle, CardText, Row, Col, Progress } from "reactstrap";
+import { Card, CardText, Row, Col, Progress } from "reactstrap";
 import "./../App.css";
-import { categoriesData } from "./categoriesData.js";
+// import { categoriesData } from "./categoriesData.js";
 
 function randomize(array) {
   let i, j, mixed;
@@ -20,23 +20,21 @@ function randomize(array) {
 }
 
 function Game(props) {
-
   const score = props.gameParameters.score;
   const setScore = props.gameParameters.setScore;
   const playerNames = props.gameParameters.playerNames;
-  const timerParameter = props.gameParameters.timerParameter
-  
+  const timerParameter = props.gameParameters.timerParameter;
 
   useEffect(() => {
     let array = [];
     for (let player of props.gameParameters.playerNames) {
       array.push({
         playerName: player,
-        answers: []
+        answers: [],
       });
       setScore(array);
     }
-  }, [])
+  }, []);
 
   let history = useHistory();
 
@@ -67,22 +65,20 @@ function Game(props) {
   const [wrongAnswerModalIsOpen, setWrongAnswerModalIsOpen] = useState(false);
   const [timeOffModal, setTimeOffModal] = useState(false);
   const [tableAnswer, setTableAnswer] = useState(null);
-  const [displayQuestionNumber, setDisplayQuestionNumber] = useState(
-    idActualPlayer +
-    "/" +
-    props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
-  );
-  const [percentRange, setPercentRange] = useState(
-    props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
-  );
+  // const [displayQuestionNumber, setDisplayQuestionNumber] = useState(
+  //   idActualPlayer +
+  //     "/" +
+  //     props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
+  // );
+  // const [percentRange, setPercentRange] = useState(
+  //   props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers
+  // );
 
   let difficulty = props.gameParameters.difficultyLevel;
   let numberOfQuestion =
     props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
   let categoryOfQuestion = props.gameParameters.category;
   let questionType = props.gameParameters.questionsType;
-
-
 
   const handleModalGoodAnswer = () => {
     browseTable();
@@ -139,42 +135,78 @@ function Game(props) {
     );
 
     let tmp = score;
-    console.log("tmp : ", tmp)
-    console.log("tmp2 : ", tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers);
-    let arr=tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers;
-    arr.push({idQuestion:id, correctAnswer: true, idIncorrectAnswer:-1, duration:timerParameter-timer});
-    console.log(arr);
-    
-    
-    
-    setGoodAnswerModalIsOpen(true)
+    // console.log("tmp : ", tmp)
+    // console.log("tmp2 : ", tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers);
+    let arr = tmp.filter(
+      (player) => player.playerName === playerNames[idActualPlayer]
+    )[0].answers;
+    arr.push({
+      idQuestion: id,
+      correctAnswer: true,
+      idIncorrectAnswer: -1,
+      duration: timerParameter - timer,
+    });
+     //console.log("arr:",arr);
+     /************************************************************************************ */
+     /************************************************************************************ */
+     setScore((prevScore) => {
+      /*console.log('Good');
+      console.log(prevScore);
+      console.log(idActualPlayer);
+      console.log(prevScore[0].playerName);
+      console.log(prevScore[1].playerName);*/
 
+      let tmpArr = prevScore;
+      tmpArr[idActualPlayer].answers = arr;
+      // console.log('tmpArr :', tmpArr);
+      // console.log('idActualPlayer :', idActualPlayer);
+      return tmpArr;
+    });
+    
+
+
+    setGoodAnswerModalIsOpen(true);
   };
   const handleWrongAnswer = (e) => {
-    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",parseInt(e.target.attributes.idincorrectanswer.value));
+    // console.log("e.target",e.target);
+    // console.log("e.target.parentNode",e.target.parentNode);
+    // console.log("e.target.attributes.idincorrectanswer.value",parseInt(e.target.attributes.idincorrectanswer.value));
 
     setTimerOn(false);
     setTimer(
       props.gameParameters.timerParameter === 0
-
-      
-      ? ""
-      : props.gameParameters.timerParameter
-      );
-      let tmp = score;
-      console.log("tmp : ", tmp)
-      console.log("tmp2 : ", tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers);
-      let arr=tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers;
-      arr.push({idQuestion:id, correctAnswer: false, idIncorrectAnswer: parseInt(e.target.attributes.idincorrectanswer.value) ,duration:timerParameter-timer});
-      console.log(arr);
-      setScore(prevScore=> {let tmpArr = prevScore; tmpArr[idActualPlayer].answers=arr;return tmpArr})
-      console.log("score",score);
-
-
+        ? ""
+        : props.gameParameters.timerParameter
+    );
+    let tmp = score;
+    // console.log("tmp : ", tmp)
+    // console.log("tmp2 : ", tmp.filter(player=>player.playerName===playerNames[idActualPlayer])[0].answers);
+    let arr = tmp.filter(
+      (player) => player.playerName === playerNames[idActualPlayer]
+    )[0].answers;
+    arr.push({
+      idQuestion: id,
+      correctAnswer: false,
+      idIncorrectAnswer: parseInt(e.target.attributes.idincorrectanswer.value),
+      duration: timerParameter - timer,
+    });
+    // console.log(arr);
+    setScore((prevScore) => {
+      // console.log('Wrong');
+      // console.log(prevScore);
+      // console.log(idActualPlayer);
+      // console.log(prevScore[0].playerName);
+      // console.log(prevScore[1].playerName);
+      let tmpArr = prevScore;
+      tmpArr[idActualPlayer].answers = arr;
+      // console.log('tmpArr :', tmpArr);
+      // console.log('idActualPlayer :', idActualPlayer);
+      return tmpArr;
+    });
+ 
 
     /******************************************************************************************* */
-    setWrongAnswerModalIsOpen(true)
-
+    setWrongAnswerModalIsOpen(true);
   };
 
   useEffect(() => {
@@ -186,10 +218,10 @@ function Game(props) {
         props.gameParameters.setQuiz(res.data.results);
         setTableAnswer(
           randomize([
-            res.data.results[id].correct_answer,
-            res.data.results[id].incorrect_answers[0],
-            res.data.results[id].incorrect_answers[1],
-            res.data.results[id].incorrect_answers[2],
+            [res.data.results[id].correct_answer, -1],
+            [res.data.results[id].incorrect_answers[0], 0],
+            [res.data.results[id].incorrect_answers[1], 1],
+            [res.data.results[id].incorrect_answers[2], 2],
           ])
         );
       });
@@ -200,14 +232,14 @@ function Game(props) {
       setTableAnswer(
         props.gameParameters.quiz[id].type !== "boolean"
           ? randomize([
-              props.gameParameters.quiz[id].correct_answer,
-              props.gameParameters.quiz[id].incorrect_answers[0],
-              props.gameParameters.quiz[id].incorrect_answers[1],
-              props.gameParameters.quiz[id].incorrect_answers[2],
+              [props.gameParameters.quiz[id].correct_answer, -1],
+              [props.gameParameters.quiz[id].incorrect_answers[0], 0],
+              [props.gameParameters.quiz[id].incorrect_answers[1], 1],
+              [props.gameParameters.quiz[id].incorrect_answers[2], 2],
             ])
           : randomize([
-              props.gameParameters.quiz[id].correct_answer,
-              props.gameParameters.quiz[id].incorrect_answers[0],
+              [props.gameParameters.quiz[id].correct_answer, -1],
+              [props.gameParameters.quiz[id].incorrect_answers[0], 0],
             ])
       );
     }
@@ -221,12 +253,13 @@ function Game(props) {
     );
     setId(id + 1);
     setQuestionNumberOfActualPlayer(questionNumberOfActualPlayer + 1);
-    setDisplayQuestionNumber(
-      `${questionNumberOfActualPlayer} / ${props.gameParameters.nbQuestionsPerPlayer}`
-    );
+    // setDisplayQuestionNumber(
+    //   `${questionNumberOfActualPlayer} / ${props.gameParameters.nbQuestionsPerPlayer}`
+    // );
   }
   let catLinkImg = "";
   if (props.gameParameters.quiz !== null) {
+
     catLinkImg = props.gameParameters.quiz[id].category;
   }
 
@@ -239,9 +272,8 @@ function Game(props) {
   };
 
   return props.gameParameters.quiz !== null && tableAnswer !== null ? (
-
     <>
-      <div style = {divStyle}>
+      <div style={divStyle}>
         <Row>
         <Col sm="3" md={{ size: 3}} m="3">
         {id>=props.gameParameters.nbPlayers
@@ -259,9 +291,9 @@ function Game(props) {
                 {timer === -1 && timerOn === true ? setTimerOn(false) : ""}
                 {timer === -1 && timerOn === true ? setTimer("") : ""}
 
-
                 <Modal
                   isOpen={goodAnswerModalIsOpen}
+                  ariaHideApp = {false}
                   style={{
                     content: {
                       backgroundColor: "#FDF1D8",
@@ -301,6 +333,7 @@ function Game(props) {
                 </Modal>
                 <Modal
                   isOpen={wrongAnswerModalIsOpen}
+                  ariaHideApp = {false}
                   style={{
                     content: {
                       backgroundColor: "#D57F8E",
@@ -343,9 +376,22 @@ function Game(props) {
                 </Modal>
                 <Modal
                   isOpen={timeOffModal}
-                  
-                >
 
+                  ariaHideApp = {false}
+                  style={{
+                    content: {
+                      backgroundColor: "red",
+                      width: "40%",
+                      height: "20%",
+                      textAlign: "center",
+                      fontSize: "large",
+                      position: "absolute",
+                      left: "30%",
+                      top: "25%",
+                    },
+                  }}
+
+                >
                   <h2>
                     Time is up :{" "}
                     {props.gameParameters.playerNames[idActualPlayer]}
@@ -355,7 +401,11 @@ function Game(props) {
                     {props.gameParameters.quiz[id].correct_answer}
                   </p>
                   <button
-                    style={{ width: "15%", fontSize: "xx-large", color: "black" }}
+                    style={{
+                      width: "15%",
+                      fontSize: "xx-large",
+                      color: "black",
+                    }}
                     onClick={
                       id + 1 !== numberOfQuestion
                         ? handelModalTimerOff
@@ -376,7 +426,7 @@ function Game(props) {
                     <tbody>
                       {props.gameParameters.playerNames.map((name) => {
                         return (
-                          <tr>
+                          <tr key={name}>
                             <td>{name}</td>
                           </tr>
                         );
@@ -384,13 +434,22 @@ function Game(props) {
                     </tbody>
                   </table>
                 </div>
-                <Progress style={{ backgroundColor: "#FFE74C", width: "70%", height: "50px", borderRadius: "5px", }} value={questionNumberOfActualPlayer * 100 / percentRange}>Check your progress here</Progress>
+                <Progress
+                  style={{
+                    backgroundColor: "#FFE74C",
+                    width: "70%",
+                    height: "50px",
+                    borderRadius: "5px",
+                  }}
+                  value={(questionNumberOfActualPlayer * 100) / (props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers)}
+                >
+                  Check your progress here
+                </Progress>
                 <CardText className="">
                   Player name:{" "}
                   {props.gameParameters.playerNames[idActualPlayer]}
                 </CardText>
-                <CardText className="">
-                </CardText>
+                <CardText className=""></CardText>
                 <CardText className="">
                   Category : {props.gameParameters.quiz[id].category}
                 </CardText>
@@ -399,8 +458,7 @@ function Game(props) {
                 </CardText>
                 <CardText className="">
                   Difficulty :
-
-                {props.gameParameters.quiz[id].difficulty === "hard" ? (
+                  {props.gameParameters.quiz[id].difficulty === "hard" ? (
                     <span style={{ color: "#FF0921" }}>
                       {" "}
                       {props.gameParameters.quiz[id].difficulty}
@@ -411,13 +469,12 @@ function Game(props) {
                       {props.gameParameters.quiz[id].difficulty}
                     </span>
                   ) : (
-                        <span style={{ color: "#f6b83c" }}>
-                          {" "}
-                          {props.gameParameters.quiz[id].difficulty}{" "}
-                        </span>
-                      )}
+                    <span style={{ color: "#f6b83c" }}>
+                      {" "}
+                      {props.gameParameters.quiz[id].difficulty}{" "}
+                    </span>
+                  )}
                 </CardText>
-
 
                 <CardText className="question-style">
                   Question :{" "}
@@ -437,20 +494,21 @@ function Game(props) {
             <div>
               {tableAnswer.map((answer, i) => {
                 return (
-                  
-                    <button
-                      className={`answer buttonAnswer_${i}`}
-                      key={i}
-                      idincorrectanswer={props.gameParameters.quiz[id].incorrect_answers.indexOf(answer)}
-                      onClick={
-                        answer === props.gameParameters.quiz[id].correct_answer
-                          ? handelGoodAnswer
-                          : handleWrongAnswer
-                      }
-                    >
-                      <span dangerouslySetInnerHTML={{ __html: answer }}></span>
-                    </button>
-                  
+                  <button
+                    className={`answer buttonAnswer_${i}`}
+                    key={i}
+                    idincorrectanswer={answer[1]}
+                    onClick={
+                      answer[0] === props.gameParameters.quiz[id].correct_answer
+                        ? handelGoodAnswer
+                        : handleWrongAnswer
+                    }
+                  >
+                    <span
+                      idincorrectanswer={answer[1]}
+                      dangerouslySetInnerHTML={{ __html: answer[0] }}
+                    ></span>
+                  </button>
                 );
               })}
               </div>
@@ -459,11 +517,10 @@ function Game(props) {
         </Row>
        
       </div>
-      
-    </>
 
+    </>
   ) : (
-    <p>pas de data</p>
+    <p>Loading...</p>
   );
 }
 export default Game;
