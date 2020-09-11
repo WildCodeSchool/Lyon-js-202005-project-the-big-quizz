@@ -22,15 +22,9 @@ function WorkingMenu(props) {
           <span>
             <Link to="/stats">Stats</Link>
           </span>
-          <span> | </span>
-          <span>
-            <Link to="/Reactstrap">ReactStrap</Link>
-          </span>
-          <span> | </span>
-          <span>
-            <Link to="/MagicWheel">MagicWheel</Link>
-          </span>
-          <span> | </span>
+          
+        
+          
         </div>
       </nav>
       <div></div>
