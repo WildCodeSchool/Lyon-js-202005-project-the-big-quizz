@@ -146,10 +146,10 @@ function Game(props) {
       idIncorrectAnswer: -1,
       duration: timerParameter - timer,
     });
-     //console.log("arr:",arr);
-     /************************************************************************************ */
-     /************************************************************************************ */
-     setScore((prevScore) => {
+    //console.log("arr:",arr);
+    /************************************************************************************ */
+    /************************************************************************************ */
+    setScore((prevScore) => {
       /*console.log('Good');
       console.log(prevScore);
       console.log(idActualPlayer);
@@ -162,8 +162,6 @@ function Game(props) {
       // console.log('idActualPlayer :', idActualPlayer);
       return tmpArr;
     });
-    
-
 
     setGoodAnswerModalIsOpen(true);
   };
@@ -203,7 +201,6 @@ function Game(props) {
       // console.log('idActualPlayer :', idActualPlayer);
       return tmpArr;
     });
- 
 
     /******************************************************************************************* */
     setWrongAnswerModalIsOpen(true);
@@ -259,7 +256,6 @@ function Game(props) {
   }
   let catLinkImg = "";
   if (props.gameParameters.quiz !== null) {
-
     catLinkImg = props.gameParameters.quiz[id].category;
   }
 
@@ -275,12 +271,13 @@ function Game(props) {
     <>
       <div style={divStyle}>
         <Row>
-        <Col sm="3" md={{ size: 3}} m="3">
-        {id>=props.gameParameters.nbPlayers
-      ?
-      <Score gameParameters={props.gameParameters}/>:"" 
-      }
-        </Col>
+          <Col sm="3" md={{ size: 3 }} m="3">
+            {id >= props.gameParameters.nbPlayers ? (
+              <Score gameParameters={props.gameParameters} />
+            ) : (
+              ""
+            )}
+          </Col>
           <Col sm="12" md={{ size: 6 }}>
             <Card className="test">
               <div className="game">
@@ -293,7 +290,7 @@ function Game(props) {
 
                 <Modal
                   isOpen={goodAnswerModalIsOpen}
-                  ariaHideApp = {false}
+                  ariaHideApp={false}
                   style={{
                     content: {
                       backgroundColor: "#FDF1D8",
@@ -305,7 +302,7 @@ function Game(props) {
                       left: "50%",
                       top: "50%",
                       transform: "translate(-50%, -50%)",
-                      border: "solid 1px black"
+                      border: "solid 1px black",
                     },
                   }}
                 >
@@ -315,7 +312,7 @@ function Game(props) {
                   </h2>
                   <button
                     style={{
-                      marginTop:"20px",
+                      marginTop: "20px",
                       backgroundColor: "#D1C2EB",
                       width: "90px",
                       height: "50px",
@@ -333,7 +330,7 @@ function Game(props) {
                 </Modal>
                 <Modal
                   isOpen={wrongAnswerModalIsOpen}
-                  ariaHideApp = {false}
+                  ariaHideApp={false}
                   style={{
                     content: {
                       backgroundColor: "#D57F8E",
@@ -345,7 +342,7 @@ function Game(props) {
                       left: "50%",
                       top: "50%",
                       transform: "translate(-50%, -50%)",
-                      border: "solid 1px black"
+                      border: "solid 1px black",
                     },
                   }}
                 >
@@ -376,21 +373,21 @@ function Game(props) {
                 </Modal>
                 <Modal
                   isOpen={timeOffModal}
-
-                  ariaHideApp = {false}
+                  ariaHideApp={false}
                   style={{
                     content: {
-                      backgroundColor: "red",
-                      width: "40%",
-                      height: "20%",
+                      backgroundColor: "#D57F8E",
+                      width: "600px",
+                      height: "200px",
                       textAlign: "center",
-                      fontSize: "large",
+                      fontSize: "x-large",
                       position: "absolute",
-                      left: "30%",
-                      top: "25%",
+                      left: "50%",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
+                      border: "solid 1px black",
                     },
                   }}
-
                 >
                   <h2>
                     Time is up :{" "}
@@ -441,7 +438,11 @@ function Game(props) {
                     height: "50px",
                     borderRadius: "5px",
                   }}
-                  value={(questionNumberOfActualPlayer * 100) / (props.gameParameters.nbQuestionsPerPlayer * props.gameParameters.nbPlayers)}
+                  value={
+                    (questionNumberOfActualPlayer * 100) /
+                    (props.gameParameters.nbQuestionsPerPlayer *
+                      props.gameParameters.nbPlayers)
+                  }
                 >
                   Check your progress here
                 </Progress>
@@ -454,7 +455,7 @@ function Game(props) {
                   Category : {props.gameParameters.quiz[id].category}
                 </CardText>
                 <CardText className="">
-                  Type : {questionType || "Any Type"} 
+                  Type : {questionType || "Any Type"}
                 </CardText>
                 <CardText className="">
                   Difficulty :
@@ -491,33 +492,32 @@ function Game(props) {
         <Row>
           <Col sm="12" md={{ size: 6, offset: 3 }}>
             <Card className="bordureCardReponse">
-            <div>
-              {tableAnswer.map((answer, i) => {
-                return (
-                  <button
-                    className={`answer buttonAnswer_${i}`}
-                    key={i}
-                    idincorrectanswer={answer[1]}
-                    onClick={
-                      answer[0] === props.gameParameters.quiz[id].correct_answer
-                        ? handelGoodAnswer
-                        : handleWrongAnswer
-                    }
-                  >
-                    <span
+              <div>
+                {tableAnswer.map((answer, i) => {
+                  return (
+                    <button
+                      className={`answer buttonAnswer_${i}`}
+                      key={i}
                       idincorrectanswer={answer[1]}
-                      dangerouslySetInnerHTML={{ __html: answer[0] }}
-                    ></span>
-                  </button>
-                );
-              })}
+                      onClick={
+                        answer[0] ===
+                        props.gameParameters.quiz[id].correct_answer
+                          ? handelGoodAnswer
+                          : handleWrongAnswer
+                      }
+                    >
+                      <span
+                        idincorrectanswer={answer[1]}
+                        dangerouslySetInnerHTML={{ __html: answer[0] }}
+                      ></span>
+                    </button>
+                  );
+                })}
               </div>
             </Card>
           </Col>
         </Row>
-       
       </div>
-
     </>
   ) : (
     <p>Loading...</p>
