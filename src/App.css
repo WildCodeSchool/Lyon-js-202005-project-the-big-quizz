@@ -59,16 +59,7 @@ font-family: "Burbank Big Condensed";
   grid-template-columns: 350px 1fr;
 }
 
-.footer {
-  background-color: #dddddd;
-  grid-area: foot;
-  margin-top: 30px;
-}
 
-.linkedin {
-  list-style-type: none;
-  line-height: 2;
-}
 
 .header {
   background-color: #f0f0f0;
@@ -158,6 +149,7 @@ button {
   font-family: "Junge", serif;
   padding: 10px;
   margin:20px;
+
 }
 .bordureCardReponse {
   border: 4px solid #f6b83c !important;
@@ -348,19 +340,23 @@ text-align:center;
 .buttonAnswer_0{
   background-color: #E0B5E3;
   color: black; 
+  grid-area: button1;
   }
 
 .buttonAnswer_1{
   background-color: #D1C2EB;
-  color: black; 
+  color: black;
+  grid-area: button2;
 }
 .buttonAnswer_2{
   background-color: #E3CACD;
   color: black; 
+  grid-area: button3;
 }
 .buttonAnswer_3{
   background-color: #FDF1D8;
   color: black;
+  grid-area: button4;
 }   
   
 .game-parameter{
@@ -369,15 +365,81 @@ text-align:center;
   text-transform: capitalize;
 }
 
-.progress-container {
+/* /////////////Footer//////////////////// */
 
+.footer li {
+  display: flex;
+  background-color: #dddddd;
+  grid-area: foot;
+  margin-top: 40px;
+  margin-right: 40px;
+  justify-content: space-between;
+  text-align: center;
 }
 
-.progress2{
-  padding: 6px;
-  border-radius: 30px;
-  background: rgba(0, 0, 0, 0.25);  
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+li{
+  border-right: 1px solid white;
+  padding-right: 35px;;
+  margin-top: 15px;
 }
 
-.progress-moved{}
+footer{
+  justify-items: center;
+  flex-direction: column;
+  width: 100vw;
+  background-color: #43404F;
+  height: 200px;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+footer hr{
+  border-top-color:#bbb;
+  opacity:0.5;
+  width: 95%;
+}
+
+footer p{
+  margin-top: 20px;
+  margin-bottom: 20px;;
+  font-size: 18px;
+  font-family: 'Hind Siliguri', sans-serif;
+  color: white;
+}
+
+.linkedin {
+  display: flex;
+  list-style-type: none;
+  line-height: 2;
+  justify-items: center;
+  justify-content: space-between;
+  margin-right: 30px;
+}
+
+.linkedin li a {
+  color: white;
+  font-weight: bold;
+  font-family: 'Junge', serif;
+  font-size: 15px;
+}
+
+.wild{
+font-family: 'Montserrat Alternates', sans-serif;
+color: white;
+font-size: 16px;
+}
+
+.wild-logo{
+width: 100px;
+margin-bottom: 5px;
+}
+
+
+ /* Game */
+
+ .answerClass {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+   grid-template-areas: "button1 button2"
+                        "button3 button4 ";
+ }
