@@ -17,7 +17,6 @@ function Footer (){
     <hr/>
     <p>squizer.com © 2020. All Rights Reserved.</p>
     <a href="https://www.wildcodeschool.com/fr-FR/campus/lyon"><img src={wild} alt="Logo Wild" className="wild-logo" /></a>
-    <a className="wild" href="https://www.wildcodeschool.com/" target="_blank" rel="noopener noreferrer"></a>
     </footer>);
 }
 

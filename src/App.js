@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import "./App.css";
 
 import GridLayout from "./layout/GridLayout";
@@ -305,7 +305,7 @@ function App() {
   //     ],},
   // ]);
 
-
+  // console.log('score', score);
   return (
     <div className="App">
       <GridLayout

@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
+// import { Card, CardTitle, CardText, Row, Col } from "reactstrap";
 
 
 function NbPlayers(props) {
