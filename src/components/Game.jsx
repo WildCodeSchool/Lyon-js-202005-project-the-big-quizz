@@ -80,8 +80,7 @@ function Game(props) {
   let numberOfQuestion =
     props.gameParameters.nbPlayers * props.gameParameters.nbQuestionsPerPlayer;
   let categoryOfQuestion = props.gameParameters.category;
-
-  // let questionType = props.gameParameters.questionType;
+  let questionType = props.gameParameters.questionsType;
 
 
 
@@ -181,7 +180,7 @@ function Game(props) {
   useEffect(() => {
     axios
       .get(
-        `https://opentdb.com/api.php?amount=${numberOfQuestion}&category=${categoryOfQuestion}&difficulty=${difficulty}`
+        `https://opentdb.com/api.php?amount=${numberOfQuestion}&category=${categoryOfQuestion}&difficulty=${difficulty}&type=${questionType}`
       )
       .then((res) => {
         props.gameParameters.setQuiz(res.data.results);
@@ -397,6 +396,9 @@ function Game(props) {
                 </CardText>
                 <CardText className="">
                   Category : {props.gameParameters.quiz[id].category}
+                </CardText>
+                <CardText className="">
+                  Type : {questionType || "Any Type"} 
                 </CardText>
                 <CardText className="">
                   Difficulty :

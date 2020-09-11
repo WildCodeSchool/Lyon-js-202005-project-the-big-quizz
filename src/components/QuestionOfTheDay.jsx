@@ -28,8 +28,8 @@ const QuestionOfTheDay = (props) => {
 
 
   useEffect(() => {
-    axios.get("https://opentdb.com/api.php?amount=10").then((response) => {
-      let myId = Math.floor(Math.random() * 10);
+    axios.get("https://opentdb.com/api.php?amount=50").then((response) => {
+      let myId = Math.floor(Math.random() * 50);
       setcategorys(response.data.results[myId].category);
       setType(response.data.results[myId].type);
       setDifficultys(response.data.results[myId].difficulty);
