@@ -257,6 +257,7 @@ function Game(props) {
 
                 <Modal
                   isOpen={goodAnswerModalIsOpen}
+                  ariaHideApp = {false}
                   style={{
                     content: {
                       backgroundColor: "#BBFD5D",
@@ -294,6 +295,7 @@ function Game(props) {
                 </Modal>
                 <Modal
                   isOpen={wrongAnswerModalIsOpen}
+                  ariaHideApp = {false}
                   style={{
                     content: {
                       backgroundColor: "#FC2622",
@@ -335,6 +337,7 @@ function Game(props) {
                 </Modal>
                 <Modal
                   isOpen={timeOffModal}
+                  ariaHideApp = {false}
                   style={{
                     content: {
                       backgroundColor: "red",
