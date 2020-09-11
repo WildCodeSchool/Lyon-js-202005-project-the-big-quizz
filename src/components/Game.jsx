@@ -227,7 +227,6 @@ function Game(props) {
   }
   let catLinkImg = "";
   if (props.gameParameters.quiz !== null) {
-    console.log(props.gameParameters.quiz[id].category);
     catLinkImg = props.gameParameters.quiz[id].category;
   }
 
@@ -244,7 +243,13 @@ function Game(props) {
     <>
       <div style = {divStyle}>
         <Row>
-          <Col sm="12" md={{ size: 6, offset: 3 }}>
+        <Col sm="3" md={{ size: 3}} m="3">
+        {id>=props.gameParameters.nbPlayers
+      ?
+      <Score gameParameters={props.gameParameters}/>:"" 
+      }
+        </Col>
+          <Col sm="12" md={{ size: 6 }}>
             <Card className="test">
               <div className="game">
                 {timer === 1 && timeOffModal === false
@@ -259,15 +264,16 @@ function Game(props) {
                   isOpen={goodAnswerModalIsOpen}
                   style={{
                     content: {
-                      backgroundColor: "#BBFD5D",
-                      width: "30%",
-                      height: "20%",
+                      backgroundColor: "#FDF1D8",
+                      width: "600px",
+                      height: "200px",
                       textAlign: "center",
                       fontSize: "x-large",
                       position: "absolute",
                       left: "50%",
                       top: "50%",
                       transform: "translate(-50%, -50%)",
+                      border: "solid 1px black"
                     },
                   }}
                 >
@@ -277,7 +283,8 @@ function Game(props) {
                   </h2>
                   <button
                     style={{
-                      backgroundColor: "blue",
+                      marginTop:"20px",
+                      backgroundColor: "#D1C2EB",
                       width: "90px",
                       height: "50px",
                       borderRadius: "5px",
@@ -296,15 +303,16 @@ function Game(props) {
                   isOpen={wrongAnswerModalIsOpen}
                   style={{
                     content: {
-                      backgroundColor: "#FC2622",
-                      width: "30%",
-                      height: "20%",
+                      backgroundColor: "#D57F8E",
+                      width: "600px",
+                      height: "200px",
                       textAlign: "center",
                       fontSize: "x-large",
                       position: "absolute",
                       left: "50%",
                       top: "50%",
                       transform: "translate(-50%, -50%)",
+                      border: "solid 1px black"
                     },
                   }}
                 >
@@ -318,7 +326,7 @@ function Game(props) {
                   </p>
                   <button
                     style={{
-                      backgroundColor: "#FFE74C",
+                      backgroundColor: "#E0B5E3",
                       width: "90px",
                       height: "50px",
                       borderRadius: "5px",
@@ -335,18 +343,7 @@ function Game(props) {
                 </Modal>
                 <Modal
                   isOpen={timeOffModal}
-                  style={{
-                    content: {
-                      backgroundColor: "red",
-                      width: "40%",
-                      height: "20%",
-                      textAlign: "center",
-                      fontSize: "large",
-                      position: "absolute",
-                      left: "30%",
-                      top: "25%",
-                    },
-                  }}
+                  
                 >
 
                   <h2>
@@ -437,6 +434,7 @@ function Game(props) {
         <Row>
           <Col sm="12" md={{ size: 6, offset: 3 }}>
             <Card className="bordureCardReponse">
+            <div>
               {tableAnswer.map((answer, i) => {
                 return (
                   
@@ -455,14 +453,13 @@ function Game(props) {
                   
                 );
               })}
+              </div>
             </Card>
           </Col>
         </Row>
+       
       </div>
-      {id>=props.gameParameters.nbPlayers
-      ?
-      <Score gameParameters={props.gameParameters}/>:"" 
-      }
+      
     </>
 
   ) : (
