@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import "../App.css";
 
 import Home from "../components/Home";
@@ -10,7 +10,7 @@ import Stats from "../components/Stats";
 
 
 function Main(props) {
-console.log ('props de main',props.category)
+// console.log ('props de main',props.category)
   return (
     <div className="main">
 
